@@ -1,0 +1,14 @@
+https://github.com/0xbatche/parser-bison/blob/main/README.md :
+-> Comprendre la grammaire shell et la tokenisation
+
+Par exemple pour :
+ls -la | wc -l
+La tokenisation resultante pourrait etre :
+WORD WORD PIPE WORD WORD
+
+The Grammar avec differents tokens
+https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html#tag_02_10_02
+
+
+https://harm-smits.github.io/42docs/projects/minishell
+--> https://github.com/Swoorup/mysh
