@@ -12,3 +12,13 @@ https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html#tag_02
 
 https://harm-smits.github.io/42docs/projects/minishell
 --> https://github.com/Swoorup/mysh
+
+En gros Minishell c est un gros Pipex,
+
+Premiere etape =  lexer
+lexical analyser, c'est decouper l'input en element executable (cmd, pipe, redirection, text, etc etc)
+
+ensuite exec en fonction des inputs et de leur comportement dans shell.
+
+Apparemment la fonction readline permet direct de creer un prompt et de gerer l historique, a verifier dans quel mesure et se renseigner sur 
+tout ce qu elle peut potentielle;ent faire d'autre cette salope
