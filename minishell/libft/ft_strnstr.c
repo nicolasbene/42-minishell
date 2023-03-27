@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:23:43 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/09 21:11:31 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_strnstr(const char *hay, const char *nee, size_t len)
 {
-	t_mst	*new;
+	size_t	i;
+	size_t	j;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	i = 0;
+	if (ft_strlen(nee) == 0)
+		return ((char *)hay);
+	while (i < len && hay[i])
 	{
-		new->value = value;
-		new->type = type;
+		j = 0;
+		while (i + j < len && hay[i + j] == nee[j] && nee[j])
+			j++;
+		if (nee[j] == '\0')
+			return ((char *)hay + i);
+		i++;
 	}
-	new->next = NULL;
-	return (new);
+	return (NULL);
 }

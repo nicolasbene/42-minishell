@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:21:46 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/15 20:01:00 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_strchr(const char *s, int c)
 {
-	t_mst	*new;
+	int	i;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	i = 0;
+	while (s[i] != '\0')
 	{
-		new->value = value;
-		new->type = type;
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
 	}
-	new->next = NULL;
-	return (new);
+	if (s[i] == '\0' && c == '\0')
+		return ((char *)&s[i]);
+	else
+		return (0);
 }

@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:14:43 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/07 15:23:30 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+int	ft_isalpha(int c)
 {
-	t_mst	*new;
-
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
 	else
-	{
-		new->value = value;
-		new->type = type;
-	}
-	new->next = NULL;
-	return (new);
+		return (0);
 }

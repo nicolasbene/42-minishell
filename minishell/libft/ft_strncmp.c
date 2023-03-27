@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:22:58 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/07 15:56:48 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_mst	*new;
+	size_t	i;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] != '\0' && s1[i] == s2[i] && i + 1 < n)
 	{
-		new->value = value;
-		new->type = type;
+		i++;
 	}
-	new->next = NULL;
-	return (new);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

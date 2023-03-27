@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:22:43 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/08 20:22:44 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	t_mst	*new;
+	size_t	i;
+	size_t	len_dst;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	if (size == 0 || size <= ft_strlen(dest))
+		return (ft_strlen(src) + size);
+	i = 0;
+	len_dst = ft_strlen(dest);
+	while (src[i] && (i + len_dst) < (size - 1))
 	{
-		new->value = value;
-		new->type = type;
+		dest[i + len_dst] = src[i];
+		i++;
 	}
-	new->next = NULL;
-	return (new);
+	dest[i + len_dst] = '\0';
+	return (len_dst + ft_strlen(src));
 }

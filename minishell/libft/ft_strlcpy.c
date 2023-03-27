@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/08 21:41:21 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/15 20:09:13 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	t_mst	*new;
+	size_t	index;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	index = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[index] && index < size - 1)
 	{
-		new->value = value;
-		new->type = type;
+		dst[index] = src[index];
+		index++;
 	}
-	new->next = NULL;
-	return (new);
+	dst[index] = '\0';
+	return (ft_strlen(src));
 }

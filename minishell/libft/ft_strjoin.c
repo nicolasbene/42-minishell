@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:22:37 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/07 15:54:59 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_mst	*new;
+	int		l_string;
+	int		i;
+	int		j;
+	char	*new;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
+	i = 0;
+	j = 0;
+	l_string = ft_strlen(s1) + ft_strlen(s2) + 1;
+	new = (char *)malloc(l_string * sizeof(char));
 	if (new == NULL)
 		return (NULL);
-	else
+	while (s1[i] != '\0')
 	{
-		new->value = value;
-		new->type = type;
+		new[i] = s1[i];
+		i++;
 	}
-	new->next = NULL;
+	while (s2[j] != '\0')
+	{
+		new[i + j] = s2[j];
+		j++;
+	}
+	new [i + j] = '\0';
 	return (new);
 }

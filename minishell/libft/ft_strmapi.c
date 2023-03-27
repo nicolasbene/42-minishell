@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/08 22:20:46 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/08 22:36:18 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_mst	*new;
+	unsigned int		i;
+	char				*new;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
+	i = 0;
+	new = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (new == NULL)
 		return (NULL);
-	else
+	new[ft_strlen(s)] = '\0';
+	while (s[i])
 	{
-		new->value = value;
-		new->type = type;
+		new[i] = (*f)(i, s[i]);
+		i++;
 	}
-	new->next = NULL;
 	return (new);
 }

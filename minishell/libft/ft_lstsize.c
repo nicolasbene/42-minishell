@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/15 20:02:39 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/15 20:46:12 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+int	ft_lstsize(t_list *lst)
 {
-	t_mst	*new;
+	int	i;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
+	i = 0;
+	if (lst == NULL)
+		return (0);
 	else
 	{
-		new->value = value;
-		new->type = type;
+		while (lst->next != NULL)
+		{
+				lst = lst->next;
+				i++;
+		}
 	}
-	new->next = NULL;
-	return (new);
+	return (i + 1);
 }

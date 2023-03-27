@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 15:04:17 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/15 20:03:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	t_mst	*new;
+	size_t	i;
+	char	*new;
+	size_t	size;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
+	i = 0;
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	if (len < ft_strlen(s))
+		size = len + 1;
+	else
+		size = ft_strlen(s) - start + 1;
+	new = ft_calloc(size, sizeof(char));
 	if (new == NULL)
 		return (NULL);
-	else
+	while (i < len && s[start + i])
 	{
-		new->value = value;
-		new->type = type;
+		new[i] = s[start + i];
+		i++;
 	}
-	new->next = NULL;
 	return (new);
 }

@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:22:15 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/15 21:12:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_strdup(const char *s1)
 {
-	t_mst	*new;
+	char	*new;
+	int		len;
+	int		i;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	i = 0;
+	len = ft_strlen(s1);
+	new = (char *) malloc((len + 1) * sizeof(char));
+	if (new != NULL)
 	{
-		new->value = value;
-		new->type = type;
+		while (s1[i] != '\0')
+		{
+			new[i] = s1[i];
+			i++;
+		}
+		new[i] = '\0';
 	}
-	new->next = NULL;
 	return (new);
 }

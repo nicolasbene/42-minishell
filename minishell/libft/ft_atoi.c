@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 16:35:18 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/07 12:13:27 by nwyseur           #+#    #+#             */
+/*   Updated: 2022/11/07 15:22:55 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell_tokens.h"
-#include "minishell_lexer.h"
+#include "libft.h"
 
-t_mst	*ft_init_token(char *value, int type)
+int	ft_atoi(const char *str)
 {
-	t_mst	*new;
+	int	i;
+	int	rslt;
+	int	sign;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
-	else
+	i = 0;
+	rslt = 0;
+	sign = 1;
+	while (str[i] && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+		i++;
+	if (str[i] == 45)
 	{
-		new->value = value;
-		new->type = type;
+		sign = sign * -1;
+		i++;
 	}
-	new->next = NULL;
-	return (new);
+	else if (str[i] == 43)
+		i++;
+	while (str[i] && (str[i] >= 48 && str[i] <= 57))
+	{
+		rslt = rslt * 10;
+		rslt = rslt + str[i] - 48;
+		i++;
+	}
+	return (rslt * sign);
 }
