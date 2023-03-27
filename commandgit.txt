@@ -1,1 +1,4 @@
 git config --bool core.bare true
+➜  docms git:(main) git branch nwyseur 
+➜  docms git:(main) git checkout nwyseur
+➜  docms git:(nwyseur) git branch -v
