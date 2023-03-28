@@ -6,27 +6,24 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/02/27 12:48:04 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/03/28 16:39:50 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= pipex
+NAME		:= minishell
 NAME_BONUS	:= pipex_bonus
 
-SRCS_FILES	:= main_copy.c \
-				error_management.c \
-				free_management.c \
-				utils_copy.c \
+SRCS_FILES	:= lexer_token.c \
+				lexer_lexer.c \
+				lexer_utils.c \
+				main.c \
 
-BONUS_FILES	:= main_bonus.c \
-				error_management_bonus.c \
-				free_management_bonus.c \
-				utils_bonus.c \
-				here_doc.c \
+BONUS_FILES	:= 
 
 HEADER_FILE_BONUS := pipex_bonus.h
 
-HEADER_FILE	:= pipex.h
+HEADER_FILE	:= minishell_token.h \
+				minishell_lexer.h 
 
 SRCS_DIR	:= ./srcs/
 INC_DIR		:= ./includes/

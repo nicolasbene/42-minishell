@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/28 15:05:21 by nwyseur          ###   ########.fr       */
+/*   Created: 2023/03/28 14:43:20 by nwyseur           #+#    #+#             */
+/*   Updated: 2023/03/28 15:05:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_lexer.h"
 #include "../includes/minishell_lexer.h"
 
-t_mst	*ft_init_token(char *value, int type)
+char	*ft_strjoinchara(char *s1, char c)
 {
-	t_mst	*new;
+	int		l_string;
+	int		i;
+	char	*new;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
+	i = 0;
+	l_string = ft_strlen(s1) + 2;
+	new = (char *)malloc(l_string * sizeof(char));
 	if (new == NULL)
 		return (NULL);
-	else
+	while (s1[i] != '\0')
 	{
-		new->value = value;
-		new->type = type;
+		new[i] = s1[i];
+		i++;
 	}
-	new->next = NULL;
+	new[i] = c;
+	i++;
+	new [i] = '\0';
+	free(s1);
 	return (new);
 }
