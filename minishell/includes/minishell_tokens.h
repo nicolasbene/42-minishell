@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:53 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/29 11:55:26 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/29 17:53:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ enum	e_type
 	TOKEN_GG,
 	TOKEN_L,
 	TOKEN_LL,
-	TOKEN_QC,
-	TOKEN_QQC,
+	TOKEN_LQ,
+	TOKEN_LQQ,
 	TOKEN_EOF,
 };
 

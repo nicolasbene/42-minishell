@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:43:20 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/28 15:05:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/29 16:03:32 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,29 @@ char	*ft_strjoinchara(char *s1, char c)
 	new [i] = '\0';
 	free(s1);
 	return (new);
+}
+
+int	ft_ischara(char c)
+{
+	if (!(c >= 9 && c <= 13) && c != 32 && c != '|'
+		&& c != '>' && c != '<' && c != '\0')
+		return (1);
+	return (0);
+}
+
+int	ft_strchrms(char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == (char)c)
+			return (1);
+		i++;
+	}
+	if (str[i] == '\0' && c == '\0')
+		return (1);
+	else
+		return (0);
 }

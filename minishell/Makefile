@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/03/28 16:39:50 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/03/29 15:11:38 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ BONUS_OBJS	:= ${BONUS_SRCS:.c=.o}
 BONUS_HEADER := $(addprefix ${INC_DIR}, ${HEADER_FILE_BONUS})
 
 CC			:= cc
-CC_FLAGS	:= -Wall -Wextra -Werror
+CC_FLAGS	:= -Wall -Wextra -Werror -g3
 
 RM			:= rm -f
 

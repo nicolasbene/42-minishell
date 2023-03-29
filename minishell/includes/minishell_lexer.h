@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:59 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/28 17:40:55 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/29 17:17:19 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ char	ft_lexer_peek(t_mslex *mslex, int offset);
 void	ft_lexer_skip_blank(t_mslex *mslex);
 t_mst	*ft_lexer_next_token(t_mslex *mslex);
 t_mst	*ft_lexer_parse_word(t_mslex *mslex);
+char	*ft_lexer_parse_quote(t_mslex *mslex, char *value, int c);
 
 /* Utils */
 
 char	*ft_strjoinchara(char *s1, char c);
+int		ft_ischara(char c);
+int		ft_strchrms(char *str, int c);
 
 #endif
