@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"minishell_tokens.h": "c",
+		"minishell_lexer.h": "c"
+	}
+}

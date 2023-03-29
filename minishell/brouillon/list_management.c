@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   list_management.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/29 12:08:27 by nwyseur          ###   ########.fr       */
+/*   Created: 2023/01/25 14:11:59 by nwyseur           #+#    #+#             */
+/*   Updated: 2023/02/09 10:58:58 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_lexer.h"
+#include "../includes/push_swap.h"
 
-t_mst	*ft_init_token(char *value, int type)
+t_stack	*ft_pslstnew(int newnbr, int index)
 {
-	t_mst	*new;
+	t_stack	*new;
 
-	new = (t_mst *)malloc(sizeof(t_mst) * 1);
+	new = (t_stack *)malloc(sizeof(t_stack));
 	if (new == NULL)
 		return (NULL);
-	else
-	{
-		new->value = value;
-		new->type = type;
-	}
-	new->next = NULL;
+	new->nbr = newnbr;
+	new->i = index;
+	new ->next = NULL;
+	new ->prev = NULL;
 	return (new);
 }
 
-void	ft_mslstokenclear(t_mst **lst)
+void	ft_pslstclear(t_stack **lst)
 {
-	t_mst	*aux;
-	t_mst	*temp;
+	t_stack	*aux;
+	t_stack	*temp;
 
 	aux = *lst;
 	if (aux == NULL)
@@ -46,22 +43,23 @@ void	ft_mslstokenclear(t_mst **lst)
 	*lst = NULL;
 }
 
-void	ft_mslstokenadd_back(t_mst **lst, t_mst *new)
+void	ft_pslstadd_back(t_stack **lst, t_stack *new)
 {
-	t_mst	*tmp;
+	t_stack	*tmp;
 
 	if (lst && *lst != NULL)
 	{
 		tmp = *lst;
 		while (tmp->next != NULL)
 			tmp = tmp->next;
+		new->prev = tmp;
 		tmp->next = new;
 	}
 	if (lst && *lst == NULL)
 		*lst = new;
 }
 
-t_mst	*ft_msltokenlast(t_mst *lst)
+t_stack	*ft_pslstlast(t_stack *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -71,20 +69,11 @@ t_mst	*ft_msltokenlast(t_mst *lst)
 	return (lst);
 }
 
-int	ft_mslstokensize(t_mst *lst)
+void	ft_psavantlstlast(t_stack **lst)
 {
-	int	i;
-
-	i = 0;
-	if (lst == NULL)
-		return (0);
+	if ((*lst) == NULL)
+		return ;
 	else
-	{
-		while (lst->next != NULL)
-		{
-				lst = lst->next;
-				i++;
-		}
-	}
-	return (i + 1);
+		while ((*lst)->next->next != NULL)
+			(*lst) = (*lst)->next;
 }

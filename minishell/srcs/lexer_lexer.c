@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:37:42 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/28 18:36:56 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:17:25 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ t_mst	*ft_lexer_next_token(t_mslex *mslex)
 		if (mslex->c == '>')
 		{
 			if (ft_lexer_peek(mslex, 1) == '>')
-				return (ft_lexer_adv_ret(mslex, ft_init_token(">>", TOKEN_LL)));
-			return (ft_lexer_adv_ret(mslex, ft_init_token(">", TOKEN_L)));
+				return (ft_lexer_adv_ret(mslex, ft_init_token(">>", TOKEN_GG)));
+			return (ft_lexer_adv_ret(mslex, ft_init_token(">", TOKEN_G)));
 		}
 		if ((mslex->c >= 9 && mslex->c <= 13) || mslex->c == 32)
 			ft_lexer_skip_blank(mslex);

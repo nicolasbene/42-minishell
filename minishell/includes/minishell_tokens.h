@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:53 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/28 16:26:16 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/29 11:55:26 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ typedef struct mst_struct
 }	t_mst;
 
 t_mst	*ft_init_token(char *value, int type);
+void	ft_mslstokenclear(t_mst **lst);
+void	ft_mslstokenadd_back(t_mst **lst, t_mst *new);
+t_mst	*ft_msltokenlast(t_mst *lst);
+int		ft_mslstokensize(t_mst *lst);
 
 #endif
