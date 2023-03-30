@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/03/29 15:11:38 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/03/30 11:31:56 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME		:= minishell
 NAME_BONUS	:= pipex_bonus
 
 SRCS_FILES	:= lexer_token.c \
-				lexer_lexer.c \
+				lexer_main.c \
+				lexer_mvt.c \
 				lexer_utils.c \
 				main.c \
 

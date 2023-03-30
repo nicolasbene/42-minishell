@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/29 18:13:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:27:02 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	t_mslex	*mslex;
 	t_mst	*mst;
 
-	mslex = ft_init_lexer("bonjour @ < jesuis'nicolas file1 | au revoir");
+	mslex = ft_init_lexer("bonjour @ < jesuis'nicolas'  file1 | au revoir");
 	mst = ft_lexer_next_token(mslex);
 	while (ft_msltokenlast(mst)->type != TOKEN_EOF)
 	{
