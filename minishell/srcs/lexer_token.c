@@ -6,12 +6,12 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/29 12:08:27 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/30 14:06:00 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_lexer.h"
-#include "../includes/minishell_lexer.h"
+#include "../includes/minishell_tokens.h"
 
 t_mst	*ft_init_token(char *value, int type)
 {
@@ -40,6 +40,8 @@ void	ft_mslstokenclear(t_mst **lst)
 	while (aux != NULL)
 	{
 		temp = aux->next;
+		if (aux->type == TOKEN_WORD)
+			free(aux->value);
 		free(aux);
 		aux = temp;
 	}

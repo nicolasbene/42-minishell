@@ -6,12 +6,12 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:37:42 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/30 11:49:32 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/30 12:12:26 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_lexer.h"
-#include "../includes/minishell_lexer.h"
+#include "../includes/minishell_tokens.h"
 
 // Permet de gerer les ' et " dans le lexing du mot;
 char	*ft_lexer_parse_quote(t_mslex *mslex, char *value, int c)
@@ -99,5 +99,6 @@ t_mst	*ft_lexer_main(char *str)
 	{
 		ft_mslstokenadd_back(&mst, ft_lexer_next_token(mslex));
 	}
+	free(mslex);
 	return (mst);
 }

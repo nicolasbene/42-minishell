@@ -6,12 +6,12 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 11:28:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/30 11:46:31 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/03/30 12:08:14 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_lexer.h"
-#include "../includes/minishell_lexer.h"
+#include "../includes/minishell_tokens.h"
 
 // Initialisation de la structure qui va nous servir a analyser la str
 t_mslex	*ft_init_lexer(char *str)
@@ -29,7 +29,7 @@ t_mslex	*ft_init_lexer(char *str)
 // Permet d'avancer de 1 dans la chaine de caractere et d'update la struct
 void	ft_lexer_advance(t_mslex *mslex)
 {
-	if (mslex->i < mslex->str_size && mslex->c != '\0')
+	if (mslex->i < (int)mslex->str_size && mslex->c != '\0')
 	{
 		mslex->i++;
 		mslex->c = mslex->str[mslex->i];
@@ -47,7 +47,7 @@ t_mst	*ft_lexer_adv_ret(t_mslex *mslex, t_mst *mst)
 // Permet d'aller regarder sur la chaine a X cases
 char	ft_lexer_peek(t_mslex *mslex, int offset)
 {
-	if (mslex->i + offset <= mslex->str_size)
+	if (mslex->i + offset <= (int)mslex->str_size)
 		return (mslex->str[mslex->i + offset]);
 	else
 		return (mslex->str[mslex->str_size]);
