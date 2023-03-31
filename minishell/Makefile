@@ -6,20 +6,22 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/03/30 12:05:08 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/03/31 18:16:30 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= minishell
 
-SRCS_FILES	:= lexer_token.c \
+SRCS_FILES	:= token_management.c \
 				lexer_main.c \
 				lexer_mvt.c \
 				lexer_utils.c \
+				parser_main.c \
 				main.c \
 
 HEADER_FILE	:= minishell_tokens.h \
 				minishell_lexer.h \
+				minishell_parser.h \
 
 SRCS_DIR	:= ./srcs/
 INC_DIR		:= ./includes/
