@@ -53,3 +53,12 @@ https://fr.manpages.org/bash man bash fr
 https://codes-sources.commentcamarche.net/forum/affich-10047436-developper-un-shell-de-base
 
 
+
+
+Sommaire
+https://github.com/iciamyplant/Minishell
+
+Les redirections
+https://putaindecode.io/articles/maitriser-les-redirections-shell/
+
+
