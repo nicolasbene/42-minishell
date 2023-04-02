@@ -21,21 +21,21 @@ typedef struct s_command
 
 void create_commands(t_list *commands)
 {
-    t_command *cmd1 = malloc(sizeof(t_command));
-    cmd1->args = malloc(3 * sizeof(char *));
-    cmd1->args[0] = "echo";
-    cmd1->args[1] = "koikoube";
-    cmd1->args[2] = NULL;
-    commands->content = cmd1;
+		t_command *cmd1 = malloc(sizeof(t_command));
+		cmd1->args = malloc(3 * sizeof(char *));
+		cmd1->args[0] = "echo";
+		cmd1->args[1] = "koikoube";
+		cmd1->args[2] = NULL;
+		commands->content = cmd1;
 
-    t_command *cmd2 = malloc(sizeof(t_command));
-    cmd2->args = malloc(3 * sizeof(char *));
-    cmd2->args[0] = "cat";
-    cmd2->args[1] = "file1";
-    cmd2->args[2] = NULL;
-    commands->next = malloc(sizeof(t_list));
-    commands->next->content = cmd2;
-    commands->next->next = NULL;
+		// t_command *cmd2 = malloc(sizeof(t_command));
+		// cmd2->args = malloc(3 * sizeof(char *));
+		// cmd2->args[0] = "cat";
+		// cmd2->args[1] = "file1";
+		// cmd2->args[2] = NULL;
+		// commands->next = malloc(sizeof(t_list));
+		// commands->next->content = cmd2;
+		commands->next->next = NULL;
 }
 int	nbr_args(char **av)
 {
@@ -47,7 +47,21 @@ int	nbr_args(char **av)
 	return (i);
 }
 
-int	forks(t_list *commands)
+int	exec(char **args, char **envp)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == -1)
+		return (-1);
+	if (pid == 0)
+	{
+		execve(args[0], args, envp);
+	}
+	return (pid);
+}
+
+int	forks(t_list *commands, char **envp)
 {
 	t_command	*cmd;
 	int			last_pid;
@@ -57,20 +71,18 @@ int	forks(t_list *commands)
 	{
 		cmd = commands->content;
 		//redirection potentielles
-		tmp = get_path_cmd(cmd);
+		// tmp = get_path_cmd(cmd);
 
-		last_pid = exec(cmd->args, tmp);
+		last_pid = exec(cmd->args, envp);
 
-		free(tmp);
 		commands = commands->next;
 	}
 	return (last_pid);
 }
 
 
-int	pipex(t_list *commands)
+int	pipex(t_list *commands, char **envp)
 {
-	t_command	*cmd;
 	int			last_pid;
 
 	// if (cmd->args && command->next == NULL && ifbuiltins(cmd->args) == 0)
@@ -78,19 +90,19 @@ int	pipex(t_list *commands)
 	// 	//redirections potentielles + builtin_parent
 	// }
 	// else
-	last_pid = forks(commands);
+	last_pid = forks(commands, envp);
 	
 	return (0);
 }
 
 
-int	executing(t_list *command)
+int	executing(t_list *commands, char **envp)
 {
-	pipex(command);
+	pipex(commands, envp);
 	return (0);
 }
 
-void	routine()
+void	routine(char **envp)
 {
 	t_list *commands;
 	
@@ -98,7 +110,7 @@ void	routine()
 	while (1)
 	{
 		if (commands)
-			executing(commands);
+			executing(commands, envp);
 	}
 }
 
@@ -107,9 +119,8 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
 	(void)argc;
-	(void)envp;
 	
-	routine();
+	routine(envp);
 
 	return (0);
 }
