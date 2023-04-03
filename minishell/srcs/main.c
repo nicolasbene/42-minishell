@@ -6,120 +6,82 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/03/31 16:52:59 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/03 21:09:54 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-typedef struct s_command
+void create_commands(t_list **commands)
 {
-	int		fd_rw[2];
-	char	**args;
-}				t_command;
+    // Création du premier élément
+    t_command *cmd1 = malloc(sizeof(t_command));
+    cmd1->args = malloc(sizeof(char*) * 3);
+    cmd1->args[0] = ft_strdup("ls");
+    cmd1->args[1] = ft_strdup("-l");
+    cmd1->args[2] = NULL;
+    cmd1->redirects = NULL; // pas de redirections pour ce premier élément
+    cmd1->fd_rw[0] = -1;
+    cmd1->fd_rw[1] = -1;
+    t_list *elem1 = malloc(sizeof(t_list));
+    elem1->content = cmd1;
+    elem1->next = NULL;
 
-void create_commands(t_list *commands)
-{
-		t_command *cmd1 = malloc(sizeof(t_command));
-		cmd1->args = malloc(3 * sizeof(char *));
-		cmd1->args[0] = "echo";
-		cmd1->args[1] = "koikoube";
-		cmd1->args[2] = NULL;
-		commands->content = cmd1;
+    // Création du deuxième élément
+    t_command *cmd2 = malloc(sizeof(t_command));
+    cmd2->args = malloc(sizeof(char*) * 2);
+    cmd2->args[0] = ft_strdup("cat");
+    cmd2->args[1] = ft_strdup("test.txt");
+    cmd2->redirects = malloc(sizeof(t_list));
+    t_redirect *redir = malloc(sizeof(t_redirect));
+    redir->file = ft_strdup("output.txt");
+    redir->fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    redir->type = RD_OUT;
+    cmd2->redirects->content = redir;
+    cmd2->redirects->next = NULL;
+    cmd2->fd_rw[0] = -1;
+    cmd2->fd_rw[1] = -1;
+    t_list *elem2 = malloc(sizeof(t_list));
+    elem2->content = cmd2;
+    elem2->next = NULL;
 
-		// t_command *cmd2 = malloc(sizeof(t_command));
-		// cmd2->args = malloc(3 * sizeof(char *));
-		// cmd2->args[0] = "cat";
-		// cmd2->args[1] = "file1";
-		// cmd2->args[2] = NULL;
-		// commands->next = malloc(sizeof(t_list));
-		// commands->next->content = cmd2;
-		commands->next->next = NULL;
-}
-int	nbr_args(char **av)
-{
-	int	i;
-
-	i = 0;
-	while (av[i])
-		i++;
-	return (i);
-}
-
-int	exec(char **args, char **envp)
-{
-	int	pid;
-
-	pid = fork();
-	if (pid == -1)
-		return (-1);
-	if (pid == 0)
-	{
-		execve(args[0], args, envp);
-	}
-	return (pid);
+    // Ajout des deux éléments à la liste chaînée
+    *commands = elem1;
+    elem1->next = elem2;
 }
 
-int	forks(t_list *commands, char **envp)
-{
-	t_command	*cmd;
-	int			last_pid;
-	char		*tmp;
-	
-	while (commands)
-	{
-		cmd = commands->content;
-		//redirection potentielles
-		// tmp = get_path_cmd(cmd);
-
-		last_pid = exec(cmd->args, envp);
-
-		commands = commands->next;
-	}
-	return (last_pid);
-}
-
-
-int	pipex(t_list *commands, char **envp)
-{
-	int			last_pid;
-
-	// if (cmd->args && command->next == NULL && ifbuiltins(cmd->args) == 0)
-	// {
-	// 	//redirections potentielles + builtin_parent
-	// }
-	// else
-	last_pid = forks(commands, envp);
-	
-	return (0);
-}
 
 
 int	executing(t_list *commands, char **envp)
 {
-	pipex(commands, envp);
+	int last_pid;
+
+	last_pid = pipex(commands, envp);
+
+	//wait_pid
+	// while (wait(NULL) != -1)
+	// 	;
+	//gestion des signaux et du status
 	return (0);
 }
 
+//on va lire la ligne du prompte pour la parser et l'executer
 void	routine(char **envp)
 {
 	t_list *commands;
 	
-	create_commands(commands);
-	while (1)
-	{
+	commands = malloc(sizeof(t_list));
+	create_commands(&commands);
 		if (commands)
 			executing(commands, envp);
-	}
 }
-
 
 int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argv;
 	(void)argc;
 	
+	// init_minishell(envp);
 	routine(envp);
 
 	return (0);
