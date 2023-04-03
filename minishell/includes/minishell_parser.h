@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:07:44 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/03 10:54:25 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/03 17:58:39 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 
 enum	e_rdtype
 {
-	RD_INF,
-	RD_OUT,
-	RD_APP,
-	RD_HERE,
+	RD_INF = 4,
+	RD_OUT = 2,
+	RD_APP = 3,
+	RD_HERE = 5,
 };
 
 typedef enum e_errtype
@@ -52,11 +52,5 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 
 }	t_cmd;
-
-t_cmd	*ft_main_parser(t_mst *mst);
-int		ft_syntax_check(t_mst *mst);
-int		ft_printerr(t_mst *tmp, int err);
-int		ft_check_rd(t_mst *tmp);
-int		ft_check_pipe(t_mst *tmp, t_mst *prev);
 
 #endif

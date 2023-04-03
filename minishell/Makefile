@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/03 10:29:18 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/04/03 16:45:49 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS_FILES	:= token_management.c \
 				lexer_mvt.c \
 				lexer_utils.c \
 				parser_main.c \
-				parer_struct.c \
+				parser_struct.c \
 				main.c \
 
 HEADER_FILE	:= minishell_tokens.h \
