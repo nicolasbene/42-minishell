@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 11:28:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/30 12:08:14 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/03 11:10:22 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_mslex	*ft_init_lexer(char *str)
 	t_mslex	*mslex;
 
 	mslex = (t_mslex *)malloc(1 * sizeof(t_mslex));
+	if (mslex == NULL)
+		return (NULL);
 	mslex->str = str;
 	mslex->str_size = ft_strlen(str);
 	mslex->i = 0;
