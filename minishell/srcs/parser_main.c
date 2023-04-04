@@ -6,13 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/31 18:23:51 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:58:31 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_tokens.h"
-#include "../includes/minishell_parser.h"
+#include "../includes/minishell_includes.h"
 
 int	ft_check_pipe(t_mst *tmp, t_mst *prev)
 {

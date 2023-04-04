@@ -6,19 +6,14 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:07:44 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/03 17:58:39 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:38:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_PARSER_H
 # define MINISHELL_PARSER_H
 
-# include "minishell_lexer.h"
-# include "minishell_tokens.h"
-# include "../libft/libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+# include "minishell_includes.h"
 
 enum	e_rdtype
 {
@@ -46,11 +41,31 @@ typedef struct s_rdlist
 
 typedef struct s_cmd
 {
-	int				fd[2];
 	char			**arg;
 	t_rdlist		*rd;
 	struct s_cmd	*next;
 
 }	t_cmd;
+
+// Parser
+// Syntax Checker
+// t_cmd	*ft_main_parser(t_mst *mst);
+int			ft_syntax_check(t_mst *mst);
+int			ft_printerr(t_mst *tmp, int err);
+int			ft_check_rd(t_mst *tmp);
+int			ft_check_pipe(t_mst *tmp, t_mst *prev);
+
+// Cmd List Creator
+t_cmd		*ft_parser_struct(t_mst *mst);
+t_cmd		*ft_cmd_maillon(t_mst **mst, int *nb);
+void		ft_cmdlstokenadd_back(t_cmd **lst, t_cmd *new);
+void		ft_rdlstokenadd_back(t_rdlist **lst, t_rdlist *new);
+t_rdlist	*ft_init_rdlist(t_mst *mst, int *nb);
+t_cmd		*ft_init_cmd(int *nb);
+void		ft_cmd_size(t_mst *mst, int *nb);
+
+// Parser Free
+void		ft_free_cmd(t_cmd **lst);
+void		ft_rdlstclear(t_rdlist **lst);
 
 #endif

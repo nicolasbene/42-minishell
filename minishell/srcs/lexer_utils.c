@@ -6,12 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:43:20 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/30 15:00:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:58:12 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_tokens.h"
+#include "../includes/minishell_includes.h"
 
 char	*ft_strjoinchara(char *s1, char c)
 {

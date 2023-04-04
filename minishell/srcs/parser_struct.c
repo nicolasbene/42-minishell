@@ -6,13 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/03 18:09:59 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:07:13 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_tokens.h"
-#include "../includes/minishell_parser.h"
+#include "../includes/minishell_includes.h"
 
 void	ft_cmd_size(t_mst *mst, int *nb)
 {
@@ -21,7 +19,7 @@ void	ft_cmd_size(t_mst *mst, int *nb)
 	nb[0] = 0;
 	nb[1] = 0;
 	tmp = mst;
-	while (tmp != NULL && tmp->type != TOKEN_PIPE) // ou mettre topken EOF?
+	while (tmp != NULL && tmp->type != TOKEN_PIPE)
 	{
 		if (tmp->type == TOKEN_G || tmp->type == TOKEN_GG
 			|| tmp->type == TOKEN_L || tmp->type == TOKEN_LL)
@@ -56,8 +54,6 @@ t_cmd	*ft_init_cmd(int *nb)
 	return (new);
 }
 
-
-
 t_rdlist	*ft_init_rdlist(t_mst *mst, int *nb)
 {
 	t_rdlist	*new;
@@ -74,36 +70,6 @@ t_rdlist	*ft_init_rdlist(t_mst *mst, int *nb)
 	return (new);
 }
 
-void	ft_rdlstokenadd_back(t_rdlist **lst, t_rdlist *new)
-{
-	t_rdlist	*tmp;
-
-	if (lst && *lst != NULL)
-	{
-		tmp = *lst;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	if (lst && *lst == NULL)
-		*lst = new;
-}
-
-void	ft_cmdlstokenadd_back(t_cmd **lst, t_cmd *new)
-{
-	t_cmd	*tmp;
-
-	if (lst && *lst != NULL)
-	{
-		tmp = *lst;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	if (lst && *lst == NULL)
-		*lst = new;
-}
-
 t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb)
 {
 	t_cmd	*link;
@@ -111,7 +77,7 @@ t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb)
 
 	i = 0;
 	link = ft_init_cmd(nb);
-	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE) // ou mettre topken EOF?
+	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE)
 	{
 		if ((*mst)->type == TOKEN_G || (*mst)->type == TOKEN_GG
 			|| (*mst)->type == TOKEN_L || (*mst)->type == TOKEN_LL)

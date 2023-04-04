@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_token.c                                      :+:      :+:    :+:   */
+/*   token_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/30 14:06:00 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:58:42 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_tokens.h"
+#include "../includes/minishell_includes.h"
 
 t_mst	*ft_init_token(char *value, int type)
 {

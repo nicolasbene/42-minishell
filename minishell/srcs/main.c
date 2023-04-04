@@ -6,23 +6,23 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/03 18:10:48 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:08:59 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_tokens.h"
-#include "../includes/minishell_parser.h"
+#include "../includes/minishell_includes.h"
 
 int	main(void)
 {
-	t_mslex	*mslex;
-	t_mst	*mst;
-	t_mst	*tmp;
-	t_cmd	*cmd;
+	t_mslex		*mslex;
+	t_mst		*mst;
+	t_mst		*tmp;
+	t_cmd		*cmd;
+	t_cmd		*tmpcmd;
+	t_rdlist	*tmprd;
 	int		i;
 
-	mslex = ft_init_lexer("bonjour je suis < nicolas | > comment > alerte je suis billy");
+	mslex = ft_init_lexer("bonjour je suis | comment > 'fuck test billy' | whats up brandon");
 	mst = ft_lexer_next_token(mslex);
 	while (ft_msltokenlast(mst)->type != TOKEN_EOF)
 	{
@@ -39,27 +39,31 @@ int	main(void)
 		printf("non\n");
 	else
 		printf("oui\n");
-	//ft_mslstokenclear(&tmp);
 	printf("\n---------------------\n");
 	////////
 	cmd = ft_parser_struct(tmp);
+	tmpcmd = cmd;
+
 	while (cmd != NULL)
 	{
 		i = 0;
-		printf("args:");
-		while (i < 3)
+		printf("\nargs:");
+		while (cmd->arg[i])
 		{
 			printf("%s ", cmd->arg[i]);
 			i++;
 		}
-		if (cmd->rd != NULL)
+		tmprd = cmd->rd;
+		if (tmprd != NULL)
 		{
-			while (cmd->rd != NULL)
+			while (tmprd != NULL)
 			{
-				printf("\nRDTYPE: %i - FILE: %s\n", cmd->rd->type, cmd->rd->str);
-				cmd->rd = cmd->rd->next;
+				printf("\nRDTYPE: %i - FILE: %s", tmprd->type, tmprd->str);
+				tmprd = tmprd->next;
 			}
 		}
 		cmd = cmd->next;
 	}
+	ft_mslstokenclear(&tmp);
+	ft_free_cmd(&tmpcmd);
 }

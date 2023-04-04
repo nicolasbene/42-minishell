@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/03 16:45:49 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/04/04 15:07:33 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,14 @@ SRCS_FILES	:= token_management.c \
 				lexer_utils.c \
 				parser_main.c \
 				parser_struct.c \
+				parser_struct_2.c \
+				parser_free.c \
 				main.c \
 
 HEADER_FILE	:= minishell_tokens.h \
 				minishell_lexer.h \
 				minishell_parser.h \
+				minishell_includes.h \
 
 SRCS_DIR	:= ./srcs/
 INC_DIR		:= ./includes/

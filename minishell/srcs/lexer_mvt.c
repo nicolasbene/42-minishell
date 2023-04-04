@@ -6,12 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 11:28:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/03 11:10:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 14:58:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell_lexer.h"
-#include "../includes/minishell_tokens.h"
+#include "../includes/minishell_includes.h"
 
 // Initialisation de la structure qui va nous servir a analyser la str
 t_mslex	*ft_init_lexer(char *str)

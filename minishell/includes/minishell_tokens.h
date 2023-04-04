@@ -6,19 +6,14 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:53 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/03 18:09:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:24:02 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_TOKENS_H
 # define MINISHELL_TOKENS_H
 
-# include "minishell_lexer.h"
-# include "minishell_parser.h"
-# include "../libft/libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+# include "minishell_includes.h"
 
 enum	e_type
 {
@@ -40,26 +35,11 @@ typedef struct mst_struct
 	struct mst_struct	*next;
 }	t_mst;
 
+// Token
 t_mst		*ft_init_token(char *value, int type);
 void		ft_mslstokenclear(t_mst **lst);
 void		ft_mslstokenadd_back(t_mst **lst, t_mst *new);
 t_mst		*ft_msltokenlast(t_mst *lst);
 int			ft_mslstokensize(t_mst *lst);
-
-/* pourquoi marche pas dans le bon?*/
-// t_cmd	*ft_main_parser(t_mst *mst);
-int			ft_syntax_check(t_mst *mst);
-int			ft_printerr(t_mst *tmp, int err);
-int			ft_check_rd(t_mst *tmp);
-int			ft_check_pipe(t_mst *tmp, t_mst *prev);
-
-// a normer avec la technique des includes
-t_cmd		*ft_parser_struct(t_mst *mst);
-t_cmd		*ft_cmd_maillon(t_mst **mst, int *nb);
-void		ft_cmdlstokenadd_back(t_cmd **lst, t_cmd *new);
-void		ft_rdlstokenadd_back(t_rdlist **lst, t_rdlist *new);
-t_rdlist	*ft_init_rdlist(t_mst *mst, int *nb);
-t_cmd		*ft_init_cmd(int *nb);
-void		ft_cmd_size(t_mst *mst, int *nb);
 
 #endif

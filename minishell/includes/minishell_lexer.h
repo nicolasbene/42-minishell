@@ -6,19 +6,14 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:59 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/30 11:37:30 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 12:22:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_LEXER_H
 # define MINISHELL_LEXER_H
 
-# include "minishell_tokens.h"
-# include "../libft/libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdio.h>
+# include "minishell_includes.h"
 
 typedef struct lexer_struct
 {
@@ -28,6 +23,7 @@ typedef struct lexer_struct
 	int		i;
 }	t_mslex;
 
+// lexer
 t_mslex	*ft_init_lexer(char *str);
 void	ft_lexer_advance(t_mslex *mslex);
 t_mst	*ft_lexer_adv_ret(t_mslex *mslex, t_mst *mst);
