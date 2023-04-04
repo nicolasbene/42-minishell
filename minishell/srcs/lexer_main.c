@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:37:42 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 14:57:56 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 16:03:21 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,3 +102,7 @@ t_mst	*ft_lexer_main(char *str)
 	//ft_mslstokenclear(&mst); // pour free mst;
 	return (mst);
 }
+
+// checker si nexttoken return NULL qu est-ce qu on fait? 
+//est-ce qu on return une erreurt ou est-ce qu'on considere que le mqillon 
+//ajoute est null? 

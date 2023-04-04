@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 15:07:13 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/04 15:57:53 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb)
 
 	i = 0;
 	link = ft_init_cmd(nb);
+	if (link == NULL)
+		return (NULL);
 	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE)
 	{
 		if ((*mst)->type == TOKEN_G || (*mst)->type == TOKEN_GG
@@ -112,3 +114,7 @@ t_cmd	*ft_parser_struct(t_mst *mst)
 	}
 	return (cmd);
 }
+
+// checker si cmdmaillon return NULL qu est-ce qu on fait? 
+//est-ce qu on return une erreurt ou est-ce qu'on considere que le mqillon 
+//ajoute est null? pareil poiur la chaine de redirection 
