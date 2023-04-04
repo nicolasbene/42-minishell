@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/03 16:49:08 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/04 18:12:49 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# include <sys/wait.h>
 
 typedef struct s_minishell
 {
@@ -47,22 +49,22 @@ typedef struct s_redirect
 
 typedef struct s_command
 {
-	int		fd_rw[2];
+	int		fd_io[2];
 	char	**args;
 	t_list	*redirects;
 }				t_command;
 
 
 //pipex.c
-int	pipex(t_list *commands, char **envp);
+int		pipex(t_list *commands, char **envp);
 
 //exec.c
 void	piping(int fd[2], int fd_in);
-int	exec(char *pathname, char **args, char **envp, int fd[2], int fd_in);
+int		exec(char *pathname, char **args, char **envp, int fd[2], int fd_in);
 
 //redir.c
-int redir_input(int fdin, t_list *commands);
-int	redir_output(int fdout, t_list *commands);
+int		redir_input(int fdin, t_list *commands);
+int		redir_output(int fdout, t_list *commands);
 
 //get_path.c
 char	*get_cmd(char **cmd_paths, char **cmd_tab);

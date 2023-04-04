@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:23:22 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/03 21:14:48 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/04 12:36:20 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int redir_input(int fdin, t_list *commands)
 		return (-1);
 	cmd = commands->content;
 	fdin = redir_file(cmd, fdin);
-	dprintf(2, "fdin : %d\n", fdin);
-
 	if (fdin == -1)
 		return (-1);
 	return (fdin);
