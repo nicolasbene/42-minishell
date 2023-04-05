@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_free.c                                      :+:      :+:    :+:   */
+/*   parser_free_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:12 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 14:58:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:02:15 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,13 @@ void	ft_rdlstclear(t_rdlist **lst)
 		aux = temp;
 	}
 	*lst = NULL;
+}
+
+// erreur malloc sur cmd
+void	ft_free_list(t_cmd **cmd, t_mst **mst)
+{
+	if (*mst != NULL)
+		ft_mslstokenclear(mst);
+	if (*cmd != NULL)
+		ft_free_cmd(cmd);
 }

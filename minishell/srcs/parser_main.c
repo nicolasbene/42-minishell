@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 15:19:57 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:55:54 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,10 @@ int	ft_syntax_check(t_mst *mst)
 //	if (ft_syntax_check(mst) != 0)
 //		return (SYNTAX_ERR);
 //	else
+//	{
 //		cmd = ft_parser_struct(mst);
+//		if (cmd == NULL)
+//			return (MEM_ERR);
+//	}
+//	
 //}

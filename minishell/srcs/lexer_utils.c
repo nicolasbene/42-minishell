@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 14:43:20 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 14:58:12 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:09:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoinchara(char *s1, char c)
 	l_string = ft_strlen(s1) + 2;
 	new = (char *)malloc(l_string * sizeof(char));
 	if (new == NULL)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1[i] != '\0')
 	{
 		new[i] = s1[i];

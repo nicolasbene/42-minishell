@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 15:08:59 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:04:21 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(void)
 	printf("\n---------------------\n");
 	////////
 	cmd = ft_parser_struct(tmp);
+	if (cmd == NULL)
+		return (0);
 	tmpcmd = cmd;
 
 	while (cmd != NULL)

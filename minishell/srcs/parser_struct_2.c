@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:04:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 15:07:02 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:40:49 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_rdlstokenadd_back(t_rdlist **lst, t_rdlist *new)
 		*lst = new;
 }
 
+// new == NULL, pour proteger en cas de fail de malloc
 void	ft_cmdlstokenadd_back(t_cmd **lst, t_cmd *new)
 {
 	t_cmd	*tmp;

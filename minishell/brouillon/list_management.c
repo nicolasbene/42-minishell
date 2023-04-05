@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 14:11:59 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/02/09 10:58:58 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:38:02 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,8 @@ void	ft_psavantlstlast(t_stack **lst)
 		while ((*lst)->next->next != NULL)
 			(*lst) = (*lst)->next;
 }
+
+
+
+((*mst)->type == TOKEN_G || (*mst)->type == TOKEN_GG
+			|| (*mst)->type == TOKEN_L || (*mst)->type == TOKEN_LL)

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:37:42 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 16:03:21 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 12:07:16 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,18 @@ t_mst	*ft_lexer_main(char *str)
 {
 	t_mslex	*mslex;
 	t_mst	*mst;
+	t_mst	*new;
 
 	mslex = ft_init_lexer(str);
-	mst = ft_lexer_next_token(mslex);
+	if (mslex == NULL)
+		return (NULL);
+	mst = NULL;
 	while (ft_msltokenlast(mst)->type != TOKEN_EOF)
 	{
-		ft_mslstokenadd_back(&mst, ft_lexer_next_token(mslex));
+		new = ft_lexer_next_token(mslex);
+		if (new == NULL)
+			return (free(mslex), ft_mslstokenclear(&mst), NULL);
+		ft_mslstokenadd_back(&mst, new);
 	}
 	free(mslex);
 	//ft_mslstokenclear(&mst); // pour free mst;

@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/04 15:07:33 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/04/05 10:44:33 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS_FILES	:= token_management.c \
 				parser_main.c \
 				parser_struct.c \
 				parser_struct_2.c \
-				parser_free.c \
+				parser_free_error.c \
 				main.c \
 
 HEADER_FILE	:= minishell_tokens.h \
