@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/04 18:12:49 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:17:02 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ typedef struct s_minishell
 {
 	int		signal;
 	int		exit_status;
-	void	*commands;
 	t_list	*envs;
-	char	*prompt;
 }				t_minishell;
 
 typedef enum e_redirect_type

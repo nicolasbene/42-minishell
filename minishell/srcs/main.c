@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/04 18:44:19 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:24:48 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ void	free_commands(t_list **commands)
 	if (!commands || !*commands)
 		return ;
 	ft_lstclear(commands, free_command);
+
 }
 
-void create_commands(t_list **commands)
+void	create_commands(t_list **commands)
 {
+	
     // Création du premier élément
     t_command *cmd1 = malloc(sizeof(t_command));
     cmd1->args = malloc(sizeof(char*) * 3);
@@ -132,9 +134,7 @@ int	executing(t_list *commands, char **envp)
 //on va lire la ligne du prompte pour la parser et l'executer
 void	routine(char **envp)
 {
-	t_list *commands;
-	
-	commands = malloc(sizeof(t_list));
+	t_list	*commands;
 	create_commands(&commands);
 		if (commands)
 			executing(commands, envp);

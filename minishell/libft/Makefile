@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:22:26 by nibenoit          #+#    #+#              #
-#    Updated: 2023/03/31 11:35:47 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/05 12:08:16 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,8 @@ NAME = libft.a
 
 all: ${NAME}
 
-${NAME}: ${OBJS}
-	${AR} ${NAME} ${OBJS}
+${NAME}: ${OBJS} ${OBJSBONUS}
+	${AR} ${NAME} ${OBJS} ${OBJSBONUS}
 
 bonus: ${OBJS} ${OBJSBONUS}
 	${AR} ${NAME} ${OBJS} ${OBJSBONUS}

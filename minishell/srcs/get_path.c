@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:36:57 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/04 17:48:43 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:31:35 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*file_to_execute(char *cmd, char **envp)
         free(cmd_tab[i]);
     }
     free(cmd_tab);
-    
 	return (pathname);
 }
 
