@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:37:42 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 12:07:16 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:08:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_mst	*ft_lexer_parse_word(t_mslex *mslex)
 		else if (mslex->c == 34
 			&& ft_strchrms(&mslex->str[mslex->i + 1], 34) == 0)
 			return (ft_lexer_advance(mslex), ft_init_token("\"", TOKEN_LQQ));
+		if (!value)
+			return (NULL);
 		value = ft_strjoinchara(value, mslex->c);
 		if (!value)
 			return (NULL);
@@ -94,13 +96,15 @@ t_mst	*ft_lexer_main(char *str)
 	t_mst	*new;
 
 	mslex = ft_init_lexer(str);
-	if (mslex == NULL)
+	if (!mslex)
 		return (NULL);
-	mst = NULL;
+	mst = ft_lexer_next_token(mslex);
+	if (!mst)
+		return (free(mslex), NULL);
 	while (ft_msltokenlast(mst)->type != TOKEN_EOF)
 	{
 		new = ft_lexer_next_token(mslex);
-		if (new == NULL)
+		if (!new)
 			return (free(mslex), ft_mslstokenclear(&mst), NULL);
 		ft_mslstokenadd_back(&mst, new);
 	}

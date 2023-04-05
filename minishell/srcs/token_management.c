@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 14:58:42 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 16:02:37 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_mst	*ft_init_token(char *value, int type)
 	t_mst	*new;
 
 	new = (t_mst *)malloc(sizeof(t_mst) * 1);
-	if (new == NULL)
-		return (NULL);
+	if (!new)
+		return (free(value), NULL);
 	else
 	{
 		new->value = value;

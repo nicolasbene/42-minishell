@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 11:04:21 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 15:28:55 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(void)
 {
-	t_mslex		*mslex;
 	t_mst		*mst;
 	t_mst		*tmp;
 	t_cmd		*cmd;
@@ -22,13 +21,9 @@ int	main(void)
 	t_rdlist	*tmprd;
 	int		i;
 
-	mslex = ft_init_lexer("bonjour je suis | comment > 'fuck test billy' | whats up brandon");
-	mst = ft_lexer_next_token(mslex);
-	while (ft_msltokenlast(mst)->type != TOKEN_EOF)
-	{
-		ft_mslstokenadd_back(&mst, ft_lexer_next_token(mslex));
-	}
-	free(mslex);
+	mst = ft_lexer_main("bonjour je suis | comment > 'fuck test billy' | whats up brandon");
+	if (mst == NULL)
+		return (0);
 	tmp = mst;
 	while (mst->next != NULL)
 	{
@@ -68,4 +63,13 @@ int	main(void)
 	}
 	ft_mslstokenclear(&tmp);
 	ft_free_cmd(&tmpcmd);
+	printf("\n");
 }
+
+	//mslex = ft_init_lexer("bonjour je suis | comment > 'fuck test billy' | whats up brandon");
+	//mst = ft_lexer_next_token(mslex);
+	//while (ft_msltokenlast(mst)->type != TOKEN_EOF)
+	//{
+	//	ft_mslstokenadd_back(&mst, ft_lexer_next_token(mslex));
+	//}
+	//free(mslex);
