@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 15:28:55 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/07 10:07:47 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	t_rdlist	*tmprd;
 	int		i;
 
-	mst = ft_lexer_main("bonjour je suis | comment > 'fuck test billy' | whats up brandon");
+	mst = ft_lexer_main("bonjour je suis | comment  \"fuck $\"test\" billy\" | whats up brandon");
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
@@ -48,6 +48,7 @@ int	main(void)
 		while (cmd->arg[i])
 		{
 			printf("%s ", cmd->arg[i]);
+			printf("/");
 			i++;
 		}
 		tmprd = cmd->rd;
