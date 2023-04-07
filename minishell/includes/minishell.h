@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/05 12:17:02 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:36:02 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@
 
 typedef struct s_minishell
 {
+	t_list	*envs;
 	int		signal;
 	int		exit_status;
-	t_list	*envs;
 }				t_minishell;
+
+typedef struct s_env
+{
+	char	*name;
+	char	*value;
+}				t_env;
 
 typedef enum e_redirect_type
 {
@@ -68,5 +74,15 @@ int		redir_output(int fdout, t_list *commands);
 char	*get_cmd(char **cmd_paths, char **cmd_tab);
 char	*find_path(char **envp);
 char	*file_to_execute(char *cmd, char **envp);
+
+//create-command.c
+void	create_commands(t_list **commands);
+
+//free_command.c
+void	free_commands(t_list **commands);
+
+//env.c
+t_list	*tab_to_list(char **envp);
+
 
 #endif

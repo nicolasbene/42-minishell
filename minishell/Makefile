@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/03 14:26:58 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/07 17:36:30 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ SRCS_FILES	:= main.c \
 				pipex.c \
 				exec.c \
 				get_path.c \
-				redir.c
+				redir.c \
+				create_command.c \
+				free_command.c \
+				env.c
 
 HEADER_FILE	:= minishell.h
 
