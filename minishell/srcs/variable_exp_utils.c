@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/07 16:40:11 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/10 17:13:26 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ int	ft_lookfor(char *str, int c)
 		return (0);
 }
 
+void	ms_swap(t_cmd *cmd, t_chir *chir, char *new)
+{
+	char	*tmp;
+
+	tmp = cmd->arg[chir->i];
+	cmd->arg[chir->i] = new;
+}
+
+char	ms_isep(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (ft_isalnum(s[i]) == 1 || s[i] == '_')
+		i++;
+	return (s[i]);
+}
+
 int	ms_strlen(char *s, char c)
 {
 	int	i;
@@ -46,7 +64,8 @@ t_env	*ft_isenv(t_env *env, char *tofind)
 
 	i = 0;
 	str = NULL;
-	while (env->next != NULL)
+	printf("\n[VARNAME] %s\n", tofind); // LA
+	while (env != NULL) // au lieu de env->next != NULL
 	{
 		str = ft_strnstr(env->name, tofind, ft_strlen(tofind));
 		if (str != NULL)
