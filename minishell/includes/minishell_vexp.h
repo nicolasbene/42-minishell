@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/10 17:03:55 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/11 11:03:03 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_chir
 	int		lencont;
 	int		i;
 	int		posdollar;
+	int		totreat;
 	char	sep;
 	char	*varname;
 	char	*varcont;

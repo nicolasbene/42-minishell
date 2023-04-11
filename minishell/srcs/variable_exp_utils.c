@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/10 17:13:26 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/11 12:50:26 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,18 @@ int	ms_strlen(char *s, char c)
 	while (s[i] != c && s[i] != '\0')
 		i++;
 	return (i);
+}
+
+int	ft_istreat(t_cmd *cmd, t_chir *chir)
+{
+	int	l;
+
+	l = 0;
+	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
+		l++;
+	if (cmd->arg[chir->i][l] == '$' && cmd->arg[chir->i][l + 1] == '\"')
+		return (0);
+	return (1);
 }
 
 t_env	*ft_isenv(t_env *env, char *tofind)

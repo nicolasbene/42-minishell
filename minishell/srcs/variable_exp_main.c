@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/10 18:07:36 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/11 12:40:09 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_lookintoenv(t_env *env, t_chir *chir)
 	buff = ft_isenv(env, chir->varname);
 	free(chir->varname);
 	if (buff == NULL)
-		return (NULL); // gerer la remontee des NULL
+		return ("\0"); // gerer la remontee des NULL
 	else
 		return (ft_strdup(buff->content));
 }
@@ -72,7 +72,7 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 		k++;
 		j++;
 	}
-	chir->varcont = ft_lookintoenv(env, chir); // return NULL
+	chir->varcont = ft_lookintoenv(env, chir); // Rajouter si doit pas etre traiter, mettre varname dans buff
 	printf("\n[VARCONT] %s\n", chir->varcont); // LA
 	chir->lencont = ft_strlen(chir->varcont);
 	ft_switchvar(cmd, chir);
@@ -82,6 +82,11 @@ void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
 {
 	if (ft_lookfor(cmd->arg[chir->i], 34) == 0 && ft_lookfor(cmd->arg[chir->i], 39) == 0)
 		ft_manage_var(cmd, chir, env);
+	else if (ft_lookfor(cmd->arg[chir->i], 34) == 1)
+	{
+		// fonction doit il etre traite + apres mettre " et ' en sep
+		ft_manage_var(cmd, chir, env);
+	}
 }
 
 void	ft_variable_exp(t_cmd *cmd, t_env *env)
@@ -97,7 +102,7 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		while (cmd->arg[chir.i][j] != '\0')
 		{
 			printf("%i", j);
-			if (cmd->arg[chir.i][j] == '$')
+			if (cmd->arg[chir.i][j] == '$') // voir si ca vaut pas le cout d'envoyer le J aussi, au final le seul moment ou on passe pas la var c est quand y a un "juste derriere
 			{
 				printf("dans le if: %i", j);
 				ft_exp_usecases(cmd, &chir, env);
