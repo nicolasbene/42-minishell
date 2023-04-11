@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/07 17:36:30 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/11 18:12:52 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS_FILES	:= main.c \
 				redir.c \
 				create_command.c \
 				free_command.c \
-				env.c
+				env.c \
+				list_to_tab.c
 
 HEADER_FILE	:= minishell.h
 
@@ -36,6 +37,8 @@ HEADER		:= $(addprefix ${INC_DIR}, ${HEADER_FILE})
 CC			:= cc
 CC_FLAGS	:= -Wall -Wextra -Werror -g
 
+LINKS	=	-lreadline
+
 RM			:= rm -f
 
 %.o : %.c	${HEADER}
@@ -44,7 +47,7 @@ RM			:= rm -f
 all:		${NAME}
 
 ${NAME}:	${OBJS} ${LIBFT}
-			${CC} ${CC_FLAGS} -I${INC_DIR} -o ${NAME} ${OBJS} ${LIBFT}
+			${CC} ${CC_FLAGS} -I${INC_DIR} ${LINKS} -o ${NAME} ${OBJS} ${LIBFT}
 			@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 ${LIBFT}:	

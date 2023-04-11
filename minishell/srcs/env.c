@@ -6,11 +6,24 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:01 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/07 17:44:19 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:33:43 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_env(void *content)
+{
+	t_env	*env;
+
+	env = (t_env *)content;
+	if (env)
+	{
+		free(env->name);
+		free(env->value);
+		free(env);
+	}
+}
 
 t_env	*create_node_env(char *av)
 {
@@ -45,7 +58,6 @@ t_list	*tab_to_list(char **envp)
 	t_list	*lst_env;
 	int		i;
 
-	lst_env = NULL;
 	i = 0;
 	while (envp[i])
 	{

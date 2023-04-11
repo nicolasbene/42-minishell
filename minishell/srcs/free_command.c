@@ -6,25 +6,25 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:08 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/07 16:01:09 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:08:31 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_free_string_array(char **arr)
+void	ft_free_str_tab(char **tab)
 {
 	int i;
 
-	if (!arr)
-		return;
+	if (!tab)
+		return ;
 	i = 0;
-	while (arr[i])
+	while (tab[i])
 	{
-		free(arr[i]);
+		free(tab[i]);
 		i++;
 	}
-	free(arr);
+	free(tab);
 }
 
 void	free_redirect(void *content)
@@ -35,6 +35,8 @@ void	free_redirect(void *content)
 		return ;
 	redirect = (t_redirect *)content;
 	free(redirect->file);
+	if (redirect->fd != 1 && redirect->fd != -1)
+			close(redirect->fd);
 	free(redirect);
 }
 
@@ -46,7 +48,7 @@ void	free_command(void *content)
 		return ;
 	cmd = (t_command *)content;
 	ft_lstclear(&cmd->redirects, free_redirect);
-	ft_free_string_array(cmd->args);
+	ft_free_str_tab(cmd->args);
 	free(cmd);
 }
 
@@ -55,5 +57,4 @@ void	free_commands(t_list **commands)
 	if (!commands || !*commands)
 		return ;
 	ft_lstclear(commands, free_command);
-
 }

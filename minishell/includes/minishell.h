@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/07 17:36:02 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:57:08 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ typedef struct s_command
 
 
 //pipex.c
-int		pipex(t_list *commands, char **envp);
+int		pipex(t_list *commands);
 
 //exec.c
 void	piping(int fd[2], int fd_in);
-int		exec(char *pathname, char **args, char **envp, int fd[2], int fd_in);
+int		exec(char *pathname, char **args, int fd[2], int fd_in);
 
 //redir.c
 int		redir_input(int fdin, t_list *commands);
@@ -73,16 +73,21 @@ int		redir_output(int fdout, t_list *commands);
 //get_path.c
 char	*get_cmd(char **cmd_paths, char **cmd_tab);
 char	*find_path(char **envp);
-char	*file_to_execute(char *cmd, char **envp);
+char	*file_to_execute(char *cmd);
 
 //create-command.c
 void	create_commands(t_list **commands);
 
 //free_command.c
-void	free_commands(t_list **commands);
+void	free_command(void *content);
+
 
 //env.c
+void	free_env(void *content);
 t_list	*tab_to_list(char **envp);
+
+//list_to_tab.c
+char	**list_to_tab(t_list *lst);
 
 
 #endif
