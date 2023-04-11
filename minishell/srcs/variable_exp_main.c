@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/11 16:19:56 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/11 16:47:40 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,6 @@ void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
 		chir->totreat = 1;
 		ft_manage_var(cmd, chir, env);
 	}
-	else if (ft_lookfor(cmd->arg[chir->i], 34) == 1)
-	{
-		ft_istreat(cmd, chir); // fonction doit il etre traite + apres mettre " et ' en sep
-		ft_manage_var(cmd, chir, env);
-	}
 	else if (ft_lookfor(cmd->arg[chir->i], 39) == 1)
 	{
 		if(ft_intersimplequote(cmd, chir) == 1) // fonction doit il etre traite + apres mettre " et ' en sep
@@ -100,7 +95,12 @@ void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
 			chir->posdollar++;
 			return;
 		}
-		chir->totreat = 1;
+		ft_istreat(cmd, chir);
+		ft_manage_var(cmd, chir, env);
+	}
+	else if (ft_lookfor(cmd->arg[chir->i], 34) == 1)
+	{
+		ft_istreat(cmd, chir); // fonction doit il etre traite + apres mettre " et ' en sep
 		ft_manage_var(cmd, chir, env);
 	}
 	else
