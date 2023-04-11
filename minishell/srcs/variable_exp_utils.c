@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/11 12:50:26 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:55:57 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ms_strlen(char *s, char c)
 	return (i);
 }
 
-int	ft_istreat(t_cmd *cmd, t_chir *chir)
+void	ft_istreat(t_cmd *cmd, t_chir *chir)
 {
 	int	l;
 
@@ -65,24 +65,65 @@ int	ft_istreat(t_cmd *cmd, t_chir *chir)
 	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
 		l++;
 	if (cmd->arg[chir->i][l] == '$' && cmd->arg[chir->i][l + 1] == '\"')
+		chir->totreat = 0;
+	else
+		chir->totreat = 1;
+}
+
+int	ft_intersimplequote(t_cmd *cmd, t_chir *chir)
+{
+	int	l;
+	int	j;
+	int	k;
+
+	l = 0;
+	j = 0;
+	k = 0;
+	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
+	{
+		if (cmd->arg[chir->i][l] == '\'')
+			j++;
+		l++;
+	}
+	while (cmd->arg[chir->i][l])
+	{
+		if (cmd->arg[chir->i][l] == '\'')
+			k++;
+		l++;
+	}
+	if (k % 2 == 0 && j % 2 == 0)
 		return (0);
 	return (1);
 }
 
+
+int	ms_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+
 t_env	*ft_isenv(t_env *env, char *tofind)
 {
 	int		i;
-	char	*str;
+	int		str;
 
 	i = 0;
-	str = NULL;
+	str = 0;
 	printf("\n[VARNAME] %s\n", tofind); // LA
 	while (env != NULL) // au lieu de env->next != NULL
 	{
-		str = ft_strnstr(env->name, tofind, ft_strlen(tofind));
-		if (str != NULL)
+		str = ms_strcmp(env->name, tofind);
+		if (str == 0)
 			return (env);
 		env = env->next;
 	}
 	return (NULL);
 }
+
+// str = ft_strnstr(env->name, tofind, ft_strlen(tofind));

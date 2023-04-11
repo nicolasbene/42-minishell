@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/11 12:40:09 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/11 16:19:56 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ char	*ft_lookintoenv(t_env *env, t_chir *chir)
 {
 	t_env	*buff;
 
-	buff = ft_isenv(env, chir->varname);
+	if (chir->totreat == 1)
+		buff = ft_isenv(env, chir->varname);
+	else
+		return (chir->varname);
 	free(chir->varname);
 	if (buff == NULL)
 		return ("\0"); // gerer la remontee des NULL
@@ -61,7 +64,7 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 	k = 0;
 	while (cmd->arg[chir->i][j] != '$')
 		j++;
-	chir->posdollar = j;
+	//chir->posdollar = j;
 	j++;
 	chir->sep = ms_isep(&cmd->arg[chir->i][j]);
 	chir->lenvar = ms_strlen(&cmd->arg[chir->i][j], chir->sep); // il y a eu correction ici
@@ -81,12 +84,27 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
 {
 	if (ft_lookfor(cmd->arg[chir->i], 34) == 0 && ft_lookfor(cmd->arg[chir->i], 39) == 0)
-		ft_manage_var(cmd, chir, env);
-	else if (ft_lookfor(cmd->arg[chir->i], 34) == 1)
 	{
-		// fonction doit il etre traite + apres mettre " et ' en sep
+		chir->totreat = 1;
 		ft_manage_var(cmd, chir, env);
 	}
+	else if (ft_lookfor(cmd->arg[chir->i], 34) == 1)
+	{
+		ft_istreat(cmd, chir); // fonction doit il etre traite + apres mettre " et ' en sep
+		ft_manage_var(cmd, chir, env);
+	}
+	else if (ft_lookfor(cmd->arg[chir->i], 39) == 1)
+	{
+		if(ft_intersimplequote(cmd, chir) == 1) // fonction doit il etre traite + apres mettre " et ' en sep
+		{
+			chir->posdollar++;
+			return;
+		}
+		chir->totreat = 1;
+		ft_manage_var(cmd, chir, env);
+	}
+	else
+		chir->posdollar++;
 }
 
 void	ft_variable_exp(t_cmd *cmd, t_env *env)
@@ -104,7 +122,7 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 			printf("%i", j);
 			if (cmd->arg[chir.i][j] == '$') // voir si ca vaut pas le cout d'envoyer le J aussi, au final le seul moment ou on passe pas la var c est quand y a un "juste derriere
 			{
-				printf("dans le if: %i", j);
+				chir.posdollar = j;
 				ft_exp_usecases(cmd, &chir, env);
 				j = chir.posdollar;
 			}
