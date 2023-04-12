@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:54:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 16:02:37 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/12 17:14:07 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_mslstokenclear(t_mst **lst)
 	while (aux != NULL)
 	{
 		temp = aux->next;
-		if (aux->type == TOKEN_WORD)
+		if (aux->type == TOKEN_WORD && aux->value != NULL)
 			free(aux->value);
 		free(aux);
 		aux = temp;

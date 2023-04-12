@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/11 16:47:40 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/12 16:38:52 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,9 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 	chir.i = 0;
 	while (cmd->arg[chir.i] != NULL)
 	{
-		printf("\nGRAND CHIEN DE LA CASSE\n");
 		j = 0;
 		while (cmd->arg[chir.i][j] != '\0')
 		{
-			printf("%i", j);
 			if (cmd->arg[chir.i][j] == '$') // voir si ca vaut pas le cout d'envoyer le J aussi, au final le seul moment ou on passe pas la var c est quand y a un "juste derriere
 			{
 				chir.posdollar = j;
@@ -131,4 +129,5 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		}
 		chir.i++;
 	}
+	cmd->arg = ms_split(cmd);
 }
