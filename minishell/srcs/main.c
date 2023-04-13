@@ -6,13 +6,18 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/12 11:33:44 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/13 23:01:01 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_minishell	g_minishell;
+
+void	usage(char *prog_name)
+{
+	print_error("%s: too many arguments", prog_name, NULL);
+}
 
 char	*read_line(void)
 {
@@ -54,11 +59,10 @@ static void	init_minishell(char **envp)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	(void)argv;
-	(void)argc;
-
+	if (argc > 1)
+		return (usage(argv[0]), 1);
 	init_minishell(envp);
 	execute_shell_commands();
 
-	return (0);
+	return (g_minishell.exit_status);
 }

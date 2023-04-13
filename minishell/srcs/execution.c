@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:31:09 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/12 11:57:40 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:58:27 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 t_minishell	g_minishell;
 
-void	save_std(int *input_fd, int *output_fd)
+void	save_std(int *fd_input, int *fd_output)
 {
-	*input_fd = dup(STDIN_FILENO);
-	*output_fd = dup(STDOUT_FILENO);
+	*fd_input = dup(STDIN_FILENO);
+	*fd_output = dup(STDOUT_FILENO);
 }
 
-void	reset_std(int fd_input, int c)
+void	reset_std(int fd_input, int fd_output)
 {
 	dup2(fd_input, STDIN_FILENO);
 	dup2(fd_output, STDOUT_FILENO);

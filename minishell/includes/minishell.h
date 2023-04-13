@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/12 12:12:04 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:57:16 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	create_commands(t_list **commands);
 
 //free_command.c
 void	free_command(void *content);
+void	ft_free_tab(char **tab);
 
 
 //env.c
@@ -91,6 +92,9 @@ char	**list_to_tab(t_list *lst);
 
 //execution.c
 int		executing(t_list *commands);
+
+//print_error.c
+void	print_error(char *format, char *arg1, char *arg2);
 
 
 #endif
