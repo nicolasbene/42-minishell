@@ -6,13 +6,13 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 16:05:02 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:15:57 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_includes.h"
 
-void	ft_switchvar(t_cmd *cmd, t_chir *chir) // revvoir les ++ et tout
+void	ft_switchvar(t_cmd *cmd, t_chir *chir)
 {
 	char	*new;
 	int		len;
@@ -20,7 +20,6 @@ void	ft_switchvar(t_cmd *cmd, t_chir *chir) // revvoir les ++ et tout
 	int		j;
 
 	len = ft_strlen(cmd->arg[chir->i]) + chir->lencont - (chir->lenvar + 1);
-	printf("[LEN] %i\n", len);
 	new = malloc((len + 1) * sizeof(char));
 	new[len] = '\0';
 	k = -1;
@@ -30,9 +29,8 @@ void	ft_switchvar(t_cmd *cmd, t_chir *chir) // revvoir les ++ et tout
 	while (chir->varcont[++j] != '\0')
 		new[k + j] = chir->varcont[j];
 	j = k + j;
-	printf("[J] %i\n", j);
 	k = k + chir->lenvar;
-	while (cmd->arg[chir->i][++k] != '\0') //attention ++ pas sur
+	while (cmd->arg[chir->i][++k] != '\0')
 	{
 		new[j] = cmd->arg[chir->i][k];
 		j++;
@@ -67,10 +65,9 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 	k = 0;
 	while (cmd->arg[chir->i][j] != '$')
 		j++;
-	//chir->posdollar = j;
 	j++;
 	chir->sep = ms_isep(&cmd->arg[chir->i][j]);
-	chir->lenvar = ms_strlen(&cmd->arg[chir->i][j], chir->sep); // il y a eu correction ici
+	chir->lenvar = ms_strlen(&cmd->arg[chir->i][j], chir->sep);
 	chir->varname = calloc((chir->lenvar + 1), sizeof(char));
 	while (cmd->arg[chir->i][j] != chir->sep && cmd->arg[chir->i][j] != '\0')
 	{
@@ -78,34 +75,35 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 		k++;
 		j++;
 	}
-	chir->varcont = ft_lookintoenv(env, chir); // Rajouter si doit pas etre traiter, mettre varname dans buff
+	chir->varcont = ft_lookintoenv(env, chir);
 	printf("\n[VARCONT] %s\n", chir->varcont); // LA
 	chir->lencont = ft_strlen(chir->varcont);
 	ft_switchvar(cmd, chir);
 	if (chir->totreat == 0)
-		free(chir->varcont); // modification
+		free(chir->varcont);
 }
 
 void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
 {
-	if (ft_lookfor(cmd->arg[chir->i], 34) == 0 && ft_lookfor(cmd->arg[chir->i], 39) == 0)
+	if (ft_lookfor(cmd->arg[chir->i], 34) == 0
+		&& ft_lookfor(cmd->arg[chir->i], 39) == 0)
 	{
 		chir->totreat = 1;
 		ft_manage_var(cmd, chir, env);
 	}
 	else if (ft_lookfor(cmd->arg[chir->i], 39) == 1)
 	{
-		if(ft_intersimplequote(cmd, chir) == 1) // fonction doit il etre traite + apres mettre " et ' en sep
+		if (ft_intersimplequote(cmd, chir) == 1)
 		{
 			chir->posdollar++;
-			return;
+			return ;
 		}
 		ft_istreat(cmd, chir);
 		ft_manage_var(cmd, chir, env);
 	}
 	else if (ft_lookfor(cmd->arg[chir->i], 34) == 1)
 	{
-		ft_istreat(cmd, chir); // fonction doit il etre traite + apres mettre " et ' en sep
+		ft_istreat(cmd, chir);
 		ft_manage_var(cmd, chir, env);
 	}
 	else
@@ -125,7 +123,7 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		j = 0;
 		while (cmd->arg[chir.i][j] != '\0')
 		{
-			if (cmd->arg[chir.i][j] == '$') // voir si ca vaut pas le cout d'envoyer le J aussi, au final le seul moment ou on passe pas la var c est quand y a un "juste derriere
+			if (cmd->arg[chir.i][j] == '$')
 			{
 				chir.posdollar = j;
 				ft_exp_usecases(cmd, &chir, env);
@@ -137,5 +135,4 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		chir.i++;
 	}
 	cmd->arg = ms_split(cmd);
-	//ft_freechir(&chir);
 }

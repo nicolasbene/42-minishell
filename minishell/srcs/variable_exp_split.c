@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:28:23 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 11:38:00 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 17:19:47 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ms_wordcount_i(char *arg, int *wc)
 	++(*wc);
 	while (arg[k] != '\0' && arg[k] != ' ')
 	{
-		if (arg[k] == '\"' || arg[k] == '\'') // le faire avec ' et " k += fonction
+		if (arg[k] == '\"' || arg[k] == '\'')
 			k += ms_passquote(&arg[k], arg[k]);
 		else
 			k++;
@@ -108,6 +108,53 @@ char	*ft_copyword(char const *s, int len, char **sstr, int j)
 }
 ///////////
 
+int	ms_split_i(t_cmd *cmd, char **new, int *k, int i)
+{
+	int	j;
+
+	j = 0;
+	while (cmd->arg[i][j] != '\0')
+	{
+		if (cmd->arg[i][j] == ' ')
+			j++;
+		if (cmd->arg[i][j] != '\0' && cmd->arg[i][j] != ' ')
+		{
+			new[(*k)] = ft_copyword(&cmd->arg[i][j], ft_wordlen(&cmd->arg[i][j]), new, (*k));
+			if (new[(*k)] == NULL)
+					return (0);
+			(*k)++;
+			j = j + ft_wordlen(&cmd->arg[i][j]);
+		}
+	}
+	return (1);
+}
+
+char	**ms_split(t_cmd *cmd)
+{
+	char	**new;
+	int		wc;
+	int		i;
+	int		k;
+
+	wc = 0;
+	i = -1;
+	k = 0;
+	ms_wordcount(cmd->arg, &wc);
+	printf("[WORD COUNT] = %i\n", wc);
+	new = (char **)malloc((wc + 1) * sizeof(char *));
+	if (new == NULL)
+		return (NULL);
+	while (cmd->arg[++i] != NULL)
+	{
+		if (ms_split_i(cmd, new, &k, i) == 0)
+			return (NULL);
+	}
+	new[wc] = NULL;
+	ft_freedbltab(cmd->arg);
+	return (new);
+}
+
+/*
 char	**ms_split(t_cmd *cmd)
 {
 	char	**new;
@@ -123,7 +170,7 @@ char	**ms_split(t_cmd *cmd)
 	printf("[WORD COUNT] = %i\n", wc);
 	new = (char **)malloc((wc + 1) * sizeof(char *));
 	if (new == NULL)
-		return (NULL) ; 
+		return (NULL) ;
 	while (cmd->arg[++i] != NULL)
 	{
 		j = 0;
@@ -145,4 +192,4 @@ char	**ms_split(t_cmd *cmd)
 	ft_freedbltab(cmd->arg);
 	return (new);
 }
-
+*/

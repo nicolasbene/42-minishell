@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:04:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 14:49:25 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:10:47 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,4 @@ void	ft_cmdlstokenadd_back(t_cmd **lst, t_cmd *new)
 	}
 	if (lst && *lst == NULL)
 		*lst = new;
-}
-
-// free chir
-void	ft_freechir(t_chir *chir)
-{
-	if (chir->varname != NULL)
-	{
-		free(chir->varname);
-		chir->varname = NULL;
-	}
-	if (chir->varcont != NULL)
-	{
-		free(chir->varcont);
-		chir->varcont = NULL;
-	}
 }

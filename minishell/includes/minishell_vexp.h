@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 16:03:37 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:10:50 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,5 @@ int		ft_wordlen(char *s);
 int		ms_passquote(char *arg, char c);
 char	*ft_copyword(char const *s, int len, char **sstr, int j);
 void	ft_strfree(char **sstr, int j);
-
-//free
-void		ft_freechir(t_chir *chir);
 
 #endif
