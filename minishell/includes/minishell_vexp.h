@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 14:49:23 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:03:37 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_chir
 	int		i;
 	int		posdollar;
 	int		totreat;
+	int		isenv;
 	char	sep;
 	char	*varname;
 	char	*varcont;
@@ -46,7 +47,7 @@ int		ft_lookfor(char *str, int c);
 void	ms_swap(t_cmd *cmd, t_chir *chir, char *new);
 char	ms_isep(char *s);
 int		ms_strlen(char *s, char c);
-t_env	*ft_isenv(t_env *env, char *tofind);
+t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
 void	ft_istreat(t_cmd *cmd, t_chir *chir);
 int		ft_intersimplequote(t_cmd *cmd, t_chir *chir);
 

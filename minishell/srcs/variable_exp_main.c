@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 15:25:31 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:05:02 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_switchvar(t_cmd *cmd, t_chir *chir) // revvoir les ++ et tout
 		j++;
 	}
 	ms_swap(cmd, chir, new);
-	if (chir->totreat == 1)
+	if (chir->totreat == 1 && chir->isenv == 1)
 		free(chir->varcont);
 }
 
@@ -47,7 +47,7 @@ char	*ft_lookintoenv(t_env *env, t_chir *chir)
 	t_env	*buff;
 
 	if (chir->totreat == 1)
-		buff = ft_isenv(env, chir->varname);
+		buff = ft_isenv(env, chir->varname, chir);
 	else
 		return (chir->varname);
 	free(chir->varname);

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/11 15:55:57 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 16:03:53 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ms_swap(t_cmd *cmd, t_chir *chir, char *new)
 
 	tmp = cmd->arg[chir->i];
 	cmd->arg[chir->i] = new;
+	free(tmp);
 }
 
 char	ms_isep(char *s)
@@ -108,7 +109,7 @@ int	ms_strcmp(const char *s1, const char *s2)
 }
 
 
-t_env	*ft_isenv(t_env *env, char *tofind)
+t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir)
 {
 	int		i;
 	int		str;
@@ -120,9 +121,13 @@ t_env	*ft_isenv(t_env *env, char *tofind)
 	{
 		str = ms_strcmp(env->name, tofind);
 		if (str == 0)
+		{
+			chir->isenv = 1;
 			return (env);
+		}
 		env = env->next;
 	}
+	chir->isenv = 0;
 	return (NULL);
 }
 
