@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 11:51:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/12 16:38:52 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,4 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		chir.i++;
 	}
 	cmd->arg = ms_split(cmd);
-	free (chir.varcont);
 }

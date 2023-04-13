@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:28:23 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 11:38:00 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 10:52:47 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ms_passquote(char *arg, char c)
 	i++;
 	while (arg[i] != c)
 		i++;
-	return (i + 1);
+	return (i);
 }
 
 int	ms_wordcount_i(char *arg, int *wc)
@@ -141,7 +141,6 @@ char	**ms_split(t_cmd *cmd)
 			}
 		}
 	}
-	new[wc] = NULL;
 	ft_freedbltab(cmd->arg);
 	return (new);
 }

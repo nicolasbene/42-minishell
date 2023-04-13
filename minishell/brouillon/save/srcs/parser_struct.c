@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 11:26:13 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:38:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_cmd_size(t_mst *mst, int *nb)
 	nb[0] = 0;
 	nb[1] = 0;
 	tmp = mst;
-	while (tmp != NULL && tmp->type != TOKEN_PIPE && tmp->type != TOKEN_EOF) // modification token eof
+	while (tmp != NULL && tmp->type != TOKEN_PIPE)
 	{
 		if (tmp->type == TOKEN_G || tmp->type == TOKEN_GG
 			|| tmp->type == TOKEN_L || tmp->type == TOKEN_LL)
@@ -63,7 +63,7 @@ t_rdlist	*ft_init_rdlist(t_mst *mst, int *nb)
 		return (NULL);
 	else
 	{
-		new->str = ft_strdup(mst->next->value); // modification
+		new->str = mst->next->value;
 		new->type = (enum e_rdtype)((int)mst->type);
 	}
 	new->next = NULL;
@@ -80,7 +80,7 @@ t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb)
 	link = ft_init_cmd(nb);
 	if (link == NULL)
 		return (NULL);
-	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE && (*mst)->type != TOKEN_EOF) // modification
+	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE)
 	{
 		if ((*mst)->type >= TOKEN_G && (*mst)->type <= TOKEN_LL)
 		{
@@ -92,7 +92,7 @@ t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb)
 		}
 		else
 		{
-			link->arg[i++] = ft_strdup((*mst)->value); // modification
+			link->arg[i++] = (*mst)->value;
 			(*mst) = (*mst)->next;
 		}
 	}
@@ -119,7 +119,6 @@ t_cmd	*ft_parser_struct(t_mst *mst)
 		if (tmp != NULL)
 			tmp = tmp->next;
 	}
-	ft_mslstokenclear(&mst); // modification
 	return (cmd);
 }
 

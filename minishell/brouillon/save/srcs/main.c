@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 11:47:35 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/12 17:19:52 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(void)
 
 
 	evr = ft_initlistenv();
-	mst = ft_lexer_main("bonjour je suis YOyo\"$nom\".yo | comment vas tu | whats up brandon");
+	mst = ft_lexer_main("bonjour je suis YOyo$nom.yo | comment vas tu | whats up brandon");
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
@@ -103,10 +103,10 @@ int	main(void)
 		}
 		tmpcmdbis = tmpcmdbis->next;
 	}
+	ft_mslstokenclear(&tmp);
 	ft_free_cmd(&tmpcmd);
 	printf("\n");
 }
-
 
 	//mslex = ft_init_lexer("bonjour je suis | comment > 'fuck test billy' | whats up brandon");
 	//mst = ft_lexer_next_token(mslex);

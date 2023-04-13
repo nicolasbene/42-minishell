@@ -6,25 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:12 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 10:57:23 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/05 11:02:15 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_includes.h"
-
-void	ft_freedbltab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	free(tab);
-}
 
 void	ft_free_cmd(t_cmd **lst)
 {
@@ -38,7 +24,7 @@ void	ft_free_cmd(t_cmd **lst)
 	{
 		temp = aux->next;
 		if (aux->arg != NULL)
-			ft_freedbltab(aux->arg);
+			free(aux->arg);
 		if (aux->rd)
 			ft_rdlstclear(&aux->rd);
 		free(aux);

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 18:07:44 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 10:56:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 10:52:36 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void		ft_cmd_size(t_mst *mst, int *nb);
 void		ft_free_cmd(t_cmd **lst);
 void		ft_rdlstclear(t_rdlist **lst);
 void		ft_free_list(t_cmd **cmd, t_mst **mst);
+void		ft_freedbltab(char **tab);
 
 #endif
