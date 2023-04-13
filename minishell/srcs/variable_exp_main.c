@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 11:51:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/13 15:25:31 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_switchvar(t_cmd *cmd, t_chir *chir) // revvoir les ++ et tout
 		j++;
 	}
 	ms_swap(cmd, chir, new);
+	if (chir->totreat == 1)
+		free(chir->varcont);
 }
 
 char	*ft_lookintoenv(t_env *env, t_chir *chir)
@@ -49,6 +51,7 @@ char	*ft_lookintoenv(t_env *env, t_chir *chir)
 	else
 		return (chir->varname);
 	free(chir->varname);
+	chir->varname = NULL;
 	if (buff == NULL)
 		return ("\0"); // gerer la remontee des NULL
 	else
@@ -79,6 +82,8 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 	printf("\n[VARCONT] %s\n", chir->varcont); // LA
 	chir->lencont = ft_strlen(chir->varcont);
 	ft_switchvar(cmd, chir);
+	if (chir->totreat == 0)
+		free(chir->varcont); // modification
 }
 
 void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
@@ -113,6 +118,8 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 	int		j;
 
 	chir.i = 0;
+	chir.varname = NULL;
+	chir.varcont = NULL;
 	while (cmd->arg[chir.i] != NULL)
 	{
 		j = 0;
@@ -130,5 +137,5 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		chir.i++;
 	}
 	cmd->arg = ms_split(cmd);
-	free (chir.varcont);
+	//ft_freechir(&chir);
 }
