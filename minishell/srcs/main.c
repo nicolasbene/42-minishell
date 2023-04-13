@@ -6,26 +6,13 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 18:09:24 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/12 11:33:44 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_minishell	g_minishell;
-
-int	executing(t_list *commands)
-{
-	int last_pid;
-
-	last_pid = pipex(commands);
-
-	//wait_pid
-	while (wait(NULL) != -1)
-		;
-	//gestion des signaux et du status
-	return (0);
-}
 
 char	*read_line(void)
 {
@@ -34,15 +21,12 @@ char	*read_line(void)
 	line = readline("minisheesh> ");
 	if (!line)
 		return (NULL);
-	//ADD_HISTORY 
+	//else if (line) -> ADD_HISTORY 
 	return (line);
 }
 
-//on va lire la ligne du prompte pour la parser et l'executer
-void	routine(void)
+void	execute_shell_commands(void)
 {
-	// t_list	*commands;
-	// create_commands(&commands);
 	char	*line;
 	t_list	*commands;
 
@@ -74,7 +58,7 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argc;
 
 	init_minishell(envp);
-	routine();
+	execute_shell_commands();
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 17:57:08 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:12:04 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ typedef struct s_command
 //pipex.c
 int		pipex(t_list *commands);
 
-//exec.c
+//execute_command.c
 void	piping(int fd[2], int fd_in);
-int		exec(char *pathname, char **args, int fd[2], int fd_in);
+int		execute_command(char *pathname, char **args, int fd[2], int fd_in);
 
 //redir.c
 int		redir_input(int fdin, t_list *commands);
@@ -88,6 +88,9 @@ t_list	*tab_to_list(char **envp);
 
 //list_to_tab.c
 char	**list_to_tab(t_list *lst);
+
+//execution.c
+int		executing(t_list *commands);
 
 
 #endif

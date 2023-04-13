@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:36:57 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 18:07:41 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:16:32 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ char	*get_cmd(char **cmd_paths, char **cmd_tab)
 char	*file_to_execute(char *cmd)
 {
 	char	*pathname;
-
 	char	*env_path;
 	char	**cmd_paths;
 	char	**cmd_tab;
-
 	char	**env_tab;
 
 	cmd_tab = ft_split(cmd, ' ');
@@ -55,15 +53,9 @@ char	*file_to_execute(char *cmd)
 	env_path = find_path(env_tab);
 	cmd_paths = ft_split(env_path, ':');
 	pathname = get_cmd(cmd_paths, cmd_tab);
-	
-    for (int i = 0; cmd_paths[i] != NULL; i++) {
-        free(cmd_paths[i]);
-    }
-    free(cmd_paths);
-    for (int i = 0; cmd_tab[i] != NULL; i++) {
-        free(cmd_tab[i]);
-    }
-    free(cmd_tab);
+	ft_free_tab(cmd_paths);
+	ft_free_tab(cmd_tab);
+	ft_free_tab(env_tab);
 	return (pathname);
 }
 

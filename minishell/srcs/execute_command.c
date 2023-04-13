@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 18:01:51 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/12 11:50:54 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	piping(int fd_io[2], int fdin)
 		close(fdin);
 }
 
-int	exec(char *pathname, char **args, int fd_io[2], int fdin)
+int	execute_command(char *pathname, char **args, int fd_io[2], int fdin)
 {
-	int	pid;
+	char	**envp;
+	int		pid;
 	
 	pid = fork();
 	if (pid == -1)
@@ -38,7 +39,7 @@ int	exec(char *pathname, char **args, int fd_io[2], int fdin)
 		if (fd_io[0] == -1 || fd_io[1] == -1)
 			exit(1111);
 		piping(fd_io, fdin);
-		char **envp = list_to_tab(g_minishell.envs);
+		envp = list_to_tab(g_minishell.envs);
 		execve(pathname, args, envp);
 	}
 	if (fd_io[0] != -1)

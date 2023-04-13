@@ -6,13 +6,13 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:08 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 18:08:31 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:12:19 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_free_str_tab(char **tab)
+void	ft_free_tab(char **tab)
 {
 	int i;
 
@@ -48,7 +48,7 @@ void	free_command(void *content)
 		return ;
 	cmd = (t_command *)content;
 	ft_lstclear(&cmd->redirects, free_redirect);
-	ft_free_str_tab(cmd->args);
+	ft_free_tab(cmd->args);
 	free(cmd);
 }
 

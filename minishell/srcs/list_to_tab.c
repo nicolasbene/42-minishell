@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:56:04 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 17:56:42 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/12 10:31:45 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**list_to_tab(t_list *lst)
 {
-	uint	i;
+	int		i;
 	t_env	*env;
 	char	*s;
 	char	*tmp;
