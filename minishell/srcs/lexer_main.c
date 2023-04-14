@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:37:42 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 16:08:06 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/14 14:54:30 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ t_mst	*ft_lexer_main(char *str)
 		ft_mslstokenadd_back(&mst, new);
 	}
 	free(mslex);
-	//ft_mslstokenclear(&mst); // pour free mst;
 	return (mst);
 }
 

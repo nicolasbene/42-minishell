@@ -6,73 +6,12 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:28:23 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 17:19:47 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/14 15:09:22 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_includes.h"
 
-int	ms_passquote(char *arg, char c)
-{
-	int	i;
-
-	i = 0;
-	i++;
-	while (arg[i] != c)
-		i++;
-	return (i + 1);
-}
-
-int	ms_wordcount_i(char *arg, int *wc)
-{
-	int	k;
-
-	k = 0;
-	++(*wc);
-	while (arg[k] != '\0' && arg[k] != ' ')
-	{
-		if (arg[k] == '\"' || arg[k] == '\'')
-			k += ms_passquote(&arg[k], arg[k]);
-		else
-			k++;
-	}
-	return (k);
-}
-
-void	ms_wordcount(char **arg, int *wc)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (arg[++i] != NULL)
-	{
-		j = 0;
-		while (arg[i][j] != '\0')
-		{
-			if (arg[i][j] == ' ')
-				j++;
-			if (arg[i][j] != '\0' && arg[i][j] != ' ')
-				j += ms_wordcount_i(&arg[i][j], wc);
-		}
-	}
-}
-
-int	ft_wordlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] != ' ')
-	{
-		if (s[i] == '\"' || s[i] == '\'')
-			i += ms_passquote(&s[i], s[i]);
-		else
-			i++;
-	}
-	return (i);
-}
-////////////
 void	ft_strfree(char **sstr, int j)
 {
 	int	i;
@@ -106,7 +45,6 @@ char	*ft_copyword(char const *s, int len, char **sstr, int j)
 	new[i] = '\0';
 	return (new);
 }
-///////////
 
 int	ms_split_i(t_cmd *cmd, char **new, int *k, int i)
 {
@@ -119,9 +57,10 @@ int	ms_split_i(t_cmd *cmd, char **new, int *k, int i)
 			j++;
 		if (cmd->arg[i][j] != '\0' && cmd->arg[i][j] != ' ')
 		{
-			new[(*k)] = ft_copyword(&cmd->arg[i][j], ft_wordlen(&cmd->arg[i][j]), new, (*k));
+			new[(*k)] = ft_copyword(&cmd->arg[i][j],
+					ft_wordlen(&cmd->arg[i][j]), new, (*k));
 			if (new[(*k)] == NULL)
-					return (0);
+				return (0);
 			(*k)++;
 			j = j + ft_wordlen(&cmd->arg[i][j]);
 		}
@@ -153,43 +92,3 @@ char	**ms_split(t_cmd *cmd)
 	ft_freedbltab(cmd->arg);
 	return (new);
 }
-
-/*
-char	**ms_split(t_cmd *cmd)
-{
-	char	**new;
-	int		wc;
-	int		i;
-	int		j;
-	int		k;
-
-	wc = 0;
-	i = -1;
-	k = 0;
-	ms_wordcount(cmd->arg, &wc);
-	printf("[WORD COUNT] = %i\n", wc);
-	new = (char **)malloc((wc + 1) * sizeof(char *));
-	if (new == NULL)
-		return (NULL) ;
-	while (cmd->arg[++i] != NULL)
-	{
-		j = 0;
-		while (cmd->arg[i][j] != '\0')
-		{
-			if (cmd->arg[i][j] == ' ')
-				j++;
-			if (cmd->arg[i][j] != '\0' && cmd->arg[i][j] != ' ')
-			{
-				new[k] = ft_copyword(&cmd->arg[i][j], ft_wordlen(&cmd->arg[i][j]), new, k);
-				if (new[k] == NULL)
-						return (NULL) ;
-				k++;
-				j = j + ft_wordlen(&cmd->arg[i][j]);
-			}
-		}
-	}
-	new[wc] = NULL;
-	ft_freedbltab(cmd->arg);
-	return (new);
-}
-*/

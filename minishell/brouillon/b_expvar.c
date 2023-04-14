@@ -42,3 +42,43 @@ void	ft_replace_var(t_cmd *cmd, int i, t_env *env, char c)
 	tmp = ft_lookintoenv(env, tmp);
 	ft_switchvar(cmd, tmp, k, i);
 }
+
+/*
+char	**ms_split(t_cmd *cmd)
+{
+	char	**new;
+	int		wc;
+	int		i;
+	int		j;
+	int		k;
+
+	wc = 0;
+	i = -1;
+	k = 0;
+	ms_wordcount(cmd->arg, &wc);
+	printf("[WORD COUNT] = %i\n", wc);
+	new = (char **)malloc((wc + 1) * sizeof(char *));
+	if (new == NULL)
+		return (NULL) ;
+	while (cmd->arg[++i] != NULL)
+	{
+		j = 0;
+		while (cmd->arg[i][j] != '\0')
+		{
+			if (cmd->arg[i][j] == ' ')
+				j++;
+			if (cmd->arg[i][j] != '\0' && cmd->arg[i][j] != ' ')
+			{
+				new[k] = ft_copyword(&cmd->arg[i][j], ft_wordlen(&cmd->arg[i][j]), new, k);
+				if (new[k] == NULL)
+						return (NULL) ;
+				k++;
+				j = j + ft_wordlen(&cmd->arg[i][j]);
+			}
+		}
+	}
+	new[wc] = NULL;
+	ft_freedbltab(cmd->arg);
+	return (new);
+}
+*/

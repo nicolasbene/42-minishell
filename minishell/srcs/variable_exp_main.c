@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/13 16:15:57 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/14 17:32:46 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_lookintoenv(t_env *env, t_chir *chir)
 		return (ft_strdup(buff->content));
 }
 
-void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
+int	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 {
 	int		j;
 	int		k;
@@ -65,6 +65,8 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 	k = 0;
 	while (cmd->arg[chir->i][j] != '$')
 		j++;
+	if (ms_isalnum_(cmd->arg[chir->i][j + 1]) == 0)
+		return (chir->posdollar++);
 	j++;
 	chir->sep = ms_isep(&cmd->arg[chir->i][j]);
 	chir->lenvar = ms_strlen(&cmd->arg[chir->i][j], chir->sep);
@@ -76,11 +78,11 @@ void	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 		j++;
 	}
 	chir->varcont = ft_lookintoenv(env, chir);
-	printf("\n[VARCONT] %s\n", chir->varcont); // LA
 	chir->lencont = ft_strlen(chir->varcont);
 	ft_switchvar(cmd, chir);
 	if (chir->totreat == 0)
 		free(chir->varcont);
+	return (1);
 }
 
 void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env)
