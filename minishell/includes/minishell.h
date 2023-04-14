@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/13 22:57:16 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:03:43 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_redirect
 
 typedef struct s_command
 {
-	int		fd_io[2];
+	int		fd_rw[2];
 	char	**args;
 	t_list	*redirects;
 }				t_command;
@@ -64,7 +64,7 @@ int		pipex(t_list *commands);
 
 //execute_command.c
 void	piping(int fd[2], int fd_in);
-int		execute_command(char *pathname, char **args, int fd[2], int fd_in);
+int		execute_command(t_list *commands, char *pathname, char **args, int fd_rw[2], int fdin);
 
 //redir.c
 int		redir_input(int fdin, t_list *commands);
@@ -95,6 +95,9 @@ int		executing(t_list *commands);
 
 //print_error.c
 void	print_error(char *format, char *arg1, char *arg2);
+
+//process_rd.c
+int	open_fd(t_redirect_type type, char *file);
 
 
 #endif

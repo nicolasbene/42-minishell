@@ -6,42 +6,43 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/13 22:55:37 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/14 14:37:44 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= minishell
+NAME		= minishell
 
-SRCS_FILES	:= main.c \
-				pipex.c \
-				execute_command.c \
-				get_path.c \
-				redir.c \
-				create_command.c \
-				free_command.c \
-				env.c \
-				list_to_tab.c \
-				execution.c \
+SRCS_FILES	= main.c \
+				execution/pipex.c \
+				execution/execute_command.c \
+				execution/get_path.c \
+				execution/redir.c \
+				execution/create_command.c \
+				execution/free_command.c \
+				execution/list_to_tab.c \
+				execution/execution.c \
+				execution/process_rd.c \
+				builtins/env.c \
 				print_error.c
 
-HEADER_FILE	:= minishell.h
+HEADER_FILE	= minishell.h
 
-SRCS_DIR	:= ./srcs/
-INC_DIR		:= ./includes/
+SRCS_DIR	= ./srcs/
+INC_DIR		= ./includes/
 
-LIBFT		:= ./libft/libft.a
-LIBFT_PATH	:= ./libft
+LIBFT		= ./libft/libft.a
+LIBFT_PATH	= ./libft
 
-SRCS		:= $(addprefix ${SRCS_DIR}, ${SRCS_FILES})
-OBJS		:= ${SRCS:.c=.o}
-HEADER		:= $(addprefix ${INC_DIR}, ${HEADER_FILE})
+SRCS		= $(addprefix ${SRCS_DIR}, ${SRCS_FILES})
+OBJS		= ${SRCS:.c=.o}
+HEADER		= $(addprefix ${INC_DIR}, ${HEADER_FILE})
 
-CC			:= cc
-CC_FLAGS	:= -Wall -Wextra -Werror -g
+CC			= cc
+CC_FLAGS	= -Wall -Wextra -Werror -g
 
-LINKS	=	-lreadline
+LINKS		= -lreadline
 
-RM			:= rm -f
+RM			= rm -f
 
 %.o : %.c	${HEADER}
 			${CC} ${CC_FLAGS} -I${INC_DIR} -c $< -o $@

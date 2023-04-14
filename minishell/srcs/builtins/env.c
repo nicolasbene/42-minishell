@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:01 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/11 17:33:43 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:53:06 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_list	*tab_to_list(char **envp)
 	t_list	*lst_env;
 	int		i;
 
+	lst_env = NULL;
 	i = 0;
 	while (envp[i])
 	{

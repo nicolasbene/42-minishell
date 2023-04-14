@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/13 23:01:01 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:18:37 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*read_line(void)
 	line = readline("minisheesh> ");
 	if (!line)
 		return (NULL);
-	//else if (line) -> ADD_HISTORY 
+	else if (*line)
+		add_history(line);
 	return (line);
 }
 
@@ -34,19 +35,21 @@ void	execute_shell_commands(void)
 {
 	char	*line;
 	t_list	*commands;
-
-	line = read_line();
-	if (!line)
-		return ;
-	if (line)
+	while (1)
 	{
-		// commands = parse_line(line);
-		create_commands(&commands);
-		if (commands)
-			executing(commands);
-		ft_lstclear(&commands, free_command);
+		line = read_line();
+		if (!line)
+			return ;
+		if (line)
+		{
+			// commands = parse_line(line);
+			create_commands(&commands);
+			if (commands)
+				executing(commands);
+			ft_lstclear(&commands, free_command);
+		}
+		free(line);
 	}
-	free(line);
 	ft_lstclear(&g_minishell.envs, free_env);
 }
 

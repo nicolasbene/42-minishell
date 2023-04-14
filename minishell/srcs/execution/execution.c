@@ -6,13 +6,13 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:31:09 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/13 22:58:27 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:47:57 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minishell	g_minishell;
+extern t_minishell	g_minishell;
 
 void	save_std(int *fd_input, int *fd_output)
 {

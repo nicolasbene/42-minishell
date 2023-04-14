@@ -6,16 +6,17 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:23:22 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/04 12:36:20 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:36:31 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	redir_file(t_command *cmd, int fdin)
+int	redir_input2(t_command *cmd, int fdin)
 {
 	t_redirect	*redirect;
 	t_list		*tmp_rd;
+	int			fd_redirect;
 
 	tmp_rd = cmd->redirects;
 	while (tmp_rd != NULL)
@@ -24,7 +25,8 @@ int	redir_file(t_command *cmd, int fdin)
 		if (redirect->type == RD_IN
 			|| redirect->type == RD_HEREDOC)
 		{
-			fdin = dup(redirect->fd);
+			fd_redirect = open_fd(redirect->type, redirect->file);
+			fdin = dup(fd_redirect);
 			if (fdin == -1)
 				return (-1);
 		}
@@ -41,23 +43,18 @@ int redir_input(int fdin, t_list *commands)
 	if (fdin == -1)
 		return (-1);
 	cmd = commands->content;
-	fdin = redir_file(cmd, fdin);
+	fdin = redir_input2(cmd, fdin);
 	if (fdin == -1)
 		return (-1);
 	return (fdin);
 }
 
-int	redir_output(int fdout, t_list *commands)
+int	redir_output2(t_command *cmd, int fdout, int *last_fd)
 {
-	int			last_fd;
-	t_command	*cmd;
 	t_redirect	*redirect;
 	t_list		*tmp_rd;
-
-	last_fd = 0;
-	if (fdout == -1)
-		return (-1);
-	cmd = commands->content;
+	int			fd_redirect;
+	
 	tmp_rd = cmd->redirects;
 	while (tmp_rd != NULL)
 	{
@@ -65,12 +62,27 @@ int	redir_output(int fdout, t_list *commands)
 		if (redirect->type == RD_OUT
 			|| redirect->type == RD_APPEND)
 		{
-			dup2(redirect->fd, fdout);
-			last_fd = redirect->fd;
-			dprintf(2, "last_fd = %d\n", last_fd);
+			fd_redirect = open_fd(redirect->type, redirect->file);
+			dup2(fd_redirect, fdout);
+			*last_fd = fd_redirect;
+			dprintf(2, "last_fd = %d\n", *last_fd);
 		}
 		tmp_rd = tmp_rd->next;
 	}
+	return (fdout);
+}
+
+int	redir_output(int fdout, t_list *commands)
+{
+	t_command	*cmd;
+	
+	int			last_fd;
+
+	last_fd = 0;
+	if (fdout == -1)
+		return (-1);
+	cmd = commands->content;
+	fdout = redir_output2(cmd, fdout, &last_fd);
 	if (last_fd == -1)
 		return (close(fdout), -1);
 	return (fdout);
