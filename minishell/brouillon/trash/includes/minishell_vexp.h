@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 12:13:10 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 15:46:36 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ typedef struct s_chir
 }	t_chir;
 
 void	ft_variable_exp(t_cmd *cmd, t_env *env);
-void	ft_exp_usecases(t_cmd *cmd, t_chir *chir, t_env *env);
-int		ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env);
-void	ft_init_chir(t_cmd *cmd, t_chir *chir, t_env *env, int j);
+void	ft_exp_usecases(char *cmd, t_chir *chir, t_env *env);
+int		ft_manage_var(char *cmd, t_chir *chir, t_env *env);
+void	ft_init_chir(char *cmd, t_chir *chir, t_env *env, int j);
 char	*ft_lookintoenv(t_env *env, t_chir *chir);
-void	ft_switchvar(t_cmd *cmd, t_chir *chir);
+void	ft_switchvar(char *cmd, t_chir *chir);
 
 // utils
 int		ft_lookfor(char *str, int c);
-void	ms_swap(t_cmd *cmd, t_chir *chir, char *new);
+void	ms_swap(char *cmd, char *new);
 char	ms_isep(char *s);
 char	ms_isalnum_(char s);
 int		ms_strlen(char *s, char c);
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
-void	ft_istreat(t_cmd *cmd, t_chir *chir);
-int		ft_intersimplequote(t_cmd *cmd, t_chir *chir);
+void	ft_istreat(char *cmd, t_chir *chir);
+int		ft_intersimplequote(char *cmd);
 
 // split
 char	**ms_split(t_cmd *cmd);

@@ -6,14 +6,14 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 15:05:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 16:21:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_includes.h"
 
 #define STR1 "bonjour je suis YOyo\"$nom\".yo | comment vas tu | whats up brandon"
-#define STR2 "bonjour je suis YOyo$nom.yo | comment vas tu | whats up brandon"
+#define STR2 "bonjour je suis YOyo $nom.yo | comment vas tu | whats up brandon"
 #define STR3 "bonjour je suis YOyo$\"nom\".yo | comment vas tu | whats up brandon"
 #define STR4 "bonjour je suis YOyo$names.yo | comment vas tu | whats up brandon"
 #define STR5 "bonjour je suis YOyo '$nom'.yo | comment vas tu | whats up brandon"
@@ -64,7 +64,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR7);
+	mst = ft_lexer_main(STR2);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;

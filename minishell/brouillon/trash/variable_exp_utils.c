@@ -6,13 +6,13 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 11:54:43 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 15:50:00 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_includes.h"
 
-int	ft_intersimplequote(t_cmd *cmd, t_chir *chir)
+int	ft_intersimplequote(char *cmd)
 {
 	int	l;
 	int	j;
@@ -21,15 +21,15 @@ int	ft_intersimplequote(t_cmd *cmd, t_chir *chir)
 	l = 0;
 	j = 0;
 	k = 0;
-	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
+	while (cmd[l] && cmd[l] != '$')
 	{
-		if (cmd->arg[chir->i][l] == '\'')
+		if (cmd[l] == '\'')
 			j++;
 		l++;
 	}
-	while (cmd->arg[chir->i][l])
+	while (cmd[l])
 	{
-		if (cmd->arg[chir->i][l] == '\'')
+		if (cmd[l] == '\'')
 			k++;
 		l++;
 	}
@@ -66,7 +66,7 @@ t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir)
 
 	i = 0;
 	str = 0;
-	printf("\n[VARNAME] %s\n", tofind);
+	// printf("\n[VARNAME] %s\n", tofind);
 	while (env != NULL)
 	{
 		str = ms_strcmp(env->name, tofind);

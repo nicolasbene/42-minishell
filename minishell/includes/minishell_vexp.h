@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 12:13:10 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 17:13:26 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,15 @@ int		ft_wordlen(char *s);
 int		ms_passquote(char *arg, char c);
 char	*ft_copyword(char const *s, int len, char **sstr, int j);
 void	ft_strfree(char **sstr, int j);
+
+// redir
+void	ft_exp_rd(t_rdlist *rd, t_env *env);
+void	ft_exp_redircases(t_rdlist *rd, t_chir *chir, t_env *env);
+int		ft_intersimplequoterd(t_rdlist *rd);
+void	ft_istreatrd(t_rdlist *rd, t_chir *chir);
+void	ms_swaprd(t_rdlist *rd, char *new);
+int		ft_manage_varrd(t_rdlist *rd, t_chir *chir, t_env *env);
+void	ft_init_chirrd(t_rdlist *rd, t_chir *chir, t_env *env, int j);
+void	ft_switchvarrd(t_rdlist *rd, t_chir *chir);
 
 #endif

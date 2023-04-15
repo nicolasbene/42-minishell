@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:11:48 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/14 15:12:44 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 15:55:22 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	ft_lookfor(char *str, int c)
 		return (0);
 }
 
-void	ms_swap(t_cmd *cmd, t_chir *chir, char *new)
+void	ms_swap(char *cmd, char *new)
 {
 	char	*tmp;
 
-	tmp = cmd->arg[chir->i];
-	cmd->arg[chir->i] = new;
-	free(tmp);
+	tmp = cmd;
+	cmd = new;
+	//free(tmp);
 }
 
 char	ms_isep(char *s)
@@ -58,14 +58,14 @@ int	ms_strlen(char *s, char c)
 	return (i);
 }
 
-void	ft_istreat(t_cmd *cmd, t_chir *chir)
+void	ft_istreat(char *cmd, t_chir *chir)
 {
 	int	l;
 
 	l = 0;
-	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
+	while (cmd[l] && cmd[l] != '$')
 		l++;
-	if (cmd->arg[chir->i][l] == '$' && cmd->arg[chir->i][l + 1] == '\"')
+	if (cmd[l] == '$' && cmd[l + 1] == '\"')
 		chir->totreat = 0;
 	else
 		chir->totreat = 1;

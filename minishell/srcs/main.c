@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 15:05:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 17:19:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define STR4 "bonjour je suis YOyo$names.yo | comment vas tu | whats up brandon"
 #define STR5 "bonjour je suis YOyo '$nom'.yo | comment vas tu | whats up brandon"
 #define STR6 "bonjour je suis YOyoRobert.yo | comment vas tu | whats up brandon"
-#define STR7 "bonjour je suis YOyo$ $nom | comment > $nom > tu | whats up brandon"
+#define STR7 "bonjour je suis YOyo$nom > $nom | comment vas tu | whats up brandon"
 #define STR8 "bonjour je suis YOyo$? $nom | comment vas tu | whats up brandon"
 #define STR9 "bonjour je suis YOyo\"$?\" $nom | comment vas tu | whats up brandon"
 #define STR10 "bonjour je suis YOyo$?nom | comment vas tu | whats up brandon"
