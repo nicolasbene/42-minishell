@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/14 15:59:17 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 10:11:20 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	forks(t_list *commands, int fd_rw[2], int fd_pipe[2])
 		handle_redirects(fd_rw, fd_pipe, commands->next != NULL, commands);
 		pathname = file_to_execute(cmd->args[0]);
 		last_pid = execute_command(commands, pathname, cmd->args, fd_rw, fd_pipe[0]);
+		dprintf(2, "last_pid = %d\n", last_pid);
 		free(pathname);
 		commands = commands->next;
 	}
@@ -70,7 +71,7 @@ int	pipex(t_list *commands)
 
 
 	last_pid = forks(commands, fd_rw, fd_pipe);
-	dprintf(2, "last_pid = %d\n", last_pid);
+	
 
 	return (0);
 }

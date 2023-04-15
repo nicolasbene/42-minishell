@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/14 18:18:37 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 00:02:36 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	execute_shell_commands(void)
 			create_commands(&commands);
 			if (commands)
 				executing(commands);
-			ft_lstclear(&commands, free_command);
+			ft_lstclear(&commands, &free_command);
 		}
 		free(line);
 	}

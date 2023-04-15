@@ -26,13 +26,13 @@ void	piping(int fd_rw[2], int fdin)
 		close(fdin);
 }
 
-// void	quit_properly(t_list *commands, char *pathname)
-// {
-// 	free(pathname);
-// 	ft_lstclear(&commands, &free_command);
-// 	ft_lstclear(&g_minishell.envs, &free_env);
-// 	exit(g_minishell.exit_status);
-// }
+void	quit_properly(t_list *commands, char *pathname)
+{
+	free(pathname);
+	ft_lstclear(&commands, &free_command);
+	ft_lstclear(&g_minishell.envs, &free_env);
+	exit(g_minishell.exit_status);
+}
 
 int	execute_command(t_list *commands, char *pathname, char **args, int fd_rw[2], int fdin)
 {
@@ -45,7 +45,7 @@ int	execute_command(t_list *commands, char *pathname, char **args, int fd_rw[2],
 	if (pid == 0)
 	{
 		if (fd_rw[0] == -1 || fd_rw[1] == -1)
-			exit(1111);
+			quit_properly(commands, pathname);
 		piping(fd_rw, fdin);
 		envp = list_to_tab(g_minishell.envs);
 		execve(pathname, args, envp);
