@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/14 17:27:37 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 11:54:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	ms_isalnum_(char s)
 {
 	if (ft_isalnum(s) == 1 || s == '_')
 		return (1);
+	else if (s == '?')
+		return (2);
 	else
 		return (0);
 }

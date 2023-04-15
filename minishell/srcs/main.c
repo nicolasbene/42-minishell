@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/14 17:33:14 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 12:11:55 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #define STR5 "bonjour je suis YOyo '$nom'.yo | comment vas tu | whats up brandon"
 #define STR6 "bonjour je suis YOyoRobert.yo | comment vas tu | whats up brandon"
 #define STR7 "bonjour je suis YOyo$ $nom | comment vas tu | whats up brandon"
+#define STR8 "bonjour je suis YOyo$? $nom | comment vas tu | whats up brandon"
+#define STR9 "bonjour je suis YOyo\"$?\" $nom | comment vas tu | whats up brandon"
+#define STR10 "bonjour je suis YOyo$?nom | comment vas tu | whats up brandon"
 
 t_env	*ft_initlistenv(void)
 {
@@ -33,6 +36,19 @@ t_env	*ft_initlistenv(void)
 	return (new);
 }
 
+t_env	*ft_initlistint(t_env *evr)
+{
+	t_env	*new;
+
+	new = (t_env *)malloc(1 * sizeof(t_env));
+	{
+		new->name = "?";
+		new->content = "123";
+	}
+	new->next = evr;
+	return (new);
+}
+
 int	main(void)
 {
 	t_mst		*mst;
@@ -42,11 +58,13 @@ int	main(void)
 	t_cmd		*tmpcmdbis;
 	t_rdlist	*tmprd;
 	t_env		*evr;
+	t_env		*evint;
 	int		i;
 
 
 	evr = ft_initlistenv();
-	mst = ft_lexer_main(STR7);
+	evint = ft_initlistint(evr);
+	mst = ft_lexer_main(STR10);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
@@ -89,7 +107,7 @@ int	main(void)
 	}
 	printf("\n-------------------\n");
 	tmpcmdbis = tmpcmd;
-	ft_variable_exp(tmpcmdbis, evr);
+	ft_variable_exp(tmpcmdbis, evint);
 	while (tmpcmdbis != NULL)
 	{
 		i = 0;

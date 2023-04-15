@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/14 17:32:46 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/15 12:13:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,19 @@ char	*ft_lookintoenv(t_env *env, t_chir *chir)
 		return (ft_strdup(buff->content));
 }
 
-int	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
+void	ft_init_chir(t_cmd *cmd, t_chir *chir, t_env *env, int j)
 {
-	int		j;
-	int		k;
+	int	k;
 
-	j = 0;
 	k = 0;
-	while (cmd->arg[chir->i][j] != '$')
-		j++;
-	if (ms_isalnum_(cmd->arg[chir->i][j + 1]) == 0)
-		return (chir->posdollar++);
+
 	j++;
-	chir->sep = ms_isep(&cmd->arg[chir->i][j]);
+	if (ms_isalnum_(cmd->arg[chir->i][j]) == 2)
+		chir->sep = cmd->arg[chir->i][j + 1];
+	else
+		chir->sep = ms_isep(&cmd->arg[chir->i][j]);
 	chir->lenvar = ms_strlen(&cmd->arg[chir->i][j], chir->sep);
-	chir->varname = calloc((chir->lenvar + 1), sizeof(char));
+	chir->varname = calloc((chir->lenvar + 1), sizeof(char)); // malloc
 	while (cmd->arg[chir->i][j] != chir->sep && cmd->arg[chir->i][j] != '\0')
 	{
 		chir->varname[k] = cmd->arg[chir->i][j];
@@ -79,6 +77,18 @@ int	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
 	}
 	chir->varcont = ft_lookintoenv(env, chir);
 	chir->lencont = ft_strlen(chir->varcont);
+}
+
+int	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
+{
+	int		j;
+
+	j = 0;
+	while (cmd->arg[chir->i][j] != '$')
+		j++;
+	if (ms_isalnum_(cmd->arg[chir->i][j + 1]) == 0)
+		return (chir->posdollar++);
+	ft_init_chir(cmd, chir, env, j);
 	ft_switchvar(cmd, chir);
 	if (chir->totreat == 0)
 		free(chir->varcont);
@@ -138,3 +148,36 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 	}
 	cmd->arg = ms_split(cmd);
 }
+
+/*
+int	ft_manage_var(t_cmd *cmd, t_chir *chir, t_env *env)
+{
+	int		j;
+	int		k;
+
+	j = 0;
+	k = 0;
+	while (cmd->arg[chir->i][j] != '$')
+		j++;
+	if (ms_isalnum_(cmd->arg[chir->i][j + 1]) == 0)
+		return (chir->posdollar++);
+	if (ms_isalnum_(cmd->arg[chir->i][j + 1]) == 2)
+		return (chir->posdollar++); // a travailler
+	j++;
+	chir->sep = ms_isep(&cmd->arg[chir->i][j]);
+	chir->lenvar = ms_strlen(&cmd->arg[chir->i][j], chir->sep);
+	chir->varname = calloc((chir->lenvar + 1), sizeof(char)); // malloc
+	while (cmd->arg[chir->i][j] != chir->sep && cmd->arg[chir->i][j] != '\0')
+	{
+		chir->varname[k] = cmd->arg[chir->i][j];
+		k++;
+		j++;
+	}
+	chir->varcont = ft_lookintoenv(env, chir);
+	chir->lencont = ft_strlen(chir->varcont);
+	ft_switchvar(cmd, chir);
+	if (chir->totreat == 0)
+		free(chir->varcont);
+	return (1);
+}
+*/
