@@ -6,14 +6,14 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/03/31 11:31:03 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:18:06 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#define false	0
-#define true	1
+# define FALSE	0
+# define TRUE	1
 
 int	echo_newline(char **av, int i)
 {
@@ -25,12 +25,12 @@ int	echo_newline(char **av, int i)
 		while (av[i][j])
 		{
 			if (av[i][j] != 'n')
-				return (false);
+				return (FALSE);
 			j++;
 		}
-		return (true);
+		return (TRUE);
 	}
-	return (false);
+	return (FALSE);
 }
 
 int	echo(int ac, char **av)
@@ -39,7 +39,7 @@ int	echo(int ac, char **av)
 	int newline_option;
 	
 	i = 2;
-	newline_option = false;
+	newline_option = FALSE;
 	while (av[i])
 	{
 		newline_option = echo_newline(av, i);
@@ -48,7 +48,7 @@ int	echo(int ac, char **av)
 		i++;
 	}
 	if (i != 1)
-		newline_option = true;
+		newline_option = TRUE;
 	while (i < ac)
 	{
 		printf("%s", av[i]);

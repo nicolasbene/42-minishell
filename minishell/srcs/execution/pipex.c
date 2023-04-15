@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/15 10:11:20 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:31:27 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,38 @@ int	handle_redirects(int fd_rw[2], int fd_pipe[2], int next, t_list *commands)
 
 int	forks(t_list *commands, int fd_rw[2], int fd_pipe[2])
 {
+	t_list		*tmp_commands;
 	t_command	*cmd;
 	char		*pathname;
 	int			last_pid;
 
+	tmp_commands = commands;
 	last_pid = 0;
-
-	while (commands)
+	while (tmp_commands)
 	{
-		cmd = commands->content;
-		handle_redirects(fd_rw, fd_pipe, commands->next != NULL, commands);
+		cmd = tmp_commands->content;
+		handle_redirects(fd_rw, fd_pipe,
+			tmp_commands->next != NULL, tmp_commands);
 		pathname = file_to_execute(cmd->args[0]);
-		last_pid = execute_command(commands, pathname, cmd->args, fd_rw, fd_pipe[0]);
+		last_pid = execute_command(commands, pathname, cmd->args,
+				fd_rw, fd_pipe[0]);
 		dprintf(2, "last_pid = %d\n", last_pid);
 		free(pathname);
-		commands = commands->next;
+		tmp_commands = tmp_commands->next;
 	}
 	return (last_pid);
 }
 
 int	pipex(t_list *commands)
 {
-	int			last_pid;
-	int			fd_pipe[2];
-	int			fd_rw[2];
+	int	last_pid;
+	int	fd_pipe[2];
+	int	fd_rw[2];
 
 	last_pid = 0;
 	fd_pipe[0] = dup(STDIN_FILENO);
 	dprintf(1, "fd_pipe[0] = %d\n", fd_pipe[0]);
 	fd_pipe[1] = -1;
-
-
 	last_pid = forks(commands, fd_rw, fd_pipe);
-	
-
 	return (0);
 }

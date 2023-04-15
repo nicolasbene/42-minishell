@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/14 16:42:50 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:30:08 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ void	piping(int fd_rw[2], int fdin)
 void	quit_properly(t_list *commands, char *pathname)
 {
 	free(pathname);
-	ft_lstclear(&commands, &free_command);
-	ft_lstclear(&g_minishell.envs, &free_env);
+	free_commands(commands);
+	ft_lstclear(&g_minishell.envs, free_env);
 	exit(g_minishell.exit_status);
 }
 
-int	execute_command(t_list *commands, char *pathname, char **args, int fd_rw[2], int fdin)
+int	execute_command(t_list *commands,
+	char *pathname, char **args, int fd_rw[2], int fdin)
 {
 	char	**envp;
 	int		pid;
-	
+
 	pid = fork();
 	if (pid == -1)
 		return (-1);
@@ -50,8 +51,7 @@ int	execute_command(t_list *commands, char *pathname, char **args, int fd_rw[2],
 		envp = list_to_tab(g_minishell.envs);
 		execve(pathname, args, envp);
 		ft_free_tab(envp);
-		(void)commands;
-		// quit_properly(commands, pathname);
+		quit_properly(commands, pathname);
 	}
 	if (fd_rw[0] != -1)
 		close(fd_rw[0]);

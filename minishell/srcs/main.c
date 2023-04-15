@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/15 00:02:36 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:16:06 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,19 @@ void	execute_shell_commands(void)
 {
 	char	*line;
 	t_list	*commands;
+
 	while (1)
 	{
 		line = read_line();
 		if (!line)
-			return ;
+			break ;
 		if (line)
 		{
 			// commands = parse_line(line);
 			create_commands(&commands);
 			if (commands)
 				executing(commands);
-			ft_lstclear(&commands, &free_command);
+			free_commands(commands);
 		}
 		free(line);
 	}
@@ -66,6 +67,5 @@ int	main(int argc, char *argv[], char *envp[])
 		return (usage(argv[0]), 1);
 	init_minishell(envp);
 	execute_shell_commands();
-
 	return (g_minishell.exit_status);
 }

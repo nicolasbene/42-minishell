@@ -6,13 +6,11 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:31:09 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/14 13:47:57 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:24:54 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern t_minishell	g_minishell;
 
 void	save_std(int *fd_input, int *fd_output)
 {
@@ -32,17 +30,14 @@ int	executing(t_list *commands)
 {
 	int	fd_input;
 	int	fd_output;
-	int last_pid;
+	int	last_pid;
 
 	save_std(&fd_input, &fd_output);
 	last_pid = pipex(commands);
 	reset_std(fd_input, fd_output);
 	if (last_pid == -1)
 		return (-1);
-	
-	//wait_pid
 	while (wait(NULL) != -1)
 		;
-	//gestion des signaux et du status
 	return (0);
 }

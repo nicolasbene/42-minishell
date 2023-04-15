@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/14 18:03:43 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/15 16:27:20 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <readline/history.h>
 
 # include <sys/wait.h>
+
+# include <signal.h>
 
 typedef struct s_minishell
 {
@@ -51,13 +53,12 @@ typedef struct s_redirect
 	t_redirect_type	type;
 }				t_redirect;
 
+//voir pour integrer fd_rw[2] dans la struct command
 typedef struct s_command
 {
-	int		fd_rw[2];
 	char	**args;
 	t_list	*redirects;
 }				t_command;
-
 
 //pipex.c
 int		pipex(t_list *commands);
@@ -79,7 +80,7 @@ char	*file_to_execute(char *cmd);
 void	create_commands(t_list **commands);
 
 //free_command.c
-void	free_command(void *content);
+void	free_commands(t_list *commands);
 void	ft_free_tab(char **tab);
 
 
@@ -97,7 +98,7 @@ int		executing(t_list *commands);
 void	print_error(char *format, char *arg1, char *arg2);
 
 //process_rd.c
-int	open_fd(t_redirect_type type, char *file);
+int		open_fd(t_redirect_type type, char *file);
 
 
 #endif
