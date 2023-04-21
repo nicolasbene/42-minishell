@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:47:10 by nicolasbeno       #+#    #+#             */
-/*   Updated: 2023/04/15 19:05:17 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:56:52 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	create_commands(t_list **commands)
     // Création du premier élément
     t_command *cmd1 = malloc(sizeof(t_command));
     cmd1->args = malloc(sizeof(char*) * 2);
-    cmd1->args[0] = ft_strdup("cat");
+    cmd1->args[0] = ft_strdup("pwd");
     // cmd1->args[1] = ft_strdup("-l");
     cmd1->args[1] = NULL;
     cmd1->redirects = NULL; // pas de redirections pour ce premier élément
@@ -29,14 +29,13 @@ void	create_commands(t_list **commands)
     // // Création du deuxième élément
     t_command *cmd2 = malloc(sizeof(t_command));
     cmd2->args = malloc(sizeof(char*) * 2);
-    cmd2->args[0] = ft_strdup("ls");
+    cmd2->args[0] = ft_strdup("wc");
     cmd2->args[1] = NULL;
 	// cmd2->args[2] = ft_strdup("ok");
 	// cmd2->args[3] = NULL;
     t_redirect *redir = malloc(sizeof(t_redirect));
     redir->file = ft_strdup("file10");
     // redir->fd = open(redir->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	redir->fd = -1;
     redir->type = RD_OUT;
 	cmd2->redirects = malloc(sizeof(t_list));
     cmd2->redirects->content = redir;

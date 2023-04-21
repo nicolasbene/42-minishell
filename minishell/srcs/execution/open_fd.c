@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_rd.c                                       :+:      :+:    :+:   */
+/*   open_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:37:07 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/15 19:22:28 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:55:38 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,13 @@ int	open_fd(t_redirect_type type, char *file)
 	if (type == RD_HEREDOC)
 	{
 		fd = -2;
-		print_error("%s: heredoc en cours", file, NULL);
-		// fd = handle_heredoc(file);
+		print_error("%s: HEREDOC EN COURS DE BUILD", file, NULL);
 	}
 	else
 	{
 		fd = -2;
 		if (handle_open_error(file, type) == 0)
 			fd = open(file, get_open_flag(type), 0644);
-		printf("FD = %d\n", fd);
 		if (fd == -1)
 		{
 			print_error("%s: No such file or directory", file, NULL);

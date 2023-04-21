@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/14 14:37:44 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/21 14:09:12 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,14 @@ SRCS_FILES	= main.c \
 				execution/pipex.c \
 				execution/execute_command.c \
 				execution/get_path.c \
-				execution/redir.c \
+				execution/handle_redirects.c \
 				execution/create_command.c \
 				execution/free_command.c \
 				execution/list_to_tab.c \
 				execution/execution.c \
-				execution/process_rd.c \
+				execution/open_fd.c \
 				builtins/env.c \
+				builtins/echo.c	\
 				print_error.c
 
 HEADER_FILE	= minishell.h

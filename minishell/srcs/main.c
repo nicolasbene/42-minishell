@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/15 19:16:06 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:28:01 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	init_minishell(char **envp)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	if (argc > 1)
+	if (argc > 2)
 		return (usage(argv[0]), 1);
 	init_minishell(envp);
 	execute_shell_commands();
