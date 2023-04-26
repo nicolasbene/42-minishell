@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:11:48 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/14 15:12:44 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/18 12:08:46 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	ft_lookfor(char *str, int c)
 		return (0);
 }
 
-void	ms_swap(t_cmd *cmd, t_chir *chir, char *new)
+void	ms_swap(char **str, char *new)
 {
 	char	*tmp;
 
-	tmp = cmd->arg[chir->i];
-	cmd->arg[chir->i] = new;
+	tmp = (*str);
+	(*str) = new;
 	free(tmp);
 }
 
@@ -58,14 +58,14 @@ int	ms_strlen(char *s, char c)
 	return (i);
 }
 
-void	ft_istreat(t_cmd *cmd, t_chir *chir)
+void	ft_istreat(char **str, t_chir *chir)
 {
 	int	l;
 
 	l = 0;
-	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
+	while ((*str)[l] && (*str)[l] != '$')
 		l++;
-	if (cmd->arg[chir->i][l] == '$' && cmd->arg[chir->i][l + 1] == '\"')
+	if ((*str)[l] == '$' && (*str)[l + 1] == '\"')
 		chir->totreat = 0;
 	else
 		chir->totreat = 1;

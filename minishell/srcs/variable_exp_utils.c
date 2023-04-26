@@ -6,13 +6,13 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 11:54:43 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/18 12:07:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell_includes.h"
 
-int	ft_intersimplequote(t_cmd *cmd, t_chir *chir)
+int	ft_intersimplequote(char **str)
 {
 	int	l;
 	int	j;
@@ -21,15 +21,15 @@ int	ft_intersimplequote(t_cmd *cmd, t_chir *chir)
 	l = 0;
 	j = 0;
 	k = 0;
-	while (cmd->arg[chir->i][l] && cmd->arg[chir->i][l] != '$')
+	while ((*str)[l] && (*str)[l] != '$')
 	{
-		if (cmd->arg[chir->i][l] == '\'')
+		if ((*str)[l] == '\'')
 			j++;
 		l++;
 	}
-	while (cmd->arg[chir->i][l])
+	while ((*str)[l])
 	{
-		if (cmd->arg[chir->i][l] == '\'')
+		if ((*str)[l] == '\'')
 			k++;
 		l++;
 	}

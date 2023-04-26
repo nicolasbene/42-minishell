@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/15 17:19:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/26 10:29:24 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 #define STR8 "bonjour je suis YOyo$? $nom | comment vas tu | whats up brandon"
 #define STR9 "bonjour je suis YOyo\"$?\" $nom | comment vas tu | whats up brandon"
 #define STR10 "bonjour je suis YOyo$?nom | comment vas tu | whats up brandon"
+#define STR11 "bonjour je suis YOyo\"'$nom'\" | comment vas tu | whats up brandon"
+#define STR12 "bonjour je suis YOyo'\"$nom'\"\" | comment vas tu | whats up brandon"
+#define STR13 "$\"$\"$\"$\"$\"\""
 
 t_env	*ft_initlistenv(void)
 {
@@ -64,7 +67,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR7);
+	mst = ft_lexer_main(STR1);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
