@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_vexp.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/27 14:22:49 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:14:46 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ typedef struct s_chir
 
 }	t_chir;
 
+typedef struct s_quote
+{
+	int		i;
+	int		lenword;
+	int		wordpos;
+	char	*word;
+
+}	t_quote;
+
 void	ft_variable_exp(t_cmd *cmd, t_env *env);
 void	ft_exp_rd(t_rdlist *rd, t_env *env);
 void	ft_exp_usecases(char **str, t_chir *chir, t_env *env);
@@ -63,5 +72,11 @@ int		ft_wordlen(char *s);
 int		ms_passquote(char *arg, char c);
 char	*ft_copyword(char const *s, int len, char **sstr, int j);
 void	ft_strfree(char **sstr, int j);
+
+// Quote management
+void	ft_quote_mngt(t_cmd *cmd);
+void	ft_quote_usecases(char **str, t_quote *quote, int type);
+char	*ft_quotedup(char *src, int len);
+int		ft_quotelen(char *str, int type);
 
 #endif

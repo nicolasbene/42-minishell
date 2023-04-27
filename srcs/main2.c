@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/27 14:25:37 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:22:32 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+t_minishell	g_minishell;
 
 #define STR1 "bonjour je suis YOyo \"$nom\" | comment vas tu | whats up brandon"
 #define STR2 "bonjour je suis YOyo $nom | comment vas tu | whats up brandon"
@@ -23,8 +25,13 @@
 #define STR9 "bonjour je suis YOyo\"$?\" $nom | comment vas tu | whats up brandon"
 #define STR10 "bonjour je suis YOyo$?nom | comment vas tu | whats up brandon"
 #define STR11 "bonjour je suis YOyo\"'$nom'\" | comment vas tu | whats up brandon"
-#define STR12 "bonjour je suis YOyo'\"$nom'\"\" | comment vas tu | whats up brandon"
-#define STR13 "$\"$\"$\"$\"$\"\""
+#define STR12 "bonjour je suis YOyo'\"$nom'\"\"nicolas | comment vas tu | whats up brandon"
+#define STR13 "bonjour je suis YOyo'\"$nom\"'\"$nom\" | comment vas tu | whats up brandon"
+#define STR14 "bonjour je suis YOyo\"$nom\"\"$nom\" | comment vas tu | whats up brandon"
+#define STR15 "$\"$\"$\"$\"$\"\""
+#define STR16 "bonjour je suis YOyo'$nom'$nom | comment vas tu | whats up brandon"
+#define STR17 "bonjour je suis YOyo $nom\"$nom\" | comment vas tu | whats up brandon"
+#define STR18 "bonjour je suis YOyo\"$nom $nom\" | comment vas tu | whats up brandon"
 
 t_env	*ft_initlistenv(void)
 {
@@ -59,6 +66,7 @@ int	main(void)
 	t_cmd		*cmd;
 	t_cmd		*tmpcmd;
 	t_cmd		*tmpcmdbis;
+	t_cmd		*tmpcmdter;
 	t_rdlist	*tmprd;
 	t_env		*evr;
 	t_env		*evint;
@@ -67,7 +75,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR2);
+	mst = ft_lexer_main(STR1);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
@@ -111,6 +119,7 @@ int	main(void)
 	printf("\n-------------------\n");
 	tmpcmdbis = tmpcmd;
 	ft_variable_exp(tmpcmdbis, evint);
+	tmpcmdter = tmpcmdbis;
 	while (tmpcmdbis != NULL)
 	{
 		i = 0;
@@ -132,6 +141,30 @@ int	main(void)
 		}
 		tmpcmdbis = tmpcmdbis->next;
 	}
+	/* printf("\n-------------------\n");
+	ft_quote_mngt(tmpcmdter);
+	while (tmpcmdter != NULL)
+	{
+		i = 0;
+		printf("\nargs %s:", tmpcmdter->arg[i]);
+		while (tmpcmdter->arg[i])
+		{
+			printf("%s ", tmpcmdter->arg[i]);
+			printf("/");
+			i++;
+		}
+		tmprd = tmpcmdter->rd;
+		if (tmprd != NULL)
+		{
+			while (tmprd != NULL)
+			{
+				printf("\nRDTYPE: %i - FILE: %s", tmprd->type, tmprd->str);
+				tmprd = tmprd->next;
+			}
+		}
+		tmpcmdter = tmpcmdter->next;
+	}
+	*/
 	ft_free_cmd(&tmpcmd);
 	printf("\n");
 }

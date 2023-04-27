@@ -6,13 +6,13 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/27 14:52:46 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/04/27 18:11:46 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-SRCS_FILES	= main.c \
+SRCS_FILES	= main2.c \
 				execution/pipex.c \
 				execution/execute_command.c \
 				execution/get_path.c \
