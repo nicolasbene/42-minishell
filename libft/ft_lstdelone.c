@@ -1,12 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_fonctions.h                              :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:25:03 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 11:25:04 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/11 18:42:45 by nibenoit          #+#    #+#             */
+/*   Updated: 2022/11/12 14:18:49 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
+{
+	(*del)(lst->content);
+	free(lst);
+}

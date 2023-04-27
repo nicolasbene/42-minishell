@@ -1,0 +1,14 @@
+bin/
+**/.DS_Store
+a.out
+**/*.o
+tags
+minishell
+**/*.swp
+tags.lock
+tags.temp
+.env
+
+compile_commands.json
+.cache
+.vscode

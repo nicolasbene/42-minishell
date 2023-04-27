@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_tokens.h                                 :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:24:53 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/03/27 15:16:21 by nwyseur          ###   ########.fr       */
+/*   Created: 2022/11/09 13:21:21 by nibenoit          #+#    #+#             */
+/*   Updated: 2022/11/09 14:08:43 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_TOKENS_H
-# define MINISHELL_TOKENS_H
+#include "libft.h"
 
-typedef struct ms_t_struct
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char *value;
-	enum type
+	size_t			i;
+	unsigned char	*s2;
+
+	i = 0;
+	s2 = (unsigned char *)s;
+	while (i < n)
 	{
-		TOKEN_WORD,
-		TOKEN_PIPE,
-		TOKEN_G,
-		TOKEN_GG,
-		TOKEN_L,
-		TOKEN_LL,
-		TOKEN_QC,
-		TOKEN_QQC,
+		if (s2[i] == (unsigned char)c)
+			return (&s2[i]);
+		i++;
 	}
-	;
-} ms_t;
-
-
-
-#endif
+	return (NULL);
+}
