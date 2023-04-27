@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/05 10:55:54 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:37:57 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ int	ft_printerr(t_mst *tmp, int err)
 	return (err);
 }
 
+
+// Se deplace sur la liste chainee de Token en regardant le type de chaque token, en cas de possibilite d erreur, envoie dans une fonction pour checker si la syntaxe est correct.
+// Il est assez simple de rajouter des cas d erreurs, il suffit de rajouter un else if puis de creer une fonction de check
 int	ft_syntax_check(t_mst *mst)
 {
 	t_mst	*tmp;

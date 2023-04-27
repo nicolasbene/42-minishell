@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/26 10:27:20 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/04/27 11:55:52 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS_FILES	:= token_management.c \
 				variable_exp_utils_2.c \
 				variable_exp_split.c \
 				variable_exp_split_utils.c \
+				quote_management.c \
 				main.c \
 
 HEADER_FILE	:= minishell_tokens.h \
