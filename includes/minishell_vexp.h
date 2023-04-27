@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_vexp.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 10:28:46 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/27 14:22:49 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_chir
 }	t_chir;
 
 void	ft_variable_exp(t_cmd *cmd, t_env *env);
+void	ft_exp_rd(t_rdlist *rd, t_env *env);
 void	ft_exp_usecases(char **str, t_chir *chir, t_env *env);
 int		ft_manage_var(char **str, t_chir *chir, t_env *env);
 void	ft_init_chir(char **str, t_chir *chir, t_env *env, int j);
@@ -52,6 +53,7 @@ int		ms_strlen(char *s, char c);
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
 void	ft_istreat(char **str, t_chir *chir);
 int		ft_intersimplequote(char **str);
+void	ft_both_quote(char **str, t_chir *chir, t_env *env);
 
 // split
 char	**ms_split(t_cmd *cmd);

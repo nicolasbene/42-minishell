@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 16:41:15 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:21:57 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,40 @@ int	ft_manage_var(char **str, t_chir *chir, t_env *env)
 	return (1);
 }
 
-void	ft_exp_usecases(char **str, t_chir *chir, t_env *env)
+void	ft_both_quote(char **str, t_chir *chir, t_env *env)
 {
-	if (ft_lookfor((*str), 34) == 0
-		&& ft_lookfor((*str), 39) == 0)
-	{
-		chir->totreat = 1;
-		ft_manage_var(str, chir, env);
-	}
-	else if (ft_lookfor((*str), 34) == 1)
+	int	i;
+
+	i = 0;
+	while ((*str)[i] && (*str)[i] != 34 && (*str)[i] != 39)
+		i++;
+	if ((*str)[i] == 34)
 	{
 		ft_istreat(str, chir);
 		ft_manage_var(str, chir, env);
 	}
+	else if ((*str)[i] == 39)
+	{
+		if (ft_intersimplequote(str) == 1)
+		{
+			chir->posdollar++;
+			return ;
+		}
+		ft_istreat(str, chir);
+		ft_manage_var(str, chir, env);
+	}
+	return ;
+}
+
+void	ft_exp_usecases(char **str, t_chir *chir, t_env *env)
+{
+	if (ft_lookfor((*str), 34) == 0 && ft_lookfor((*str), 39) == 0)
+	{
+		chir->totreat = 1;
+		ft_manage_var(str, chir, env);
+	}
+	else if (ft_lookfor((*str), 34) == 1 && ft_lookfor((*str), 39) == 1)
+		ft_both_quote(str, chir, env);
 	else if (ft_lookfor((*str), 39) == 1)
 	{
 		if (ft_intersimplequote(str) == 1)
@@ -118,8 +139,38 @@ void	ft_exp_usecases(char **str, t_chir *chir, t_env *env)
 		ft_istreat(str, chir);
 		ft_manage_var(str, chir, env);
 	}
+	else if (ft_lookfor((*str), 34) == 1)
+	{
+		ft_istreat(str, chir);
+		ft_manage_var(str, chir, env);
+	}
 	else
 		chir->posdollar++;
+}
+
+void	ft_exp_rd(t_rdlist *rd, t_env *env)
+{
+	t_chir	chirii;
+	int		j;
+
+	chirii.varname = NULL;
+	chirii.varcont = NULL;
+	while (rd != NULL)
+	{
+		j = 0;
+		while (rd->str[j] != '\0')
+		{
+			if (rd->str[j] == '$')
+			{
+				chirii.posdollar = j;
+				ft_exp_usecases(&rd->str, &chirii, env);
+				j = chirii.posdollar;
+			}
+			else
+				j++;
+		}
+		rd = rd->next;
+	}
 }
 
 void	ft_variable_exp(t_cmd *cmd, t_env *env)
@@ -146,7 +197,7 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 		}
 		chir.i++;
 	}
-	// ft_exp_rd(cmd->rd, env);
+	ft_exp_rd(cmd->rd, env);
 	cmd->arg = ms_split(cmd);
 }
 
