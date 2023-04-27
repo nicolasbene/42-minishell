@@ -6,11 +6,11 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:36:57 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/15 19:24:14 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:34:12 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_includes.h"
 
 extern t_minishell	g_minishell;
 

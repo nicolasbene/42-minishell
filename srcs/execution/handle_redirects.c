@@ -6,26 +6,24 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:23:22 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/21 17:25:49 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:23:04 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_includes.h"
 
-int	open_and_dup_input(t_command *cmd, int fd_in)
+int	open_and_dup_input(t_cmd *cmd, int fd_in)
 {
-	t_redirect	*redirect_struct;
-	t_list		*redirects_lst;
+	t_rdlist	*redirects_lst;
 	int			redirect_fd;
 
-	redirects_lst = cmd->redirects;
+	redirects_lst = cmd->rd;
 	while (redirects_lst != NULL)
 	{
-		redirect_struct = redirects_lst->content;
-		if (redirect_struct->type == RD_IN
-			|| redirect_struct->type == RD_HEREDOC)
+		if (redirects_lst->type == RD_INF
+			|| redirects_lst->type == RD_HERE)
 		{
-			redirect_fd = open_fd(redirect_struct->type, redirect_struct->file);
+			redirect_fd = open_fd(redirects_lst->type, redirects_lst->str);
 			fd_in = dup(redirect_fd);
 			if (redirect_fd != 1 && redirect_fd != -1)
 				close(redirect_fd);
@@ -37,7 +35,7 @@ int	open_and_dup_input(t_command *cmd, int fd_in)
 	return (fd_in);
 }
 
-int	redir_input(t_command *cmd, int fd_in)
+int	redir_input(t_cmd *cmd, int fd_in)
 {
 	if (fd_in == -1)
 		return (-1);
@@ -47,21 +45,19 @@ int	redir_input(t_command *cmd, int fd_in)
 	return (fd_in);
 }
 
-int	open_and_dup2_output(t_command *cmd, int fd_out)
+int	open_and_dup2_output(t_cmd *cmd, int fd_out)
 {
-	t_redirect	*redirect_struct;
-	t_list		*redirects_lst;
+	t_rdlist	*redirects_lst;
 	int			redirect_fd;
 
-	redirects_lst = cmd->redirects;
+	redirects_lst = cmd->rd;
 	while (redirects_lst != NULL)
 	{
-		redirect_struct = redirects_lst->content;
-		if (redirect_struct->type == RD_OUT
-			|| redirect_struct->type == RD_APPEND)
+		if (redirects_lst->type == RD_OUT
+			|| redirects_lst->type == RD_APP)
 		{
 			// duplique le fd du fichier ouvert dans fd_out
-			redirect_fd = open_fd(redirect_struct->type, redirect_struct->file);
+			redirect_fd = open_fd(redirects_lst->type, redirects_lst->str);
 			dup2(redirect_fd, fd_out);
 			if (redirect_fd != -1)
 				close(redirect_fd);
@@ -71,7 +67,7 @@ int	open_and_dup2_output(t_command *cmd, int fd_out)
 	return (fd_out);
 }
 
-int	redir_output(t_command *cmd, int fd_out)
+int	redir_output(t_cmd *cmd, int fd_out)
 {
 	int			last_fd;
 
@@ -85,7 +81,7 @@ int	redir_output(t_command *cmd, int fd_out)
 }
 
 //gestion des redirections dentree et sortie et des pipes potentielles
-int	handle_redirects(int fd_io[2], int fd_pipe[2], int next, t_command	*cmd)
+int	handle_redirects(int fd_io[2], int fd_pipe[2], int next, t_cmd	*cmd)
 {
 	//rd de lentree std avec la commande actuelle
 	fd_io[0] = redir_input(cmd, fd_pipe[0]);

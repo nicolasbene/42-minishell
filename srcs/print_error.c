@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_to_tab.c                                      :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 17:56:04 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/12 10:31:45 by nibenoit         ###   ########.fr       */
+/*   Created: 2023/04/13 22:43:07 by nibenoit          #+#    #+#             */
+/*   Updated: 2023/04/26 15:23:32 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_includes.h"
 
-char	**list_to_tab(t_list *lst)
+void	print_error(const char *format, const char *arg1, const char *arg2)
 {
-	int		i;
-	t_env	*env;
-	char	*s;
-	char	*tmp;
-	char	**tab;
+	int	save;
 
-	i = 0;
-	tab = malloc((ft_lstsize(lst) + 1) * sizeof(*tab));
-	if (!tab)
-		exit(12);
-	while (lst)
-	{
-		env = lst->content;
-		tmp = ft_strjoin(env->name, "=");
-		s = ft_strjoin(tmp, env->value);
-		free(tmp);
-		tab[i++] = s;
-		lst = lst->next;
-	}
-	tab[i] = NULL;
-	return (tab);
+	save = dup(STDOUT_FILENO);
+	dup2(STDERR_FILENO, STDOUT_FILENO);
+	printf("minishell: ");
+	if (arg2)
+		printf(format, arg1, arg2);
+	else if (arg1)
+		printf(format, arg1);
+	else
+		printf("%s", format);
+	printf("\n");
+	dup2(save, STDOUT_FILENO);
+	close(save);
 }

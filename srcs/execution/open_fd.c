@@ -6,21 +6,21 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:37:07 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/21 16:55:38 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:22:59 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_includes.h"
 
 extern t_minishell	g_minishell;
 
-int	get_open_flag(t_redirect_type type)
+int	get_open_flag(t_rdtype type)
 {
-	if (type == RD_IN)
+	if (type == RD_INF)
 		return (O_RDONLY);
 	if (type == RD_OUT)
 		return (O_WRONLY | O_CREAT | O_TRUNC);
-	if (type == RD_APPEND)
+	if (type == RD_APP)
 		return (O_WRONLY | O_CREAT | O_APPEND);
 	return (O_RDWR);
 }
@@ -32,11 +32,11 @@ int	handle_open_error(const char *s, int type)
 	return (0);
 }
 
-int	open_fd(t_redirect_type type, char *file)
+int	open_fd(t_rdtype type, char *file)
 {
 	int		fd;
 
-	if (type == RD_HEREDOC)
+	if (type == RD_HERE)
 	{
 		fd = -2;
 		print_error("%s: HEREDOC EN COURS DE BUILD", file, NULL);

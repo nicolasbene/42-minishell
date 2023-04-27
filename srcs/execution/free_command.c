@@ -6,11 +6,11 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:08 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/15 19:19:23 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:23:10 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minishell_includes.h"
 
 void	ft_free_tab(char **tab)
 {
@@ -27,32 +27,31 @@ void	ft_free_tab(char **tab)
 	free(tab);
 }
 
-void	free_redirect(void *content)
+void	free_rdlist(t_rdlist *rdlist)
 {
-	t_redirect	*redirect;
+	t_rdlist	*tmp;
 
-	if (!content)
-		return ;
-	redirect = (t_redirect *)content;
-	free(redirect->file);
-	free(redirect);
+	while (rdlist)
+	{
+		tmp = rdlist;
+		rdlist = rdlist->next;
+		free(tmp->str);
+		free(tmp);
+	}
 }
 
-void	free_command(void *content)
+void	free_commands(t_cmd *commands)
 {
-	t_command	*cmd;
+	t_cmd	*tmp;
 
-	if (!content)
-		return ;
-	cmd = (t_command *)content;
-	ft_free_tab(cmd->args);
-	ft_lstclear(&cmd->redirects, free_redirect);
-	free(cmd);
+	while (commands)
+	{
+		tmp = commands;
+		commands = commands->next;
+		free_rdlist(tmp->rd);
+		ft_free_tab(tmp->arg);
+		free(tmp);
+	}
 }
 
-void	free_commands(t_list *commands)
-{
-	if (!commands)
-		return ;
-	ft_lstclear(&commands, free_command);
-}
+

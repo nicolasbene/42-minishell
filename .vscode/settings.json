@@ -29,6 +29,8 @@
 		"system_error": "c",
 		"tuple": "c",
 		"typeinfo": "c",
-		"utility": "c"
+		"utility": "c",
+		"wait.h": "c",
+		"minishell_includes.h": "c"
 	}
 }

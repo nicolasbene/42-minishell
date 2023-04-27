@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/21 14:09:12 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/26 16:45:14 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,24 @@ SRCS_FILES	= main.c \
 				execution/list_to_tab.c \
 				execution/execution.c \
 				execution/open_fd.c \
+				print_error.c \
+				parser/lexer_main.c \
+				parser/lexer_mvt.c \
+				parser/lexer_utils.c \
+				parser/parser_free_error.c \
+				parser/parser_main.c \
+				parser/parser_struct_2.c \
+				parser/parser_struct.c \
+				parser/token_management.c \
+				parser/variable_exp_main.c \
+				parser/variable_exp_utils.c \
+				parser/variable_exp_utils_2.c \
+				parser/variable_exp_split.c \
+				parser/variable_exp_split_utils.c \
 				builtins/env.c \
-				builtins/echo.c	\
-				print_error.c
+				builtins/echo.c
 
-HEADER_FILE	= minishell.h
+HEADER_FILE	= minishell_includes.h
 
 SRCS_DIR	= ./srcs/
 INC_DIR		= ./includes/

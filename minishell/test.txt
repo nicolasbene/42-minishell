@@ -1,4 +1,0 @@
-echo
-echo -n
-echo Hola
-echo -n Hola
