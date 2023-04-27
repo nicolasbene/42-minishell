@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/26 16:45:14 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/04/27 14:52:46 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_FILES	= main.c \
 				parser/variable_exp_utils_2.c \
 				parser/variable_exp_split.c \
 				parser/variable_exp_split_utils.c \
+				parser/quote_management.c \
 				builtins/env.c \
 				builtins/echo.c
 
