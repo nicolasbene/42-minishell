@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_utils_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:11:48 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 16:41:11 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:45:35 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,5 @@ void	ft_istreat(char **str, t_chir *chir)
 		chir->totreat = 0;
 	else
 		chir->totreat = 1;
+	printf("TREAT : %i\n", chir->totreat);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 16:41:10 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:11:44 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ char	ms_isalnum_(char s)
 		return (1);
 	else if (s == '?')
 		return (2);
+	else if (s == '\"' || s == '\'') // ici rien
+		return (3);
 	else
 		return (0);
 }

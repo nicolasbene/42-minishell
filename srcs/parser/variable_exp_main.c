@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/27 14:21:57 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:45:24 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_init_chir(char **str, t_chir *chir, t_env *env, int j)
 		chir->sep = ms_isep(&(*str)[j]);
 	chir->lenvar = ms_strlen(&(*str)[j], chir->sep);
 	chir->varname = calloc((chir->lenvar + 1), sizeof(char)); // malloc
+	printf("VARNAME : %s\n", chir->varname);
 	while ((*str)[j] != chir->sep && (*str)[j] != '\0')
 	{
 		chir->varname[k] = (*str)[j];
