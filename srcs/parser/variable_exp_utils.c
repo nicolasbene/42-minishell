@@ -6,23 +6,27 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 12:11:44 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:33:28 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-int	ft_intersimplequote(char **str)
+int	ft_intersimplequote(char **str, t_chir *chir) // ici chir
 {
 	int	l;
 	int	j;
 	int	k;
+	int	count; // ici
 
 	l = 0;
 	j = 0;
 	k = 0;
-	while ((*str)[l] && (*str)[l] != '$')
+	count = 0; // ici
+	while ((*str)[l] && count <= chir->dollarcount) // ici while ((*str)[l] && (*str)[l] != '$')
 	{
+		if ((*str)[l] == '$') // ici
+			count++; // ici
 		if ((*str)[l] == '\'')
 			j++;
 		l++;
@@ -44,7 +48,7 @@ char	ms_isalnum_(char s)
 		return (1);
 	else if (s == '?')
 		return (2);
-	else if (s == '\"' || s == '\'') // ici rien
+	else if (s == '\"' || s == '\'')
 		return (3);
 	else
 		return (0);

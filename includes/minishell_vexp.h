@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/27 18:14:46 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:38:18 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_chir
 	int		lencont;
 	int		i;
 	int		posdollar;
+	int		dollarcount; // ici 
 	int		totreat;
 	int		isenv;
 	char	sep;
@@ -51,7 +52,7 @@ void	ft_exp_usecases(char **str, t_chir *chir, t_env *env);
 int		ft_manage_var(char **str, t_chir *chir, t_env *env);
 void	ft_init_chir(char **str, t_chir *chir, t_env *env, int j);
 char	*ft_lookintoenv(t_env *env, t_chir *chir);
-void	ft_switchvar(char **str, t_chir *chir);
+void	ft_switchvar(char **str, t_chir *chir, int l); // ici int l
 
 // utils
 int		ft_lookfor(char *str, int c);
@@ -61,7 +62,7 @@ char	ms_isalnum_(char s);
 int		ms_strlen(char *s, char c);
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
 void	ft_istreat(char **str, t_chir *chir);
-int		ft_intersimplequote(char **str);
+int		ft_intersimplequote(char **str, t_chir *chir); // ici chir
 void	ft_both_quote(char **str, t_chir *chir, t_env *env);
 
 // split

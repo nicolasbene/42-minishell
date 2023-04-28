@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:11:48 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 14:45:35 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/28 16:46:48 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_istreat(char **str, t_chir *chir)
 {
 	int	l;
 
-	l = 0;
+	l = chir->posdollar; // ici = 0;
 	while ((*str)[l] && (*str)[l] != '$')
 		l++;
 	if ((*str)[l] == '$' && (*str)[l + 1] == '\"')

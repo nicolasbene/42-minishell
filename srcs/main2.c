@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 14:45:46 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:59:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_minishell	g_minishell;
 #define STR18 "bonjour je suis YOyo\"$nom $nom\" | comment vas tu | whats up brandon"
 #define STR19 "bonjour je suis YOyo $\"nom\"yo | comment vas tu | whats up brandon"
 #define STR20 "bonjour je suis YOyo'\"$nom\"'rolandmagdane\"$nom\" | comment vas tu | whats up brandon"
+#define STR21 "bonjour je suis YOyo'$nom'$nom'\"$nom\"'\"$nom\" | comment vas tu | whats up brandon"
 
 t_env	*ft_initlistenv(void)
 {
@@ -77,7 +78,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR1);
+	mst = ft_lexer_main(STR21);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;

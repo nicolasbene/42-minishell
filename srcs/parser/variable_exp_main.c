@@ -6,13 +6,13 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 14:45:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:52:24 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-void	ft_switchvar(char **str, t_chir *chir)
+void	ft_switchvar(char **str, t_chir *chir, int l) // ici - int l
 {
 	char	*new;
 	int		len;
@@ -24,7 +24,7 @@ void	ft_switchvar(char **str, t_chir *chir)
 	new[len] = '\0';
 	k = -1;
 	j = -1;
-	while ((*str)[++k] != '$')
+	while (++k != l) // ici while ((*str)[++k] != '$')
 		new[k] = (*str)[k];
 	while (chir->varcont[++j] != '\0')
 		new[k + j] = chir->varcont[j];
@@ -69,14 +69,15 @@ void	ft_init_chir(char **str, t_chir *chir, t_env *env, int j)
 		chir->sep = ms_isep(&(*str)[j]);
 	chir->lenvar = ms_strlen(&(*str)[j], chir->sep);
 	chir->varname = calloc((chir->lenvar + 1), sizeof(char)); // malloc
-	printf("VARNAME : %s\n", chir->varname);
 	while ((*str)[j] != chir->sep && (*str)[j] != '\0')
 	{
 		chir->varname[k] = (*str)[j];
 		k++;
 		j++;
 	}
+	printf("VARNAME : %s\n", chir->varname);
 	chir->varcont = ft_lookintoenv(env, chir);
+	printf("VARCONT : %s\n", chir->varcont);
 	chir->lencont = ft_strlen(chir->varcont);
 }
 
@@ -84,13 +85,13 @@ int	ft_manage_var(char **str, t_chir *chir, t_env *env)
 {
 	int		j;
 
-	j = 0;
+	j = chir->posdollar; // ici = 0;
 	while ((*str)[j] != '$')
 		j++;
 	if (ms_isalnum_((*str)[j + 1]) == 0)
 		return (chir->posdollar++);
 	ft_init_chir(str, chir, env, j);
-	ft_switchvar(str, chir);
+	ft_switchvar(str, chir, j); // ici -j
 	if (chir->totreat == 0)
 		free(chir->varcont);
 	return (1);
@@ -110,8 +111,9 @@ void	ft_both_quote(char **str, t_chir *chir, t_env *env)
 	}
 	else if ((*str)[i] == 39)
 	{
-		if (ft_intersimplequote(str) == 1)
+		if (ft_intersimplequote(str, chir) == 1) // ici chir
 		{
+			chir->dollarcount++; // ici
 			chir->posdollar++;
 			return ;
 		}
@@ -125,23 +127,33 @@ void	ft_exp_usecases(char **str, t_chir *chir, t_env *env)
 {
 	if (ft_lookfor((*str), 34) == 0 && ft_lookfor((*str), 39) == 0)
 	{
+		printf("RAT\n");
 		chir->totreat = 1;
 		ft_manage_var(str, chir, env);
 	}
 	else if (ft_lookfor((*str), 34) == 1 && ft_lookfor((*str), 39) == 1)
+	{
+		printf("SOURIS\n");
 		ft_both_quote(str, chir, env);
+	}
 	else if (ft_lookfor((*str), 39) == 1)
 	{
-		if (ft_intersimplequote(str) == 1)
+		if (ft_intersimplequote(str, chir) == 1) // ici chir
 		{
+			printf("SALUT LES CONNARD\n");
+			chir->dollarcount++; // ici
 			chir->posdollar++;
+			printf("DOLLARCOUNT : %i && POSDOLLAR %i value : %c\n", chir->dollarcount, chir->posdollar, (*str)[chir->posdollar]);
 			return ;
 		}
+		printf("MULOT\n");
+		printf("MULOT DOLLARCOUNT : %i && POSDOLLAR %i value : %c\n", chir->dollarcount, chir->posdollar, (*str)[chir->posdollar]);
 		ft_istreat(str, chir);
 		ft_manage_var(str, chir, env);
 	}
 	else if (ft_lookfor((*str), 34) == 1)
 	{
+		printf("HAMSTER\n");
 		ft_istreat(str, chir);
 		ft_manage_var(str, chir, env);
 	}
@@ -185,6 +197,7 @@ void	ft_variable_exp(t_cmd *cmd, t_env *env)
 	while (cmd->arg[chir.i] != NULL)
 	{
 		j = 0;
+		chir.dollarcount = 0; // ici
 		while (cmd->arg[chir.i][j] != '\0')
 		{
 			if (cmd->arg[chir.i][j] == '$')
