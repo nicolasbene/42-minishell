@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:17:49 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 15:27:44 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:22:52 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define MINISHELL_INCLUDES_H
 
 # include "../libft/libft.h"
-# include "minishell_tokens.h"
-# include "minishell_lexer.h"
-# include "minishell_parser.h"
-# include "minishell_vexp.h"
-# include "minishell_exec.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
@@ -33,5 +28,14 @@
 
 //stat pour avoir les infos sur le fichier notamment si c un repretoir
 # include <sys/stat.h>
+
+//rd_out.c
+# include <stdbool.h>
+
+# include "minishell_tokens.h"
+# include "minishell_lexer.h"
+# include "minishell_parser.h"
+# include "minishell_vexp.h"
+# include "minishell_exec.h"
 
 #endif

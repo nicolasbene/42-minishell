@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:37:07 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/26 15:22:59 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:17:33 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,17 @@ int	get_open_flag(t_rdtype type)
 
 int	handle_open_error(const char *s, int type)
 {
-	(void)s;
-	(void)type;
-	return (0);
+	if ((type == RD_INF && access(s, F_OK)) || (is_rdout(type) && s[0] == 0))
+		print_error("%s: No such file or directory", s, NULL);
+	else if (type == RD_INF && access(s, R_OK))
+		print_error("%s: Permission denied", s, NULL);
+	else if (is_rdout(type) && access(s, F_OK) == 0 && access(s, W_OK) != 0)
+		print_error("%s: Permission denied", s, NULL);
+	else if (is_rdout(type) && is_directory(s))
+		print_error("%s: Is a directory", s, NULL);
+	else
+		return (0);
+	return (1);
 }
 
 int	open_fd(t_rdtype type, char *file)
