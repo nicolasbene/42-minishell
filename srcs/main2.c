@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 17:59:43 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:47:37 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ t_minishell	g_minishell;
 #define STR18 "bonjour je suis YOyo\"$nom $nom\" | comment vas tu | whats up brandon"
 #define STR19 "bonjour je suis YOyo $\"nom\"yo | comment vas tu | whats up brandon"
 #define STR20 "bonjour je suis YOyo'\"$nom\"'rolandmagdane\"$nom\" | comment vas tu | whats up brandon"
-#define STR21 "bonjour je suis YOyo'$nom'$nom'\"$nom\"'\"$nom\" | comment vas tu | whats up brandon"
+#define STR21 "bonjour je suis YOyo'$nom'$nom'\"$nom\"'\"$nom\"\"'$nom'\"| comment vas tu | whats up brandon"
+#define STR22 "bonjour je suis YOyo'$nom'\"$nom\"\"'$nom'\"| comment vas tu | whats up brandon"
+#define STR23 "bonjour je suis YOyo'\"$nom $nom\"' | comment vas tu | whats up brandon"
+#define STR24 "bonjour je suis YOyo\"'$nom $nom'\" | comment vas tu | whats up brandon"
 
 t_env	*ft_initlistenv(void)
 {
@@ -43,7 +46,7 @@ t_env	*ft_initlistenv(void)
 	new = (t_env *)malloc(1 * sizeof(t_env));
 	{
 		new->name = "nom";
-		new->content = "Nicolas Wyseur";
+		new->content = "Nicolas";
 	}
 	new->next = NULL;
 	return (new);
@@ -75,10 +78,9 @@ int	main(void)
 	t_env		*evint;
 	int		i;
 
-
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR21);
+	mst = ft_lexer_main(STR20);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
@@ -97,7 +99,6 @@ int	main(void)
 	if (cmd == NULL)
 		return (0);
 	tmpcmd = cmd;
-
 	while (cmd != NULL)
 	{
 		i = 0;

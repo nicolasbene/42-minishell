@@ -6,30 +6,29 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 17:33:28 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:37:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-int	ft_intersimplequote(char **str, t_chir *chir) // ici chir
+int	ft_intersimplequote(char **str, t_chir *chir)
 {
 	int	l;
 	int	j;
 	int	k;
-	int	count; // ici
+	int	count;
 
-	l = 0;
+	l = -1;
 	j = 0;
 	k = 0;
-	count = 0; // ici
-	while ((*str)[l] && count <= chir->dollarcount) // ici while ((*str)[l] && (*str)[l] != '$')
+	count = 0;
+	while ((*str)[++l] && count <= chir->dollarcount)
 	{
-		if ((*str)[l] == '$') // ici
-			count++; // ici
+		if ((*str)[l] == '$')
+			count++;
 		if ((*str)[l] == '\'')
 			j++;
-		l++;
 	}
 	while ((*str)[l])
 	{
@@ -40,6 +39,58 @@ int	ft_intersimplequote(char **str, t_chir *chir) // ici chir
 	if (k % 2 == 0 && j % 2 == 0)
 		return (0);
 	return (1);
+}
+
+int	ft_interdoublequote(char **str, t_chir *chir) // ici
+{
+	int	l;
+	int	j;
+	int	k;
+	int	count;
+
+	l = -1;
+	j = 0;
+	k = 0;
+	count = 0;
+	while ((*str)[++l] && count <= chir->dollarcount)
+	{
+		if ((*str)[l] == '$')
+			count++;
+		if ((*str)[l] == '\"')
+			j++;
+	}
+	while ((*str)[l])
+	{
+		if ((*str)[l] == '\"')
+			k++;
+		l++;
+	}
+	if (k % 2 == 0 && j % 2 == 0)
+		return (0);
+	return (1);
+}
+
+int	ft_whocamefirst(char **str, t_chir *chir) // ici
+{
+	int	l;
+	int	j;
+	int	count;
+
+	l = -1;
+	j = 0;
+	count = 0;
+	while ((*str)[++l] && count <= chir->dollarcount)
+	{
+		if ((*str)[l] == '$')
+			count++;
+		if ((*str)[l] == '\"')
+			j = 2;
+		if ((*str)[l] == '\'')
+			j = 1;
+	}
+	if (j == 1)
+		return (1);
+	return (0);
 }
 
 char	ms_isalnum_(char s)
@@ -72,7 +123,6 @@ t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir)
 
 	i = 0;
 	str = 0;
-	printf("\n[VARNAME] %s\n", tofind);
 	while (env != NULL)
 	{
 		str = ms_strcmp(env->name, tofind);

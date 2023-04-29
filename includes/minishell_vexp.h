@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/28 17:38:18 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/04/29 17:36:58 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int		ms_strlen(char *s, char c);
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
 void	ft_istreat(char **str, t_chir *chir);
 int		ft_intersimplequote(char **str, t_chir *chir); // ici chir
+int		ft_interdoublequote(char **str, t_chir *chir); // ici
+int		ft_whocamefirst(char **str, t_chir *chir); // ici
 void	ft_both_quote(char **str, t_chir *chir, t_env *env);
 
 // split
