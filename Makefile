@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/04/27 18:11:46 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/01 17:05:02 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS_FILES	= main2.c \
 				parser/variable_exp_split.c \
 				parser/variable_exp_split_utils.c \
 				parser/quote_management.c \
+				parser/quote_management_utils.c \
 				builtins/env.c \
 				builtins/echo.c
 

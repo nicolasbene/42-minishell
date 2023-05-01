@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/29 17:36:58 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:53:30 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,19 @@ typedef struct s_chir
 	int		lencont;
 	int		i;
 	int		posdollar;
-	int		dollarcount; // ici 
+	int		dollarcount;
 	int		totreat;
 	int		isenv;
 	char	sep;
 	char	*varname;
 	char	*varcont;
-
 }	t_chir;
 
 typedef struct s_quote
 {
 	int		i;
-	int		lenword;
-	int		wordpos;
-	char	*word;
-
+	int		*quotedel;
+	int		nbrtodel;
 }	t_quote;
 
 void	ft_variable_exp(t_cmd *cmd, t_env *env);
@@ -62,9 +59,9 @@ char	ms_isalnum_(char s);
 int		ms_strlen(char *s, char c);
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
 void	ft_istreat(char **str, t_chir *chir);
-int		ft_intersimplequote(char **str, t_chir *chir); // ici chir
-int		ft_interdoublequote(char **str, t_chir *chir); // ici
-int		ft_whocamefirst(char **str, t_chir *chir); // ici
+int		ft_intersimplequote(char **str, t_chir *chir);
+int		ft_interdoublequote(char **str, t_chir *chir);
+int		ft_whocamefirst(char **str, t_chir *chir);
 void	ft_both_quote(char **str, t_chir *chir, t_env *env);
 
 // split
@@ -78,8 +75,13 @@ void	ft_strfree(char **sstr, int j);
 
 // Quote management
 void	ft_quote_mngt(t_cmd *cmd);
-void	ft_quote_usecases(char **str, t_quote *quote, int type);
-char	*ft_quotedup(char *src, int len);
-int		ft_quotelen(char *str, int type);
+void	ft_switchquote(t_cmd *cmd, t_quote *quote);
+int		ft_istodel(int j, t_quote *quote);
+void	ft_isquotetodel(char **str, t_quote *quote, int type, int pos);
+int		*ft_listtodel(t_quote *quote, int pos);
+char	*ft_strjoinnbr(char *s1, char c);
+int		ft_intodbl(char **str, int pos);
+int		ft_intosmpl(char **str, int pos);
+
 
 #endif
