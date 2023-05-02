@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 15:22:17 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:20:47 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	ft_check_pipe(t_mst *tmp, t_mst *prev)
 	if (prev == NULL || prev->type == TOKEN_L || prev->type == TOKEN_G
 		|| prev->type == TOKEN_LL || prev->type == TOKEN_GG)
 		return (PIPE_ERR);
-	else if (tmp->next == NULL || tmp->next->type == TOKEN_PIPE)
+	else if (tmp->next == NULL || tmp->next->type == TOKEN_PIPE
+		|| tmp->next->type == TOKEN_EOF)
 		return (PIPE_ERR);
 	else
 		return (NO_ERR);
@@ -51,7 +52,7 @@ int	ft_syntax_check(t_mst *mst)
 	tmp = mst;
 	err = 0;
 	prev = NULL;
-	while (tmp->next != NULL && err == 0)
+	while (tmp != NULL && err == 0) // ici tmp->next
 	{
 		if (tmp->type == TOKEN_PIPE)
 			err = ft_check_pipe(tmp, prev);

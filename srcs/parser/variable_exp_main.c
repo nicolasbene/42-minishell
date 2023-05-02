@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/29 17:43:25 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/01 18:25:11 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ void	ft_init_chir(char **str, t_chir *chir, t_env *env, int j)
 		k++;
 		j++;
 	}
-	printf("VARNAME : %s && DOLLARPOS : %i\n", chir->varname, chir->posdollar);
 	chir->varcont = ft_lookintoenv(env, chir);
-	printf("VARCONT : %s && DOLLARPOS : %i\n", chir->varcont, chir->posdollar);
 	chir->lencont = ft_strlen(chir->varcont);
 }
 

@@ -6,13 +6,13 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/01 17:05:02 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/02 17:52:39 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-SRCS_FILES	= main2.c \
+SRCS_FILES	= main.c \
 				execution/pipex.c \
 				execution/execute_command.c \
 				execution/get_path.c \
@@ -39,7 +39,8 @@ SRCS_FILES	= main2.c \
 				parser/quote_management.c \
 				parser/quote_management_utils.c \
 				builtins/env.c \
-				builtins/echo.c
+				builtins/echo.c \
+				builtins/unset.c \
 
 HEADER_FILE	= minishell_includes.h
 
