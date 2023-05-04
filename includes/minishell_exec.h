@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/27 12:08:39 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:33:53 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	free_redirect(void *content);
 void	free_env(t_env *env);
 void	free_envs(t_env **envs);
 t_env	*tab_to_list(char **envp);
+t_env	*add_env_back(t_env *env, t_env *node_env);
 
 //list_to_tab.c
 char	**list_to_tab(t_env *lst);
@@ -68,12 +69,25 @@ void	print_error(const char *format, const char *arg1, const char *arg2);
 int		open_fd(t_rdtype type, char *file);
 
 //builtins
+	//echo
 int		echo(int ac, char **av);
+	//unset
+int		ft_unset(char **args);
+int		ft_intoenv(char *tofind);
+void	unset_var(int index);
+	//cd
+int		ft_cd(char **args);
+int		ft_path(char **args);
+int		ft_set_directory(char *path, int ishome);
+int		ft_switchpwd(char *path, int ishome);
+char	*ft_joinhomepath(char *path);
+int		ft_switchenvcont(char *new_content, int index);
+int		ft_setenv(char *env_name, char *new_content);
+t_env	*ft_add_env(char *env_name, char *new_content);
+char	*ft_getenv(char *str);
 
 //pipex->built-in
 int		builtins(int ac, char **av);
-
-
 
 // ///////////////////////////////////////////////////////////////////////
 // //PARTIE NWYSEUR

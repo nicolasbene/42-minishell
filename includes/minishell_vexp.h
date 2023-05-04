@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/01 17:53:30 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/03 16:57:30 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ms_swap(char **str, char *new);
 char	ms_isep(char *s);
 char	ms_isalnum_(char s);
 int		ms_strlen(char *s, char c);
+int		ms_strcmp(const char *s1, const char *s2); // ici
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir);
 void	ft_istreat(char **str, t_chir *chir);
 int		ft_intersimplequote(char **str, t_chir *chir);

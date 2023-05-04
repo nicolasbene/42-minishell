@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/27 11:31:53 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:11:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	ifbuiltins(char **av)
 {
 	if (ft_strcmp(av[0], "echo") == 0)
 		return (0);
+	if (ft_strcmp(av[0], "unset") == 0)
+		return (0);
+	if (ft_strcmp(av[0], "cd") == 0)
+		return (0);
 	else
 		return (2);
 }
@@ -36,6 +40,10 @@ int	builtins(int ac, char **av)
 {
 	if (ft_strcmp(av[0], "echo") == 0)
 		return (echo(ac, av));
+	if (ft_strcmp(av[0], "unset") == 0)
+		return (ft_unset(av));
+	if (ft_strcmp(av[0], "cd") == 0)
+		return (ft_cd(av));
 	else
 		return (2);
 }
@@ -47,6 +55,10 @@ int	builtins_parent(int ac, char **av, int fd_io[2], int fd_in)
 	redirect_input_output(fd_io, fd_in);
 	if (ft_strcmp(av[0], "echo") == 0)
 		return (echo(ac, av));
+	if (ft_strcmp(av[0], "unset") == 0)
+		return (ft_unset(av));
+	if (ft_strcmp(av[0], "cd") == 0)
+		return (ft_cd(av));
 	else
 		return (2);
 }
