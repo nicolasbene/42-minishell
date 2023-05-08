@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:21:55 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/04 18:45:13 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:41:52 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_joinhomepath(char *path)
 		tmp = ft_getenv("HOME");
 		if (tmp)
 		{
-			tmppath = ft_substr(path, 1, ft_strlen(path)); // ici
+			tmppath = ft_substr(path, 1, ft_strlen(path));
 			free(path);
 			path = ft_strjoin(tmp, tmppath);
 			free(tmppath);
@@ -89,7 +89,7 @@ int	ft_path(char **args)
 {
 	char	*tmp;
 
-	if (ft_strcmp(args[1], "-"))
+	if (ft_strcmp(args[1], "-") == 0)
 	{
 		tmp = ft_getenv("OLDPWD");
 		if (tmp)
@@ -115,27 +115,24 @@ int	ft_cd(char **args)
 
 	g_minishell.exit_status = 0;
 	home = NULL;
-	if (args && args[1] && args[2]) // ici
+	if (args && args[1] && args[2])
 	{
-		printf("ICI 1");
 		ft_putstr_fd("minisheesh: cd: too many arguments\n", 2);
 		g_minishell.exit_status = 1;
 		return (1);
 	}
-	if (!args[1] || ft_strcmp(args[1], "~") || ft_strcmp(args[1], "--"))
+	if (!args[1] || ft_strcmp(args[1], "~") == 0
+		|| ft_strcmp(args[1], "--") == 0)
 	{
 		home = ft_getenv("HOME");
 		if (!home)
 		{
-			printf("ICI 2");
 			ft_putstr_fd("minisheesh: cd: HOME not set\n", 2);
 			g_minishell.exit_status = 1;
 			return (1);
 		}
-		printf("ICI 3");
 		return (ft_set_directory(home, 1));
 	}
-	printf("ICI 4");
 	args[1] = ft_joinhomepath(args[1]);
 	return (ft_path(args));
 }

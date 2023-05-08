@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:11 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/04 18:37:32 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/05 15:40:16 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_env	*ft_add_env(char *env_name, char *new_content)
 		return (free(node_env->name), free(node_env), NULL);
 	node_env->next = NULL;
 	add_env_back(g_minishell.envs, node_env);
-	return (node_env); // ici
+	return (node_env);
 }
 
 int	ft_setenv(char *env_name, char *new_content)

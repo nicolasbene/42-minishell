@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/04 18:33:53 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/08 15:44:09 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,19 @@ int		ft_switchenvcont(char *new_content, int index);
 int		ft_setenv(char *env_name, char *new_content);
 t_env	*ft_add_env(char *env_name, char *new_content);
 char	*ft_getenv(char *str);
+	//exit
+void	ft_init_exit(char **args, t_cmd *cmd);
+void	ft_exit(t_cmd *cmd, int i);
+void	ft_exit_arg(char *arg, t_cmd *cmd);
+void	ft_error_numeric(char *arg, t_cmd *cmd);
+long long	ft_atoi_exit(const char *str, int i, int *toolongnb);
 
 //pipex->built-in
 int		builtins(int ac, char **av);
+void	ft_exit_arg(char *arg, t_cmd *cmd);
+void	ft_error_numeric(char *arg, t_cmd *cmd);
+long long	ft_atoi_exit(const char *str, int i, int *toolongnb);
+void	ft_exit(t_cmd *cmd, int i);
 
 // ///////////////////////////////////////////////////////////////////////
 // //PARTIE NWYSEUR
@@ -120,9 +130,6 @@ int		builtins(int ac, char **av);
 // void		ft_mslstokenadd_back(t_mst **lst, t_mst *new);
 // t_mst		*ft_msltokenlast(t_mst *lst);
 // int			ft_mslstokensize(t_mst *lst);
-
-
-
 
 // ////////////////////////
 // //LEXER.H
