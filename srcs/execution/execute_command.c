@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/27 12:30:16 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:58:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	exec_or_error(t_cmd *commands, char *pathname, char **args)
 			|| ft_strncmp(args[0], "../", 2) == 0
 			|| ft_strncmp(args[0], "/", 1) == 0))
 		exit_error(commands, "%s: No such file or directory", args[0], 127, pathname);
-	if (builtins(nbr_args(args), args) == 0)
+	if (builtins(nbr_args(args), commands) == 0) // ici t_cmd
 		free_envs(&g_minishell.envs);
 	else
 	{

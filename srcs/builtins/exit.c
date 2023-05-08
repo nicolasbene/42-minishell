@@ -6,13 +6,20 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/08 15:47:01 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/08 16:12:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
 extern t_minishell	g_minishell;
+
+int	ft_isspace(char c)
+{
+	if ((c >= 8 && c <= 13) || c == ' ')
+		return (1);
+	return (0);
+}
 
 long long	ft_atoi_exit(const char *str, int i, int *toolongnb)
 {
@@ -52,7 +59,7 @@ void	ft_error_numeric(char *arg, t_cmd *cmd)
 	ft_exit(cmd, 1);
 }
 
-void	ft_exit_arg(char *arg, t_cmd *cmd)
+void	ft_parsing_exitarg(char *arg, t_cmd *cmd)
 {
 	int		i;
 
@@ -75,7 +82,7 @@ void	ft_exit(t_cmd *cmd, int i)
 {
 	free_commands(cmd);
 	if (g_minishell.envs)
-		free_envs(g_minishell.envs);
+		free_envs(&g_minishell.envs);
 	if (i == 1)
 		ft_putstr_fd("exit\n", 2);
 	exit(g_minishell.exit_status);
@@ -92,7 +99,7 @@ void	ft_init_exit(char **args, t_cmd *cmd)
 	g_minishell.exit_status = 0;
 	if (!args[1])
 		ft_exit(cmd, 1);
-	exit_arg(args[1], cmd);
+	ft_parsing_exitarg(args[1], cmd);
 	while (args[i])
 		i++;
 	if (i > 2)

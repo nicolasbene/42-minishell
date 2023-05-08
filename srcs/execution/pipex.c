@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/08 15:43:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/08 16:07:38 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,45 @@ int	ifbuiltins(char **av)
 		return (0);
 	if (ft_strcmp(av[0], "cd") == 0)
 		return (0);
+	if (ft_strcmp(av[0], "exit") == 0)
+		return (0);
 	else
 		return (2);
 }
 
-int	builtins(int ac, char **av)
+int	builtins(int ac, t_cmd *cmd) // ici t_cmd 
 {
-	if (ft_strcmp(av[0], "echo") == 0)
-		return (echo(ac, av));
-	if (ft_strcmp(av[0], "unset") == 0)
-		return (ft_unset(av));
-	if (ft_strcmp(av[0], "cd") == 0)
-		return (ft_cd(av));
+	if (ft_strcmp(cmd->arg[0], "echo") == 0)
+		return (echo(ac, cmd->arg));
+	if (ft_strcmp(cmd->arg[0], "unset") == 0)
+		return (ft_unset(cmd->arg));
+	if (ft_strcmp(cmd->arg[0], "cd") == 0)
+		return (ft_cd(cmd->arg));
+	if (ft_strcmp(cmd->arg[0], "exit") == 0)
+	{
+		ft_init_exit(cmd->arg, cmd);
+		return (1);
+	}
 	else
 		return (2);
 }
 
-int	builtins_parent(int ac, char **av, int fd_io[2], int fd_in)
+int	builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in) // ici t_cmd 
 {
 	if (fd_io[0] == -1 || fd_io[1] == -1)
 		return (1);
 	redirect_input_output(fd_io, fd_in);
-	if (ft_strcmp(av[0], "echo") == 0)
-		return (echo(ac, av));
-	if (ft_strcmp(av[0], "unset") == 0)
-		return (ft_unset(av));
-	if (ft_strcmp(av[0], "cd") == 0)
-		return (ft_cd(av));
+	if (ft_strcmp(cmd->arg[0], "echo") == 0)
+		return (echo(ac, cmd->arg));
+	if (ft_strcmp(cmd->arg[0], "unset") == 0)
+		return (ft_unset(cmd->arg));
+	if (ft_strcmp(cmd->arg[0], "cd") == 0)
+		return (ft_cd(cmd->arg));
+	if (ft_strcmp(cmd->arg[0], "exit") == 0)
+	{
+		ft_init_exit(cmd->arg, cmd);
+		return (1);
+	}
 	else
 		return (2);
 }
@@ -105,7 +117,7 @@ int	pipex(t_cmd *commands)
 	{
 		ft_variable_exp(commands, g_minishell.envs);
 		handle_redirects(fd_io, fd_pipe, commands->next != NULL, commands);
-		builtins_parent(nbr_args(commands->arg), commands->arg, fd_io, fd_pipe[0]);
+		builtins_parent(nbr_args(commands->arg), commands, fd_io, fd_pipe[0]); // ici t_cmd
 	}
 	else
 		//sinon on fork pour execve et on recup le pid du dernier enfant execute
