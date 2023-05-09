@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:17:49 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/04 16:01:07 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/09 12:31:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <linux/limits.h>
+# include <errno.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>

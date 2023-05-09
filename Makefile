@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/08 15:48:56 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/09 12:33:18 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS_FILES	= main.c \
 				builtins/cd.c \
 				builtins/cd_utils.c \
 				builtins/exit.c \
+				builtins/pwd.c \
 
 HEADER_FILE	= minishell_includes.h
 

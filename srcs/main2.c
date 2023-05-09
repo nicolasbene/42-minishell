@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/02 15:43:51 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/09 10:49:21 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR30);
+	mst = ft_lexer_main(STR26);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;

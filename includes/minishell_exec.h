@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/08 16:17:40 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/09 12:39:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,12 @@ void	ft_parsing_exitarg(char *arg, t_cmd *cmd);
 void	ft_error_numeric(char *arg, t_cmd *cmd);
 long long	ft_atoi_exit(const char *str, int i, int *toolongnb);
 int		ft_isspace(char c);
+	//pwd
+int		ft_pwd(void);
 
 //pipex->built-in
 int		builtins(int ac, t_cmd *cmd);
 int		builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in); // ici t_cmd 
-
 
 
 

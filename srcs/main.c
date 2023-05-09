@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/27 12:09:23 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:14:26 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	execute_shell_commands(void)
 	t_cmd		*commands;
 	t_mst		*mst;
 
+	commands = NULL;
 	while (1)
 	{
 		line = read_line();
@@ -45,7 +46,10 @@ void	execute_shell_commands(void)
 		if (line)
 		{
 			mst = ft_lexer_main(line);
-			commands = ft_main_parser(mst);
+			if (mst && mst->type == TOKEN_EOF)
+				ft_mslstokenclear(&mst);
+			else
+				commands = ft_main_parser(mst); // ici
 			// create_commands(&commands);
 			if (commands)
 				executing(commands);
