@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/08 16:12:43 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:19:03 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,12 @@ void	ft_exit(t_cmd *cmd, int i)
 	exit(g_minishell.exit_status);
 }
 
-void	ft_init_exit(char **args, t_cmd *cmd)
+void	ft_init_exit(char **args, t_cmd *cmd, int i)
 {
-	size_t		i;
 	int			toolongnb;
 	long long	coderr;
 
 	toolongnb = 0;
-	i = 1;
 	g_minishell.exit_status = 0;
 	if (!args[1])
 		ft_exit(cmd, 1);
@@ -104,6 +102,7 @@ void	ft_init_exit(char **args, t_cmd *cmd)
 		i++;
 	if (i > 2)
 	{
+		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		g_minishell.exit_status = 1;
 	}
@@ -113,6 +112,6 @@ void	ft_init_exit(char **args, t_cmd *cmd)
 		if (toolongnb == 1)
 			ft_error_numeric(args[1], cmd);
 		g_minishell.exit_status = coderr % 256;
+		ft_exit(cmd, 1); // ici
 	}
-	ft_exit(cmd, 1); // ici
 }

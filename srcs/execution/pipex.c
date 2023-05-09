@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/09 12:38:20 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:18:13 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	builtins(int ac, t_cmd *cmd) // ici t_cmd
 		return (ft_cd(cmd->arg));
 	if (ft_strcmp(cmd->arg[0], "exit") == 0)
 	{
-		ft_init_exit(cmd->arg, cmd);
+		ft_init_exit(cmd->arg, cmd, 1);
 		return (1);
 	}
 	if (ft_strcmp(cmd->arg[0], "pwd") == 0)
@@ -72,7 +72,7 @@ int	builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in) // ici t_cmd
 		return (ft_cd(cmd->arg));
 	if (ft_strcmp(cmd->arg[0], "exit") == 0)
 	{
-		ft_init_exit(cmd->arg, cmd);
+		ft_init_exit(cmd->arg, cmd, 1);
 		return (1);
 	}
 	if (ft_strcmp(cmd->arg[0], "pwd") == 0)
