@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/09 12:33:18 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/10 11:38:22 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ SRCS_FILES	= main.c \
 				execution/execute_command.c \
 				execution/get_path.c \
 				execution/handle_redirects.c \
-				execution/create_command.c \
 				execution/free_command.c \
 				execution/list_to_tab.c \
 				execution/execution.c \
-				execution/open_fd.c \
+				execution/handle_open_fd.c \
+				execution/is_directory.c \
+				execution/is_rdout.c \
 				print_error.c \
 				parser/lexer_main.c \
 				parser/lexer_mvt.c \

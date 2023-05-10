@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:36:57 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/26 16:34:12 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:46:16 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,109 @@
 
 extern t_minishell	g_minishell;
 
-char	*find_path(char **envp)
+t_env	*get_env_el(char *av)
 {
-	while (ft_strncmp("PATH=", *envp, 5))
-		envp++;
-	return (*envp + 5);
-}
+	t_env	*envs;
 
-char	*get_cmd(char **cmd_paths, char **cmd_tab)
-{
-	char	*tmp;
-	char	*command;
-
-	while (*cmd_paths)
+	envs = g_minishell.envs;
+	while (envs != NULL)
 	{
-		tmp = ft_strjoin(*cmd_paths, "/");
-		command = ft_strjoin(tmp, cmd_tab[0]);
-		free(tmp);
-		if (access(command, 0) == 0)
-			return (command);
-		free(command);
-		cmd_paths++;
+		if (ft_strncmp(av, envs->name, ft_strlen(envs->name)) == 0
+			&& ft_strlen(av) == ft_strlen(envs->name))
+			return (envs);
+		envs = envs->next;
 	}
 	return (NULL);
 }
 
+static char	*concat_path_command(char *path, char *cmd)
+{
+	char	*tmp;
+	char	*cmd_path;
+
+	if (path[ft_strlen(path) - 1] != '/')
+	{
+		tmp = ft_strjoin(path, "/");
+		cmd_path = ft_strjoin(tmp, cmd);
+		free(tmp);
+	}
+	else
+		cmd_path = ft_strjoin(path, cmd);
+	return (cmd_path);
+}
+
+char	*get_path(char **path, char *cmd)
+{
+	int		i;
+	char	*tmp;
+	char	*cmd_path;
+
+	i = 0;
+	cmd_path = NULL;
+	while (path[i])
+	{
+		tmp = concat_path_command(path[i], cmd);
+		if (!tmp)
+			exit(12);
+		if (access(tmp, F_OK) == 0)
+		{
+			if (cmd_path)
+				free(cmd_path);
+			cmd_path = tmp;
+			if (access(cmd_path, X_OK) == 0)
+				return (cmd_path);
+		}
+		else
+			free(tmp);
+		i++;
+	}
+	return (cmd_path);
+}
+
+void	free_path(char **path)
+{
+	int	i;
+
+	i = 0;
+	while (path[i])
+	{
+		free(path[i]);
+		i++;
+	}
+	free(path);
+}
+
+
+char	*get_path_cmd(char *cmd)
+{
+	t_env	*env;
+	char	**path;
+	char	*cmd_path;
+
+	env = get_env_el("PATH");
+	if (!env || !env->content)
+		return (NULL);
+	path = ft_split(env->content, ':');
+	if (!path)
+		exit(12);
+	cmd_path = get_path(path, cmd);
+	free_path(path);
+	if (cmd_path == NULL)
+		return (NULL);
+	return (cmd_path);
+}
+
 char	*file_to_execute(char *cmd)
 {
-	char	*pathname;
-	char	*env_path;
-	char	**cmd_paths;
-	char	**cmd_tab;
-	char	**env_tab;
+	char	*tmp;
 
-	cmd_tab = ft_split(cmd, ' ');
-	ft_strchr(cmd_tab[0], '/');
-	env_tab = list_to_tab(g_minishell.envs);
-	env_path = find_path(env_tab);
-	cmd_paths = ft_split(env_path, ':');
-	pathname = get_cmd(cmd_paths, cmd_tab);
-	ft_free_tab(cmd_paths);
-	ft_free_tab(cmd_tab);
-	ft_free_tab(env_tab);
-	return (pathname);
+	if (ft_strncmp(cmd, "./", 2) == 0
+		|| ft_strncmp(cmd, "../", 2) == 0
+		|| ft_strncmp(cmd, "/", 1) == 0)
+		tmp = ft_strdup(cmd);
+	else if (ft_strcmp(cmd, "echo") == 0)
+		tmp = ft_strdup("echo");
+	else
+		tmp = get_path_cmd(cmd);
+	return (tmp);
 }
