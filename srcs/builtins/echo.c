@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/04 18:00:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/11 10:45:37 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,3 @@ int	echo(int ac, char **av)
 		printf("\n");
 	return (0);
 }
-
-// int main(int ac, char **av)
-// {
-// 	echo(ac, av);
-// }

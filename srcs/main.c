@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 09:14:27 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:45:05 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int	main(int argc, char *argv[], char *envp[])
 
 
 //TO DO
-//Gerer les erreurs d executions
-//Gerer les valeurs de retour
 //Gerer le echo $?
 //Gerer les signaux
 //Gerer les builtins (env + export)
@@ -97,5 +95,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 //COMMANDS
 /*
-
+$echo '''
+$exit
+--> leaks
 */

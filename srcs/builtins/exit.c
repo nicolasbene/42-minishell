@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/09 14:19:03 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/11 10:42:31 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_exit(t_cmd *cmd, int i)
 		free_envs(&g_minishell.envs);
 	if (i == 1)
 		ft_putstr_fd("exit\n", 2);
+	close_save_std();
 	exit(g_minishell.exit_status);
 }
 
