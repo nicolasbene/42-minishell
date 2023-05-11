@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   close_save_std.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 22:43:07 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/10 15:40:41 by nibenoit         ###   ########.fr       */
+/*   Created: 2023/05/11 09:33:27 by nibenoit          #+#    #+#             */
+/*   Updated: 2023/05/11 09:34:20 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-void	print_error(const char *format, const char *arg1, const char *arg2)
+void	close_save_std(void)
 {
-	int	save;
-
-	save = dup(STDOUT_FILENO);
-	dup2(STDERR_FILENO, STDOUT_FILENO);
-	printf("minishell: ");
-	if (arg2)
-		printf(format, arg1, arg2);
-	else if (arg1)
-		printf(format, arg1);
-	else
-		printf("%s", format);
-	printf("\n");
-	dup2(save, STDOUT_FILENO);
-	close(save);
+	close(3);
+	close(4);
 }

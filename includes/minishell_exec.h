@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/10 11:32:54 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/11 09:34:15 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		pipex(t_cmd *commands);
 
 //execute_command.c
 void	redirect_input_output(int fd[2], int fd_in);
-int		execute_command(t_cmd *commands, char *pathname, char **args, int fd_io[2], int fd_in);
+int		execute_command(t_cmd *commands, char *pathname, t_cmd *tmp_commands, int fd_io[2], int fd_in);
 
 //handle_rd.c
 int		handle_redirects(int fd_io[2], int fd_pipe[2], int next, t_cmd *cmd);
@@ -40,13 +40,10 @@ char	*get_cmd(char **cmd_paths, char **cmd_tab);
 char	*find_path(char **envp);
 char	*file_to_execute(char *cmd);
 
-//create-command.c
-// void	create_commands(t_list **commands);
-
 //free_command.c
 void	free_commands(t_cmd *commands);
 void	free_command(void *content);
-void	ft_free_tab(char **tab);
+void	free_tab(char **tab);
 void	free_redirect(void *content);
 
 //env.c
@@ -66,6 +63,20 @@ void	print_error(const char *format, const char *arg1, const char *arg2);
 
 //open_fd.c
 int		open_fd(t_rdtype type, char *file);
+
+//handle_builtins.c
+int		builtins(int ac, t_cmd *cmd);
+int		builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in);
+int		ifbuiltins(char **av);
+
+//is_directory.c
+bool	is_directory(const char *path);
+
+//is_rdout.c
+bool	is_rdout(t_rdtype type);
+
+//close_save_std.c
+void	close_save_std(void);
 
 //builtins
 	//echo
@@ -94,60 +105,6 @@ int		ft_isspace(char c);
 	//pwd
 int		ft_pwd(void);
 
-//pipex->built-in
-int		builtins(int ac, t_cmd *cmd);
-int		builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in); // ici t_cmd 
 
-
-
-
-
-
-
-
-
-
-// ///////////////////////////////////////////////////////////////////////
-// //PARTIE NWYSEUR
-
-// //TOKEN.H
-
-// enum	e_type
-// {
-// 	TOKEN_WORD,
-// 	TOKEN_PIPE,
-// 	TOKEN_G,
-// 	TOKEN_GG,
-// 	TOKEN_L,
-// 	TOKEN_LL,
-// 	TOKEN_LQ,
-// 	TOKEN_LQQ,
-// 	TOKEN_EOF,
-// };
-
-// typedef struct mst_struct
-// {
-// 	char				*value;
-// 	enum e_type			type;
-// 	struct mst_struct	*next;
-// }	t_mst;
-
-// // Token
-// t_mst		*ft_init_token(char *value, int type);
-// void		ft_mslstokenclear(t_mst **lst);
-// void		ft_mslstokenadd_back(t_mst **lst, t_mst *new);
-// t_mst		*ft_msltokenlast(t_mst *lst);
-// int			ft_mslstokensize(t_mst *lst);
-
-
-
-
-
-
-//is_directory.c
-bool	is_directory(const char *path);
-
-//is_rdout.c
-bool	is_rdout(t_rdtype type);
 
 #endif

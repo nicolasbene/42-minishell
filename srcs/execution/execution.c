@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:31:09 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/26 15:23:13 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/11 09:14:47 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ int	executing(t_cmd *commands)
 	int	last_pid;
 
 	save_std(&tpin, &tpout);
-	//on recupere le pid du dernier enfant execute
 	last_pid = pipex(commands);
 	restore_std(tpin, tpout);
 	if (last_pid == -1)
 		return (-1);
-	//on attend la fin du process des enfants
 	while (wait(NULL) != -1)
 		;
 	

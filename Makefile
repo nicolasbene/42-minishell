@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
+#    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/10 11:38:22 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/05/11 09:34:02 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRCS_FILES	= main.c \
 				execution/handle_open_fd.c \
 				execution/is_directory.c \
 				execution/is_rdout.c \
+				execution/handle_builtins.c \
+				execution/close_save_std.c \
 				print_error.c \
 				parser/lexer_main.c \
 				parser/lexer_mvt.c \
