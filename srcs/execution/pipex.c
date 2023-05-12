@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:09:44 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:28:31 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	pipex(t_cmd *cmd)
 	{
 		ft_variable_exp(cmd, g_minishell.envs);
 		handle_redirects(fd_io, fd_pipe, cmd->next != NULL, cmd);
-		builtins_parent(nbr_args(cmd->arg), cmd, fd_io, fd_pipe[0]);
+		builtins_parent(nbr_args(cmd->arg), cmd->arg, fd_io, fd_pipe[0]);
 	}
 	else
 		last_pid = forks(cmd, fd_io, fd_pipe);

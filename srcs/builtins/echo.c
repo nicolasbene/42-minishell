@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 10:45:37 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:25:33 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	echo_newline(char **av, int i)
 	return (FALSE);
 }
 
-int	echo(int ac, char **av)
+int	ft_echo(int ac, char **av)
 {
 	int	i;
 	int newline_option;

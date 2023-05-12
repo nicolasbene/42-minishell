@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 14:46:43 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:34:12 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		open_fd(t_rdtype type, char *file);
 
 //handle_builtins.c
 int		builtins(int ac, char **args);
-int		builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in);
+int		builtins_parent(int ac, char **args, int fd_io[2], int fd_in);
 int		ifbuiltins(char **av);
 
 //is_directory.c
@@ -90,11 +90,13 @@ bool	is_empty(const char *s);
 
 //builtins
 	//echo
-int		echo(int ac, char **av);
+int		ft_echo(int ac, char **av);
+
 	//unset
 int		ft_unset(char **args);
 int		ft_intoenv(char *tofind);
 void	unset_var(int index);
+
 	//cd
 int		ft_cd(char **args);
 int		ft_path(char **args);
@@ -105,6 +107,7 @@ int		ft_switchenvcont(char *new_content, int index);
 int		ft_setenv(char *env_name, char *new_content);
 t_env	*ft_add_env(char *env_name, char *new_content);
 char	*ft_getenv(char *str);
+
 	//exit
 void	ft_init_exit(char **args, t_cmd *cmd, int i);
 void	ft_exit(t_cmd *cmd, int i);
@@ -112,9 +115,11 @@ void	ft_parsing_exitarg(char *arg, t_cmd *cmd);
 void	ft_error_numeric(char *arg, t_cmd *cmd);
 long long	ft_atoi_exit(const char *str, int i, int *toolongnb);
 int		ft_isspace(char c);
+
 	//pwd
 int		ft_pwd(void);
 
-
+	//env
+int		ft_env(int ac, char **av);
 
 #endif

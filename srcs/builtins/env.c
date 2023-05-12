@@ -3,38 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:01 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/04 15:20:26 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/12 15:32:33 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-void	free_env(t_env *env)
-{
-	if (env)
-	{
-		free(env->name);
-		free(env->content);
-		free(env);
-	}
-}
-
-void	free_envs(t_env **envs)
-{
-	t_env	*tmp;
-
-	if (!envs || !*envs)
-		return ;
-	while (*envs)
-	{
-		tmp = *envs;
-		*envs = (*envs)->next;
-		free_env(tmp);
-	}
-}
+extern t_minishell	g_minishell;
 
 t_env *create_node_env(char *av)
 {
@@ -86,4 +64,23 @@ t_env *tab_to_list(char **envp)
         i++;
     }
     return (envs);
+}
+
+int ft_env(int ac, char **av)
+{
+    t_env   *envs;
+
+    (void)av;
+    envs = g_minishell.envs;
+    if (ac == 1)
+    {
+        while (envs != NULL)
+        {
+            if (envs->content)
+                printf("%s=%s\n", envs->name, envs->content);
+            envs = envs->next;
+        }
+    }
+    g_minishell.exit_status = 0;
+    return (0);
 }
