@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:39:56 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 19:13:55 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:40:20 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,34 +90,34 @@ void	print_envs(t_env *envs)
 	}
 }
 
-t_env	*add_env(t_env *envs, char *s)
-{
-	t_env	*env;
-	char	**split;
-	char	*name;
-	char	*value;
+// t_env	*add_env(t_env *envs, char *s)
+// {
+// 	t_env	*env;
+// 	char	**split;
+// 	char	*name;
+// 	char	*value;
 
-	env = malloc(sizeof(*env));
-	if (!env)
-		exit(12);
-	split = ft_split(s, '=');
-	name = ft_strdup(split[0]);
-	if (!name)
-		exit(12);
-	value = ft_strdup(split[1]);
-	if (!value)
-		exit(12);
-	env->name = name;
-	env->content = value;
-	env->next = NULL;
-	free_tab(split);
-	if (!envs)
-		return (env);
-	while (envs->next)
-		envs = envs->next;
-	envs->next = env;
-	return (envs);
-}
+// 	env = malloc(sizeof(*env));
+// 	if (!env)
+// 		exit(12);
+// 	split = ft_split(s, '=');
+// 	name = ft_strdup(split[0]);
+// 	if (!name)
+// 		exit(12);
+// 	value = ft_strdup(split[1]);
+// 	if (!value)
+// 		exit(12);
+// 	env->name = name;
+// 	env->content = value;
+// 	env->next = NULL;
+// 	free_tab(split);
+// 	if (!envs)
+// 		return (env);
+// 	while (envs->next)
+// 		envs = envs->next;
+// 	envs->next = env;
+// 	return (envs);
+// }
 
 int	ft_export(int ac, char **av)
 {
@@ -135,7 +135,7 @@ int	ft_export(int ac, char **av)
 	{
 		valid = valid_name(av[i]);
 		if (valid == 0)
-			g_minishell.envs = add_env(envs, av[i]);
+			g_minishell.envs = add_node_env(envs, av[i]);
 		else if (valid == 2)
 			g_minishell.envs = add_empty_env(envs, av[i]);
 		else
