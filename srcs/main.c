@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:34:40 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:16:04 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int	main(int argc, char *argv[], char *envp[])
 
 
 //TO DO
-//Gerer le echo $? -> aller chercher dans g_minishell.exit_status
+//Gerer le echo $?
 //Gerer les signaux
-//Gerer les builtins export
+
 //Proteger les builtins
 
 //COMMANDS

@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:17:28 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:31:25 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:30:20 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	ifbuiltins(char **av)
 	if (ft_strcmp(av[0], "pwd") == 0)
 		return (0);
 	if (ft_strcmp(av[0], "env") == 0)
+		return (0);
+	if (ft_strcmp(av[0], "export") == 0)
 		return (0);
 	else
 		return (2);
@@ -49,6 +51,8 @@ int	builtins(int ac, char **args)
 		return (ft_pwd());
 	if (ft_strcmp(args[0], "env") == 0)
 		return (ft_env(ac, args));
+	if (ft_strcmp(args[0], "export") == 0)
+		return (ft_export(ac, args));
 	else
 		return (2);
 }
@@ -73,6 +77,8 @@ int	builtins_parent(int ac, char **args, int fd_io[2], int fd_in)
 		return (ft_pwd());
 	if (ft_strcmp(args[0], "env") == 0)
 		return (ft_env(ac, args));
+	if (ft_strcmp(args[0], "export") == 0)
+		return (ft_export(ac, args));
 	else
 		return (2);
 }

@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:34:12 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 19:15:44 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,9 @@ int		ft_pwd(void);
 
 	//env
 int		ft_env(int ac, char **av);
+
+	//export
+int		ft_export(int ac, char **av);
+t_env	*add_empty_env(t_env *envs, char *s);
 
 #endif
