@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:21:55 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/05 11:41:52 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/12 19:51:26 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_set_directory(char *path, int ishome)
 
 	if (ft_switchpwd(path, ishome))
 		return (1);
-	ft_putstr_fd("minisheesh: cd: ", 2);
+	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(path, 2);
 	g_minishell.exit_status = 1;
 	if (stat(path, &statstruct) == -1)
@@ -117,7 +117,7 @@ int	ft_cd(char **args)
 	home = NULL;
 	if (args && args[1] && args[2])
 	{
-		ft_putstr_fd("minisheesh: cd: too many arguments\n", 2);
+		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 		g_minishell.exit_status = 1;
 		return (1);
 	}
@@ -127,7 +127,7 @@ int	ft_cd(char **args)
 		home = ft_getenv("HOME");
 		if (!home)
 		{
-			ft_putstr_fd("minisheesh: cd: HOME not set\n", 2);
+			ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 			g_minishell.exit_status = 1;
 			return (1);
 		}
