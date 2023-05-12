@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parser_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/09 11:05:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/12 13:23:06 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+extern t_minishell	g_minishell;
 
 int	ft_check_pipe(t_mst *tmp, t_mst *prev)
 {
@@ -83,6 +85,7 @@ t_cmd	*ft_main_parser(t_mst *mst)
 		if (cmd == NULL)
 			return (NULL);
 	}
+	g_minishell.commands = cmd;
 	return (cmd);
 }
 

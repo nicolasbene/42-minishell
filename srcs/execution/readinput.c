@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   readinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 10:11:59 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:12:32 by nibenoit         ###   ########.fr       */
+/*   Created: 2023/05/11 12:25:52 by nibenoit          #+#    #+#             */
+/*   Updated: 2023/05/11 14:58:34 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell_includes.h"
 
-size_t	ft_strlen(const char *s)
+extern t_minishell	g_minishell;
+
+char	*readinput(const char *prompt)
 {
-	size_t	i;
+	size_t	last;
+	char	*line;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	line = NULL;
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+		line = readline(prompt);
+	else
+	{
+		line = get_next_line(STDIN_FILENO);
+		if (line)
+		{
+			last = ft_strlen(line);
+			if (last != 0 && line[last - 1] == '\n')
+				line[last] = 0;
+		}
+	}
+	return (line);
 }

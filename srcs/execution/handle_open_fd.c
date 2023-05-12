@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_fd.c                                          :+:      :+:    :+:   */
+/*   handle_open_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:37:07 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/28 12:17:33 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:30:49 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ int	open_fd(t_rdtype type, char *file)
 	int		fd;
 
 	if (type == RD_HERE)
-	{
-		fd = -2;
-		print_error("%s: HEREDOC EN COURS DE BUILD", file, NULL);
-	}
+		fd = handle_heredoc(file);
 	else
 	{
 		fd = -2;

@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 10:45:05 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:46:47 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,12 @@ char	*read_line(void)
 {
 	char	*line;
 
-	line = readline("minishell$ ");
+	line = readinput("minishell$ ");
 	if (!line)
 		return (NULL);
 	else if (*line)
 		add_history(line);
 	return (line);
-}
-
-bool	is_empty(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (!ft_isspace(s[i]))
-			return (false);
-		i++;
-	}
-	return (true);
 }
 
 void	execute_shell_commands(void)
@@ -73,8 +59,11 @@ void	execute_shell_commands(void)
 static void	init_minishell(char **envp)
 {
 	g_minishell.envs = tab_to_list(envp);
+	if (envp && envp[0] && !g_minishell.envs)
+		exit(12);
 	g_minishell.signal = 0;
 	g_minishell.exit_status = 0;
+	g_minishell.commands = NULL;
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -88,7 +77,8 @@ int	main(int argc, char *argv[], char *envp[])
 
 
 //TO DO
-//Gerer le echo $?
+//Gerer les heredocs
+//Gerer le echo $? -> aller chercher dans g_minishell.exit_status
 //Gerer les signaux
 //Gerer les builtins (env + export)
 //Proteger les builtins

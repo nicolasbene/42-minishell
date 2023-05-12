@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/29 17:37:06 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:14:59 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,8 @@ int	ms_strcmp(const char *s1, const char *s2)
 
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir)
 {
-	int		i;
 	int		str;
 
-	i = 0;
 	str = 0;
 	while (env != NULL)
 	{

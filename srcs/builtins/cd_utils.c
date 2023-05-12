@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:11 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/05 15:40:16 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:15:50 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,9 @@ t_env	*ft_add_env(char *env_name, char *new_content)
 int	ft_setenv(char *env_name, char *new_content)
 {
 	int		i;
-	size_t	len;
 
 	if (!env_name || !new_content)
 		return (0);
-	len = ft_strlen(env_name);
 	i = ft_intoenv(env_name);
 	if (i != -1)
 		return (ft_switchenvcont(new_content, i));

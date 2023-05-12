@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/11 10:01:03 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/12 14:47:04 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,9 @@ SRCS_FILES	= main.c \
 				execution/is_rdout.c \
 				execution/handle_builtins.c \
 				execution/close_save_std.c \
+				execution/heredoc.c \
+				execution/readinput.c \
+				execution/utils.c \
 				print_error.c \
 				parser/lexer_main.c \
 				parser/lexer_mvt.c \

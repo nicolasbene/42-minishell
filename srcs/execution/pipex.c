@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 09:59:35 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:09:44 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,22 @@ int	nbr_args(char **av)
 
 int	forks(t_cmd *cmd, int fd_io[2], int fd_pipe[2])
 {
-	t_cmd		*tmp_cmd;
 	char		*pathname;
 	int			last_pid;
 
 	last_pid = 0;
-	tmp_cmd = cmd;
-	while (tmp_cmd)
+	while (cmd)
 	{
-		handle_redirects(fd_io, fd_pipe, tmp_cmd->next != NULL, tmp_cmd);
-		ft_variable_exp(tmp_cmd, g_minishell.envs);
-		pathname = file_to_execute(tmp_cmd->arg[0]);
-		last_pid = execute_command(cmd, pathname, tmp_cmd,
-				fd_io, fd_pipe[0]);
+		handle_redirects(fd_io, fd_pipe, cmd->next != NULL, cmd);
+		ft_variable_exp(cmd, g_minishell.envs);
+
+		if (cmd->arg == NULL || cmd->arg[0] == NULL)
+			pathname = ft_strdup("");
+		else
+			pathname = file_to_execute(cmd->arg[0]);
+		last_pid = execute_command(cmd->arg, pathname, fd_io, fd_pipe[0]);
 		free(pathname);
-		tmp_cmd = tmp_cmd->next;
+		cmd = cmd->next;
 	}
 	return (last_pid);
 }

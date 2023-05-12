@@ -1,56 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_command.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/07 16:01:08 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 12:37:38 by nibenoit         ###   ########.fr       */
+/*   Created: 2023/05/12 14:45:54 by nibenoit          #+#    #+#             */
+/*   Updated: 2023/05/12 14:46:12 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-void	free_tab(char **tab)
+bool	is_empty(const char *s)
 {
 	int	i;
 
-	if (!tab)
-		return ;
 	i = 0;
-	while (tab[i])
+	while (s[i])
 	{
-		free(tab[i]);
+		if (!ft_isspace(s[i]))
+			return (false);
 		i++;
 	}
-	free(tab);
+	return (true);
 }
-
-void	free_rdlist(t_rdlist *rdlist)
-{
-	t_rdlist	*tmp;
-
-	while (rdlist)
-	{
-		tmp = rdlist;
-		rdlist = rdlist->next;
-		free(tmp->str);
-		free(tmp);
-	}
-}
-
-void	free_commands(t_cmd *commands)
-{
-	t_cmd	*tmp;
-	while (commands)
-	{
-		tmp = commands;
-		commands = commands->next;
-		free_rdlist(tmp->rd);
-		free_tab(tmp->arg);
-		free(tmp);
-	}
-}
-
-

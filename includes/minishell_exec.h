@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 09:34:15 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:46:43 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_minishell
 {
 	t_env	*envs;
+	void	*commands;
 	int		signal;
 	int		exit_status;
 }				t_minishell;
@@ -28,7 +29,7 @@ int		pipex(t_cmd *commands);
 
 //execute_command.c
 void	redirect_input_output(int fd[2], int fd_in);
-int		execute_command(t_cmd *commands, char *pathname, t_cmd *tmp_commands, int fd_io[2], int fd_in);
+int		execute_command(char **args, char *pathname, int fd_io[2], int fd_in);
 
 //handle_rd.c
 int		handle_redirects(int fd_io[2], int fd_pipe[2], int next, t_cmd *cmd);
@@ -65,7 +66,7 @@ void	print_error(const char *format, const char *arg1, const char *arg2);
 int		open_fd(t_rdtype type, char *file);
 
 //handle_builtins.c
-int		builtins(int ac, t_cmd *cmd);
+int		builtins(int ac, char **args);
 int		builtins_parent(int ac, t_cmd *cmd, int fd_io[2], int fd_in);
 int		ifbuiltins(char **av);
 
@@ -77,6 +78,15 @@ bool	is_rdout(t_rdtype type);
 
 //close_save_std.c
 void	close_save_std(void);
+
+//heredoc.c
+int		handle_heredoc(const char *stop);
+
+//readinput.c
+char	*readinput(const char *prompt);
+
+//utils.c
+bool	is_empty(const char *s);
 
 //builtins
 	//echo

@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:23:22 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 09:29:41 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:12:19 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,6 @@ int	open_and_dup2_output(t_cmd *cmd, int fd_out)
 
 int	redir_output(t_cmd *cmd, int fd_out)
 {
-	int			last_fd;
-
-	last_fd = 0;
 	if (fd_out == -1)
 		return (-1);
 	fd_out = open_and_dup2_output(cmd, fd_out);

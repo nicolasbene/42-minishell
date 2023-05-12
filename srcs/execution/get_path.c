@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:36:57 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/04/28 11:46:16 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:03:36 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,18 @@ char	*file_to_execute(char *cmd)
 		tmp = ft_strdup(cmd);
 	else if (ft_strcmp(cmd, "echo") == 0)
 		tmp = ft_strdup("echo");
+	else if (ft_strcmp(cmd, "env") == 0)
+		tmp = ft_strdup("env");
+	else if (ft_strcmp(cmd, "cd") == 0)
+		tmp = ft_strdup("cd");
+	else if (ft_strcmp(cmd, "export") == 0)
+		tmp = ft_strdup("export");
+	else if (ft_strcmp(cmd, "pwd") == 0)
+		tmp = ft_strdup("pwd");
+	else if (ft_strcmp(cmd, "unset") == 0)
+		tmp = ft_strdup("unset");
+	else if (ft_strcmp(cmd, "exit") == 0)
+		tmp = ft_strdup("exit");
 	else
 		tmp = get_path_cmd(cmd);
 	return (tmp);

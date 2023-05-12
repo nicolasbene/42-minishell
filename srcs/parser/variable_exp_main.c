@@ -6,11 +6,13 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/10 11:48:18 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/11 11:15:09 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+extern t_minishell	g_minishell;
 
 void	ft_switchvar(char **str, t_chir *chir, int l)
 {
