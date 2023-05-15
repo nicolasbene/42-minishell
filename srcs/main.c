@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 12:36:52 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:59:56 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	execute_shell_commands(void)
 		}
 		free(line);
 	}
-	free_envs(&g_minishell.envs);
+	free_envs(g_minishell.envs);
 }
 
 static void	init_minishell(char **envp)

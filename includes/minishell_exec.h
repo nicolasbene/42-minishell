@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 10:34:12 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:55:10 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	free_tab(char **tab);
 void	free_redirect(void *content);
 
 //env.c
-void	free_env(t_env *env);
-void	free_envs(t_env **envs);
+// void	free_env(t_env *env);
+void	free_envs(t_env *envs);
 t_env	*tab_to_list(char **envp);
 t_env	*add_env_back(t_env *env, t_env *node_env);
 
