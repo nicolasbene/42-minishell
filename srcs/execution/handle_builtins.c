@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:17:28 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 17:30:20 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:17:56 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ extern t_minishell	g_minishell;
 
 int	ifbuiltins(char **av)
 {
+	if (!av[0])
+		return (2);
 	if (ft_strcmp(av[0], "echo") == 0)
 		return (0);
 	if (ft_strcmp(av[0], "unset") == 0)

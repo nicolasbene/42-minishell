@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 17:33:42 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:52:37 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	redirect_input_output(int fd_io[2], int fd_in)
 
 void	quit_properly(char *pathname)
 {
-	free(pathname);
+	if (pathname)
+		free(pathname);
 	free_commands(g_minishell.commands);
 	free_envs(&g_minishell.envs);
 	exit(g_minishell.exit_status);

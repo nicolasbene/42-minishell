@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:28:31 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:26:02 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	forks(t_cmd *cmd, int fd_io[2], int fd_pipe[2])
 	{
 		handle_redirects(fd_io, fd_pipe, cmd->next != NULL, cmd);
 		ft_variable_exp(cmd, g_minishell.envs);
-
 		if (cmd->arg == NULL || cmd->arg[0] == NULL)
 			pathname = ft_strdup("");
 		else

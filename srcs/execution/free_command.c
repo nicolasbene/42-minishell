@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:08 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 12:37:38 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:17:14 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	free_rdlist(t_rdlist *rdlist)
 void	free_commands(t_cmd *commands)
 {
 	t_cmd	*tmp;
+
+	if (!commands)
+		return ;
 	while (commands)
 	{
 		tmp = commands;

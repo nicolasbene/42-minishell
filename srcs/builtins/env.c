@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:01 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:32:33 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:29:06 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ extern t_minishell	g_minishell;
 
 t_env *create_node_env(char *av)
 {
-    t_env *node_env;
-    int i;
+    t_env	*node_env;
+    int		i;
 
     node_env = malloc(sizeof(*node_env));
     if (!node_env)
@@ -37,9 +37,11 @@ t_env *create_node_env(char *av)
 
 t_env *add_env_back(t_env *env, t_env *node_env)
 {
+    t_env *tmp;
+
+	tmp = env;
     if (!env)
         return (node_env);
-    t_env *tmp = env;
     while (tmp->next)
         tmp = tmp->next;
     tmp->next = node_env;
@@ -48,7 +50,9 @@ t_env *add_env_back(t_env *env, t_env *node_env)
 
 t_env *add_node_env(t_env *envs, char *av)
 {
-    t_env *node_env = create_node_env(av);
+    t_env *node_env;
+	
+	node_env = create_node_env(av);
     if (!node_env)
         return (envs);
     return (add_env_back(envs, node_env));
@@ -56,8 +60,11 @@ t_env *add_node_env(t_env *envs, char *av)
 
 t_env *tab_to_list(char **envp)
 {
-    t_env *envs = NULL;
-    int i = 0;
+    t_env	*envs;
+    int		i;
+	
+	i = 0;
+	envs = NULL;
     while (envp[i])
     {
         envs = add_node_env(envs, envp[i]);

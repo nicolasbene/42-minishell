@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 19:16:04 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:36:52 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	execute_shell_commands(void)
 			if (commands)
 				executing(commands);
 			free_commands(commands);
+			g_minishell.commands = NULL;
 		}
 		free(line);
 	}
