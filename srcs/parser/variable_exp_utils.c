@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/11 15:14:59 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:41:28 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+extern t_minishell	g_minishell;
 
 int	ft_intersimplequote(char **str, t_chir *chir)
 {
