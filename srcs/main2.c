@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/09 10:49:21 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 12:34:08 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR26);
+	mst = ft_lexer_main(STR24);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;
@@ -186,3 +186,40 @@ int	main(void)
 	//	ft_mslstokenadd_back(&mst, ft_lexer_next_token(mslex));
 	//}
 	//free(mslex);
+
+
+
+	/*
+	void	ft_both_quote(char **str, t_chir *chir, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while ((*str)[i] && (*str)[i] != 34 && (*str)[i] != 39)
+		i++;
+	if ((*str)[i] == 34)
+	{
+		ft_istreat(str, chir);
+		ft_manage_var(str, chir, env);
+	}
+	else if ((*str)[i] == 39)
+	{
+		if (ft_interdoublequote(str, chir) == 1 && ft_intersimplequote(str, chir) == 1 && ft_whocamefirst(str, chir) == 1) // ici
+		{
+			ft_istreat(str, chir);
+			ft_manage_var(str, chir, env);
+			return ;
+		}
+		else if (ft_intersimplequote(str, chir) == 1)
+		{
+			chir->dollarcount++;
+			chir->posdollar++;
+			return ;
+		}
+		ft_istreat(str, chir);
+		ft_manage_var(str, chir, env);
+	}
+	return ;
+}
+	
+	*/

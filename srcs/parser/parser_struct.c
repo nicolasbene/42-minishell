@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_struct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:28:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/15 11:10:09 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:40:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,16 @@ t_rdlist	*ft_init_rdlist(t_mst *mst, int *nb)
 	return (new);
 }
 
-t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb)
+t_cmd	*ft_cmd_maillon(t_mst **mst, int *nb, int i)
 {
 	t_cmd		*link;
 	t_rdlist	*new;
-	int			i;
 
-	i = 0;
 	link = ft_init_cmd(nb);
 	if (link == NULL)
 		return (NULL);
-	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE && (*mst)->type != TOKEN_EOF)
+	while ((*mst) != NULL && (*mst)->type != TOKEN_PIPE
+		&& (*mst)->type != TOKEN_EOF)
 	{
 		if ((*mst)->type >= TOKEN_G && (*mst)->type <= TOKEN_LL)
 		{
@@ -112,7 +111,7 @@ t_cmd	*ft_parser_struct(t_mst *mst)
 	while (tmp != NULL)
 	{
 		ft_cmd_size(tmp, nb);
-		new = ft_cmd_maillon(&tmp, nb);
+		new = ft_cmd_maillon(&tmp, nb, 0);
 		if (new == NULL)
 			return (ft_free_list(&cmd, &mst), NULL);
 		ft_cmdlstokenadd_back(&cmd, new);
@@ -122,7 +121,3 @@ t_cmd	*ft_parser_struct(t_mst *mst)
 	ft_mslstokenclear(&mst);
 	return (cmd);
 }
-
-// checker si cmdmaillon return NULL qu est-ce qu on fait? 
-//est-ce qu on return une erreurt ou est-ce qu'on considere que le mqillon 
-//ajoute est null? pareil poiur la chaine de redirection 

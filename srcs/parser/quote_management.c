@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:33:12 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/01 17:53:02 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 12:05:25 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	*ft_listtodel(t_quote *quote, int pos)
 	int	*new;
 	int	i;
 
-	new = (int *)malloc(quote->nbrtodel * sizeof(int)); // malloc
+	new = (int *)malloc(quote->nbrtodel * sizeof(int));
 	if (!new)
 		return (NULL);
 	i = -1;
@@ -65,7 +65,7 @@ void	ft_switchquote(t_cmd *cmd, t_quote *quote)
 	len = (int)ft_strlen(cmd->arg[quote->i]) - quote->nbrtodel;
 	new = (char *)malloc((len + 1) * sizeof(char));
 	if (!new)
-		return ; // error a gerer
+		return ;
 	l = -1;
 	j = 0;
 	while (++l < len)

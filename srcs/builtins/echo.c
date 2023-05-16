@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 19:05:33 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:07:02 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ int	ft_echo(int ac, char **av)
 	if (!newline_option)
 		i = printf("\n");
 	if (i == -1)
-			print_error("%s: write error", "echo", NULL);
+		print_error("%s: write error", "echo", NULL);
 	return (0);
 }

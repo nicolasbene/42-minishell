@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:40:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/15 15:41:28 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 12:37:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_intersimplequote(char **str, t_chir *chir)
 	return (1);
 }
 
-int	ft_interdoublequote(char **str, t_chir *chir) // ici
+int	ft_interdoublequote(char **str, t_chir *chir)
 {
 	int	l;
 	int	j;
@@ -72,7 +72,7 @@ int	ft_interdoublequote(char **str, t_chir *chir) // ici
 	return (1);
 }
 
-int	ft_whocamefirst(char **str, t_chir *chir) // ici
+int	ft_whocamefirst(char **str, t_chir *chir)
 {
 	int	l;
 	int	j;
@@ -95,18 +95,6 @@ int	ft_whocamefirst(char **str, t_chir *chir) // ici
 	return (0);
 }
 
-char	ms_isalnum_(char s)
-{
-	if (ft_isalnum(s) == 1 || s == '_')
-		return (1);
-	else if (s == '?')
-		return (2);
-	else if (s == '\"' || s == '\'')
-		return (3);
-	else
-		return (0);
-}
-
 int	ms_strcmp(const char *s1, const char *s2)
 {
 	int	i;
@@ -116,7 +104,6 @@ int	ms_strcmp(const char *s1, const char *s2)
 		i++;
 	return (s1[i] - s2[i]);
 }
-
 
 t_env	*ft_isenv(t_env *env, char *tofind, t_chir *chir)
 {

@@ -3,23 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/15 14:56:09 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:13:29 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
 extern t_minishell	g_minishell;
-
-int	ft_isspace(char c)
-{
-	if ((c >= 8 && c <= 13) || c == ' ')
-		return (1);
-	return (0);
-}
 
 long long	ft_atoi_exit(const char *str, int i, int *toolongnb)
 {
@@ -45,18 +38,9 @@ long long	ft_atoi_exit(const char *str, int i, int *toolongnb)
 	}
 	while (str[i++])
 		j++;
-	if ((j > 19 && sign == 1) || (j > 20 && sign == -1)) // ici
+	if ((j > 19 && sign == 1) || (j > 20 && sign == -1))
 		*toolongnb = 1;
 	return (sum * sign);
-}
-
-void	ft_error_numeric(char *arg, t_cmd *cmd)
-{
-	ft_putstr_fd("minishell: exit: ", 2);
-	ft_putstr_fd(arg, 2);
-	ft_putstr_fd(": numeric argument required\n", 2);
-	g_minishell.exit_status = 2;
-	ft_exit(cmd, 1);
 }
 
 void	ft_parsing_exitarg(char *arg, t_cmd *cmd)
@@ -69,7 +53,7 @@ void	ft_parsing_exitarg(char *arg, t_cmd *cmd)
 	while (arg[i])
 	{
 		if (arg[i] != '\f' && arg[i] != '\t' && arg[i] != '\r'
-			&& arg[i] != '\v' && arg[i] != ' ') // ici
+			&& arg[i] != '\v' && arg[i] != ' ')
 		{
 			if (arg[i] < 48 || arg[i] > 57)
 				ft_error_numeric(arg, cmd);
@@ -113,6 +97,6 @@ void	ft_init_exit(char **args, t_cmd *cmd, int i)
 		if (toolongnb == 1)
 			ft_error_numeric(args[1], cmd);
 		g_minishell.exit_status = coderr % 256;
-		ft_exit(cmd, 1); // ici
+		ft_exit(cmd, 1);
 	}
 }

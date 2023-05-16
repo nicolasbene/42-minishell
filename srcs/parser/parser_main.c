@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/15 15:47:52 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 12:04:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_syntax_check(t_mst *mst)
 	tmp = mst;
 	err = 0;
 	prev = NULL;
-	while (tmp != NULL && err == 0) // ici tmp->next
+	while (tmp != NULL && err == 0)
 	{
 		if (tmp->type == TOKEN_PIPE)
 			err = ft_check_pipe(tmp, prev);
@@ -92,5 +92,3 @@ t_cmd	*ft_main_parser(t_mst *mst)
 	g_minishell.commands = cmd;
 	return (cmd);
 }
-
-//return (MEM_ERR);

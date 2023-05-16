@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/15 17:49:00 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/16 12:37:24 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-SRCS_FILES	= main.c \
+SRCS_FILES	= main2.c \
 				readinput.c \
 				print_error.c \
 				signal.c \
@@ -43,6 +43,7 @@ SRCS_FILES	= main.c \
 				parser/variable_exp_main.c \
 				parser/variable_exp_utils.c \
 				parser/variable_exp_utils_2.c \
+				parser/variable_exp_utils_3.c \
 				parser/variable_exp_split.c \
 				parser/variable_exp_split_utils.c \
 				parser/quote_management.c \
@@ -53,6 +54,7 @@ SRCS_FILES	= main.c \
 				builtins/cd.c \
 				builtins/cd_utils.c \
 				builtins/exit.c \
+				builtins/exit_utils.c \
 				builtins/pwd.c \
 				builtins/export.c \
 				builtins/add_empty_env.c
