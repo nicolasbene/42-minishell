@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 10:30:31 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:31:41 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	quit_properly(char *pathname)
 	if (pathname)
 		free(pathname);
 	free_commands(g_minishell.commands);
-	free_envs(g_minishell.envs);
+	// free_envs(g_minishell.envs);
 	exit(g_minishell.exit_status);
 }
 

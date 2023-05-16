@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_utils_3.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 12:34:29 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 12:36:54 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 14:52:13 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	ft_init_chir(char **str, t_chir *chir, t_env *env, int j)
 		j++;
 	}
 	if (ft_strcmp(chir->varname, "?") == 0)
+	{
 		chir->varcont = ft_itoa(g_minishell.exit_status);
+		chir->isenv = 1;
+		free(chir->varname);
+	}
 	else
 		chir->varcont = ft_lookintoenv(env, chir);
 	chir->lencont = ft_strlen(chir->varcont);
