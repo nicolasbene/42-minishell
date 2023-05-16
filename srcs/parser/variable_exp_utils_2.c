@@ -6,11 +6,13 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:11:48 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/29 15:15:08 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/15 15:33:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+extern t_minishell	g_minishell;
 
 int	ft_lookfor(char *str, int c)
 {
