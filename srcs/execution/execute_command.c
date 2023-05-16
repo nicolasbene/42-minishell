@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 15:12:54 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:30:31 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_minishell	g_minishell;
 
-static void	exit_error(const char *format, const char *s, int code, char *pathname)
+void	exit_error(const char *format, const char *s, int code, char *pathname)
 {
 	print_error(format, s, NULL);
 	free_commands(g_minishell.commands);
@@ -81,6 +81,7 @@ int	execute_command(char **args, char *pathname, int fd_io[2], int fd_in)
 		return (-1);
 	if (pid == 0)
 	{
+		reset_signals();
 		close_save_std();
 		if (fd_io[0] == -1 || fd_io[1] == -1)
 			quit_properly(pathname);
@@ -88,6 +89,7 @@ int	execute_command(char **args, char *pathname, int fd_io[2], int fd_in)
 		exec_or_error(pathname, args);
 		quit_properly(pathname);
 	}
+	handle_signals_exec();
 	if (fd_io[0] != -1)
 		close(fd_io[0]);
 	if (fd_io[1] != -1)

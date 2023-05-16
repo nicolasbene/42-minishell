@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 15:25:33 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:05:33 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ int	ft_echo(int ac, char **av)
 		newline_option = TRUE;
 	while (i < ac)
 	{
-		printf("%s", av[i]);
-		i++;
+		printf("%s", av[i++]);
 		if (i != ac)
 			printf(" ");
 	}
 	if (!newline_option)
-		printf("\n");
+		i = printf("\n");
+	if (i == -1)
+			print_error("%s: write error", "echo", NULL);
 	return (0);
 }

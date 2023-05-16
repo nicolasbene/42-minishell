@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 14:55:10 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:45:32 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		pipex(t_cmd *commands);
 //execute_command.c
 void	redirect_input_output(int fd[2], int fd_in);
 int		execute_command(char **args, char *pathname, int fd_io[2], int fd_in);
+void	exit_error(const char *format, const char *s, int code, char *pathname);
 
 //handle_rd.c
 int		handle_redirects(int fd_io[2], int fd_pipe[2], int next, t_cmd *cmd);
@@ -47,11 +48,9 @@ void	free_command(void *content);
 void	free_tab(char **tab);
 void	free_redirect(void *content);
 
-//env.c
 // void	free_env(t_env *env);
 void	free_envs(t_env *envs);
-t_env	*tab_to_list(char **envp);
-t_env	*add_env_back(t_env *env, t_env *node_env);
+void	free_env(t_env *env);
 
 //list_to_tab.c
 char	**list_to_tab(t_env *lst);
@@ -120,11 +119,19 @@ int		ft_isspace(char c);
 int		ft_pwd(void);
 
 	//env
+t_env	*tab_to_list(char **envp);
+t_env	*add_env_back(t_env *env, t_env *node_env);
 int		ft_env(int ac, char **av);
 t_env	*add_node_env(t_env *envs, char *av);
 
 	//export
 int		ft_export(int ac, char **av);
 t_env	*add_empty_env(t_env *envs, char *s);
+
+//signal.c
+void	handle_signals(void);
+void	handle_signals_exec(void);
+void	handle_signals_heredoc(void);
+void	reset_signals(void);
 
 #endif

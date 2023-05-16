@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:51:47 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/15 14:56:01 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:44:34 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	unset_var(int index)
 	if (index == 0)
 	{
 		g_minishell.envs = g_minishell.envs->next;
-		free_envs(tmp);
+		free_env(tmp);
 		return ;
 	}
 	while (i < index)
@@ -35,7 +35,7 @@ void	unset_var(int index)
 		i++;
 	}
 	prev->next = tmp->next;
-	free_envs(tmp);
+	free_env(tmp);
 	return ;
 }
 

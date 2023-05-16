@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/12 19:15:07 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/15 17:49:00 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME		= minishell
 SRCS_FILES	= main.c \
 				readinput.c \
 				print_error.c \
+				signal.c \
+				signal2.c \
 				execution/pipex.c \
 				execution/execute_command.c \
 				execution/get_path.c \

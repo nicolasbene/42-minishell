@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:31:09 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 10:33:38 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:39:48 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int	executing(t_cmd *cmd)
 	}
 	while (wait(&status) != -1)
 		continue ;
+	handle_signals();
 	return (0);
 }

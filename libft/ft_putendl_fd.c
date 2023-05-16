@@ -6,17 +6,21 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 18:50:25 by nibenoit          #+#    #+#             */
-/*   Updated: 2022/11/10 19:14:08 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:14:29 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	ft_putendl_fd(char *s, int fd)
 {
+	int	i;
+
+	i = 0;
 	if (s)
 	{
 		write(fd, s, ft_strlen(s));
-		write(fd, "\n", 1);
+		i = write(fd, "\n", 1);
 	}
+	return (i);
 }
