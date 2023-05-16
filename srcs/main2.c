@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 12:34:08 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 17:52:47 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ t_minishell	g_minishell;
 #define STR28 "     "
 #define STR29 "bonjour je suis YOyo nicolas | "
 #define STR30 "bonjour je suis YOyo nicolas|"
+#define STR31 "$nom"
 
 t_env	*ft_initlistenv(void)
 {
@@ -52,7 +53,7 @@ t_env	*ft_initlistenv(void)
 	new = (t_env *)malloc(1 * sizeof(t_env));
 	{
 		new->name = "nom";
-		new->content = "Nicolas";
+		new->content = "\"";
 	}
 	new->next = NULL;
 	return (new);
@@ -86,7 +87,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR24);
+	mst = ft_lexer_main(STR31);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;

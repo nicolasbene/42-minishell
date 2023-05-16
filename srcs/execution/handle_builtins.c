@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:17:28 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 12:17:56 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:44:01 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ifbuiltins(char **av)
 int	builtins(int ac, char **args)
 {
 	if (ft_strcmp(args[0], "echo") == 0)
-		return (ft_echo(ac, args));
+		return (ft_echo(ac, args, 0));
 	if (ft_strcmp(args[0], "unset") == 0)
 		return (ft_unset(args));
 	if (ft_strcmp(args[0], "cd") == 0)
@@ -65,7 +65,7 @@ int	builtins_parent(int ac, char **args, int fd_io[2], int fd_in)
 		return (1);
 	redirect_input_output(fd_io, fd_in);
 	if (ft_strcmp(args[0], "echo") == 0)
-		return (ft_echo(ac, args));
+		return (ft_echo(ac, args, 0));
 	if (ft_strcmp(args[0], "unset") == 0)
 		return (ft_unset(args));
 	if (ft_strcmp(args[0], "cd") == 0)

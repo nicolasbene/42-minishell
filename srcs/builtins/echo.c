@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 12:07:02 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/16 15:19:31 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+extern t_minishell	g_minishell;
 
 # define FALSE	0
 # define TRUE	1
@@ -33,19 +35,16 @@ int	echo_newline(char **av, int i)
 	return (FALSE);
 }
 
-int	ft_echo(int ac, char **av)
+int	ft_echo(int ac, char **av, int i)
 {
-	int	i;
-	int newline_option;
-	
-	i = 1;
+	int	newline_option;
+
 	newline_option = FALSE;
-	while (av[i])
+	while (av[++i])
 	{
 		newline_option = echo_newline(av, i);
 		if (!newline_option)
 			break ;
-		i++;
 	}
 	if (i != 1)
 		newline_option = TRUE;
@@ -58,6 +57,9 @@ int	ft_echo(int ac, char **av)
 	if (!newline_option)
 		i = printf("\n");
 	if (i == -1)
+	{
 		print_error("%s: write error", "echo", NULL);
-	return (0);
+		return (g_minishell.exit_status = 1);
+	}
+	return (g_minishell.exit_status = 0);
 }

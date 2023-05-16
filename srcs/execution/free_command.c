@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:08 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 11:17:14 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:20:21 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ void	free_commands(t_cmd *commands)
 {
 	t_cmd	*tmp;
 
-	if (!commands)
+	if (!commands || commands == NULL)
 		return ;
 	while (commands)
 	{
 		tmp = commands;
 		commands = commands->next;
-		free_rdlist(tmp->rd);
-		free_tab(tmp->arg);
+		if (tmp->rd != NULL)
+			free_rdlist(tmp->rd);
+		if (tmp->arg != NULL)
+			free_tab(tmp->arg);
 		free(tmp);
 	}
 }

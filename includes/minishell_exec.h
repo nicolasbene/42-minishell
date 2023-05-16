@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 10:45:32 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:14:17 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	is_empty(const char *s);
 
 //builtins
 	//echo
-int		ft_echo(int ac, char **av);
+int		ft_echo(int ac, char **av, int i);
 
 	//unset
 int		ft_unset(char **args);
