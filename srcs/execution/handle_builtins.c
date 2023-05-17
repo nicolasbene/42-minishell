@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_builtins.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:17:28 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 17:44:01 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:01:15 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	builtins(int ac, char **args)
 		return (1);
 	}
 	if (ft_strcmp(args[0], "pwd") == 0)
-		return (ft_pwd());
+		return (ft_pwd(ac, args));
 	if (ft_strcmp(args[0], "env") == 0)
 		return (ft_env(ac, args));
 	if (ft_strcmp(args[0], "export") == 0)
@@ -76,7 +76,7 @@ int	builtins_parent(int ac, char **args, int fd_io[2], int fd_in)
 		return (1);
 	}
 	if (ft_strcmp(args[0], "pwd") == 0)
-		return (ft_pwd());
+		return (ft_pwd(ac, args));
 	if (ft_strcmp(args[0], "env") == 0)
 		return (ft_env(ac, args));
 	if (ft_strcmp(args[0], "export") == 0)

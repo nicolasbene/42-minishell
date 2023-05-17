@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:21:55 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/12 19:51:26 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:37:12 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_set_directory(char *path, int ishome)
 	if (stat(path, &statstruct) == -1)
 	{
 		ft_putstr_fd(": No such file or directory", 2);
-		g_minishell.exit_status = 127;
+		g_minishell.exit_status = 1;
 	}
 	else if (!(statstruct.st_mode & S_IXUSR))
 		ft_putstr_fd(": Permission denied", 2);
@@ -82,7 +82,7 @@ int	ft_set_directory(char *path, int ishome)
 	ft_putchar_fd('\n', 2);
 	if (ishome)
 		free(path);
-	return (1);
+	return (0);
 }
 
 int	ft_path(char **args)
