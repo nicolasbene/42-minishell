@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 15:14:17 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:39:45 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ t_env	*add_node_env(t_env *envs, char *av);
 	//export
 int		ft_export(int ac, char **av);
 t_env	*add_empty_env(t_env *envs, char *s);
+int		check_equal(char **av);
 
 //signal.c
 void	handle_signals(void);

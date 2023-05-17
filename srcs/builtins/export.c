@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:39:56 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/12 19:40:20 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:39:16 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	valid_name(char *av)
 	return (0);
 }
 
-void	print_envs(t_env *envs)
+int	print_envs(t_env *envs)
 {
 	t_env	*env;
 
@@ -88,36 +88,8 @@ void	print_envs(t_env *envs)
 			printf("\n");
 		envs = envs->next;
 	}
+	return (0);
 }
-
-// t_env	*add_env(t_env *envs, char *s)
-// {
-// 	t_env	*env;
-// 	char	**split;
-// 	char	*name;
-// 	char	*value;
-
-// 	env = malloc(sizeof(*env));
-// 	if (!env)
-// 		exit(12);
-// 	split = ft_split(s, '=');
-// 	name = ft_strdup(split[0]);
-// 	if (!name)
-// 		exit(12);
-// 	value = ft_strdup(split[1]);
-// 	if (!value)
-// 		exit(12);
-// 	env->name = name;
-// 	env->content = value;
-// 	env->next = NULL;
-// 	free_tab(split);
-// 	if (!envs)
-// 		return (env);
-// 	while (envs->next)
-// 		envs = envs->next;
-// 	envs->next = env;
-// 	return (envs);
-// }
 
 int	ft_export(int ac, char **av)
 {
@@ -129,8 +101,10 @@ int	ft_export(int ac, char **av)
 	envs = g_minishell.envs;
 	ret = 0;
 	if (ac == 1)
-		print_envs(envs);
+		return (print_envs(envs));
 	i = 1;
+	if (!check_equal(av))
+		return (ret);
 	while (av[i])
 	{
 		valid = valid_name(av[i]);
