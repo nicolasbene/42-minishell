@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tokens.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:53 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/17 16:15:32 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:59:25 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ enum	e_type
 	TOKEN_LQ,
 	TOKEN_LQQ,
 	TOKEN_EOF,
-	TOKEN_PP, //la
+	TOKEN_PP,
 };
 
 typedef struct mst_struct

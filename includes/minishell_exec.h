@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 18:55:13 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 19:24:02 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		print_error(const char *format, const char *arg1, const char *arg2);
 int			open_fd(t_rdtype type, char *file);
 
 //handle_builtins.c
-int			builtins(int ac, char **args);
+int			builtins(int ac, char **args, char *pathname);
 int			builtins_parent(int ac, char **args, int fd_io[2], int fd_in);
 int			ifbuiltins(char **av);
 

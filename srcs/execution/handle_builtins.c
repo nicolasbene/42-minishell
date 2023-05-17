@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_builtins.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:17:28 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 18:01:15 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/17 19:23:48 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ifbuiltins(char **av)
 		return (2);
 }
 
-int	builtins(int ac, char **args)
+int	builtins(int ac, char **args, char *pathname)
 {
 	if (ft_strcmp(args[0], "echo") == 0)
 		return (ft_echo(ac, args, 0));
@@ -46,6 +46,7 @@ int	builtins(int ac, char **args)
 		return (ft_cd(args));
 	if (ft_strcmp(args[0], "exit") == 0)
 	{
+		free(pathname);
 		ft_init_exit(args, g_minishell.commands, 1);
 		return (1);
 	}
