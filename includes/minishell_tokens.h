@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:53 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/04 12:24:02 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/17 16:15:32 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ enum	e_type
 	TOKEN_LQ,
 	TOKEN_LQQ,
 	TOKEN_EOF,
+	TOKEN_PP, //la
 };
 
 typedef struct mst_struct
