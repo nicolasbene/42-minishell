@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:01 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 19:20:46 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:23:36 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	ft_env(int ac, char **av)
 		}
 		if (i == -1)
 			print_error("%s: write error", "env", NULL);
+		return (g_minishell.exit_status = 0);
 	}
-	g_minishell.exit_status = 0;
-	return (0);
+	return (g_minishell.exit_status = 0);
 }
