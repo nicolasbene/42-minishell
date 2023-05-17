@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:07:16 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/04/26 16:41:13 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:50:50 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	ms_passquote(char *arg, char c)
 
 	i = 0;
 	i++;
-	while (arg[i] != c)
+	while (arg[i] && arg[i] != c)
 		i++;
+	if (arg[i] == '\0') // ici
+        return (i); // ici
 	return (i + 1);
 }
 
