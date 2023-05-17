@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:39:56 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 18:32:04 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:54:13 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*print_name(char *av)
 	while (av[i])
 		i++;
 	av[i] = '\0';
-	print_error("export: `%s': not a valid identifier", av, NULL);
+	print_error("export: ʻ%s': not a valid identifier", av, NULL);
 	return (av);
 }
 
@@ -88,6 +88,7 @@ int	print_envs(t_env *envs)
 			printf("\n");
 		envs = envs->next;
 	}
+	g_minishell.exit_status = 0;
 	return (0);
 }
 

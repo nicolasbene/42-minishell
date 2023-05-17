@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/17 18:54:19 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/17 20:16:41 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,8 +57,7 @@ SRCS_FILES	= main.c \
 				builtins/exit.c \
 				builtins/exit_utils.c \
 				builtins/pwd.c \
-				builtins/export.c \
-				builtins/add_empty_env.c
+				builtins/export.c
 
 HEADER_FILE	= minishell_includes.h
 

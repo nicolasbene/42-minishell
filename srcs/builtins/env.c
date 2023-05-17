@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:01:01 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 16:23:36 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 20:46:27 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,25 +73,42 @@ t_env	*tab_to_list(char **envp)
 	return (envs);
 }
 
+int print_env(t_env *envs)
+{
+	int	i;
+
+	i = 0;
+	while (envs != NULL)
+	{
+		if (envs->content)
+			i = printf("%s=%s\n", envs->name, envs->content);
+		envs = envs->next;
+	}
+	return (i);
+}
+
 int	ft_env(int ac, char **av)
 {
 	t_env	*envs;
 	int		i;
 
-	i = 0;
-	(void)av;
 	envs = g_minishell.envs;
 	if (ac == 1)
 	{
-		while (envs != NULL)
-		{
-			if (envs->content)
-				i = printf("%s=%s\n", envs->name, envs->content);
-			envs = envs->next;
-		}
+		i = print_env(envs);
 		if (i == -1)
 			print_error("%s: write error", "env", NULL);
 		return (g_minishell.exit_status = 0);
+	}
+	if (ac > 1)
+	{
+		if (ft_strcmp(av[1], "env") == 0)
+		{
+			print_env(envs);
+			return (g_minishell.exit_status = 0);
+		}
+		print_error("%s: `%s': No such file or directory", "env", av[1]);
+		return (g_minishell.exit_status = 127);
 	}
 	return (g_minishell.exit_status = 0);
 }
