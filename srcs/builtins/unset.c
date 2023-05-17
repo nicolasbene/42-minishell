@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 17:51:47 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 10:44:34 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:23:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	ft_unset(char **args)
 			unset_var(index);
 		else
 		{
-			ft_putstr_fd("Unset: `", 2);
+			ft_putstr_fd("minishell: unset: `", 2);
 			ft_putstr_fd(args[i], 2);
-			ft_putstr_fd("': not an existing variable\n", 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
 			g_minishell.exit_status = 1;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/17 15:09:27 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/17 16:15:35 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ extern t_minishell	g_minishell;
 
 int	ft_check_pipe(t_mst *tmp, t_mst *prev)
 {
-	if (prev == NULL || prev->type == TOKEN_L || prev->type == TOKEN_G
+	if (tmp->type == TOKEN_PP) //la
+		return (PIPE_ERR); //la
+	else if (prev == NULL || prev->type == TOKEN_L || prev->type == TOKEN_G
 		|| prev->type == TOKEN_LL || prev->type == TOKEN_GG)
 		return (PIPE_ERR);
 	else if (tmp->next == NULL || tmp->next->type == TOKEN_PIPE
@@ -59,7 +61,7 @@ int	ft_syntax_check(t_mst *mst)
 	prev = NULL;
 	while (tmp != NULL && err == 0)
 	{
-		if (tmp->type == TOKEN_PIPE)
+		if (tmp->type == TOKEN_PIPE || tmp->type == TOKEN_PP) //la
 			err = ft_check_pipe(tmp, prev);
 		else if (tmp->type == TOKEN_LQ || tmp->type == TOKEN_LQQ)
 			err = SYNTAX_ERR;
