@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 18:35:28 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:55:13 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,22 @@ int			pipex(t_cmd *commands);
 
 //execute_command.c
 void		redirect_input_output(int fd[2], int fd_in);
-int			execute_command(char **args, char *pathname, int fd_io[2], int fd_in);
-void		exit_error(const char *format, const char *s, int code, char *pathname);
+int			execute_command(char **args, char *pathname,
+				int fd_io[2], int fd_in);
+void		exit_error(const char *format, const char *s,
+				int code, char *pathname);
 
 //handle_rd.c
-int			handle_redirects(int fd_io[2], int fd_pipe[2], int next, t_cmd *cmd);
+int			handle_redirects(int fd_io[2], int fd_pipe[2],
+				int next, t_cmd *cmd);
 int			redir_input(t_cmd *cmd, int fd_in);
 int			redir_output(t_cmd *cmd, int fd_out);
 
 //get_path.c
-char		*get_cmd(char **cmd_paths, char **cmd_tab);
-char		*find_path(char **envp);
+char		*get_path(char **path, char *cmd);
+t_env		*get_env_el(char *av);
+
+//file_to_execute.c
 char		*file_to_execute(char *cmd);
 
 //free_command.c

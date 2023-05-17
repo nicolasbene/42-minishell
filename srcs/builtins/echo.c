@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 10:47:30 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 15:19:31 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:47:40 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 extern t_minishell	g_minishell;
 
-# define FALSE	0
-# define TRUE	1
+#define FALSE	0
+#define TRUE	1
 
 int	echo_newline(char **av, int i)
 {
-	int j;
+	int	j;
 
 	if (av[i][0] == '-')
 	{

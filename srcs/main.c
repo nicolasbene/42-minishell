@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:11:51 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 17:19:15 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:40:09 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,3 @@ int	main(int argc, char *argv[], char *envp[])
 	execute_shell_commands();
 	return (g_minishell.exit_status);
 }
-
-
-//TO DO
-//Gerer les signaux
-
-//COMMANDS
-/*
-unset PATH
-bin/pwd
-*/

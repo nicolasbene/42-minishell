@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/16 18:11:06 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/17 18:54:19 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS_FILES	= main.c \
 				execution/pipex.c \
 				execution/execute_command.c \
 				execution/get_path.c \
+				execution/file_to_execute.c \
 				execution/handle_redirects.c \
 				execution/free_command.c \
 				execution/list_to_tab.c \
