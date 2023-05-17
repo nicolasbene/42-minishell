@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 17:20:58 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:14:02 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ extern t_minishell	g_minishell;
 void	exit_error(const char *format, const char *s, int code, char *pathname)
 {
 	print_error(format, s, NULL);
-	// free_commands(g_minishell.commands);
+	free_commands(g_minishell.commands);
 	free_envs(g_minishell.envs);
 	if (pathname)
 		free(pathname);

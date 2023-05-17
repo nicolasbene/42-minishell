@@ -6,21 +6,13 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:11:41 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 15:42:40 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:33:17 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
 
-int	check_equal(char **av)
-{
-	char	*value;
-
-	value = ft_strchr(av[1], '=');
-	if (!value)
-		return (0);
-	return (1);
-}
+extern t_minishell	g_minishell;
 
 t_env	*add_empty_env(t_env *envs, char *s)
 {
