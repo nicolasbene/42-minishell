@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 15:22:26 by nibenoit          #+#    #+#              #
-#    Updated: 2023/04/05 12:08:16 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/17 14:36:30 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ SRCS = ft_isalpha.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c\
 	get_next_line.c\
-	ft_strcmp.c
+	ft_strcmp.c\
+	ft_printf_fd.c\
+	ft_printf_utils_fd.c
 OBJS = ${SRCS:.c=.o}
 SRCSBONUS = ft_lstnew.c\
 		ft_lstadd_front.c\

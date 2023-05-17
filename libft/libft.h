@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 17:47:39 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 19:14:38 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:42:35 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,18 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <fcntl.h>
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 512
+# endif
+
+# ifndef BASEX
+#  define BASEX "0123456789abcdef"
+# endif
+
+# ifndef BASEXC
+#  define BASEXC "0123456789ABCDEF"
 # endif
 
 char	*get_next_line(int fd);
@@ -78,5 +87,17 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 int		ft_strcmp(const char *s1, const char *s2);
+
+
+//printfd
+int		ft_pfputnbr_fd(long int c, int fd);
+int		ft_putnbr_u_fd(unsigned int c, int fd);
+int		ft_putnbr_x_fd(unsigned long c, int fd);
+int		ft_putnbr_xc_fd(unsigned int c, int fd);
+int		ft_putnbr_p_fd(unsigned long c, int fd);
+int		ft_pfputchar_fd(int c, int fd);
+int		ft_pfputstr_fd(char *str, int fd);
+int		ft_checkarg_fd(int c, va_list ap, int fd);
+int		ft_printf_fd(int fd, const char *str, ...);
 
 #endif

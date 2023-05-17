@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 09:35:07 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 12:04:06 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/17 15:09:27 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ int	ft_check_rd(t_mst *tmp)
 int	ft_printerr(t_mst *tmp, int err)
 {
 	if (err == PIPE_ERR)
-		printf("syntax error near unexpected token '%s'\n", tmp->value);
-	else if (err == RD_ERR && tmp->next->value == NULL)
-		printf("syntax error near unexpected token 'New Line'\n");
+		ft_printf_fd(2, "syntax error near unexpected token `%s'\n", tmp->value);
+	else if ((err == RD_ERR && tmp->next->value == NULL)
+		|| (err == RD_ERR && (tmp->next->type == TOKEN_L
+				|| tmp->next->type == TOKEN_G)))
+		ft_printf_fd(2, "syntax error near unexpected token `newline'\n");
 	else if (err == RD_ERR && tmp->next->value)
-		printf("syntax error near unexpected token '%s'\n", tmp->next->value);
+		ft_printf_fd(2, "syntax error near unexpected token `%s'\n",
+			tmp->next->value);
 	return (err);
 }
 
