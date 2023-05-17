@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:23:22 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 16:53:21 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/17 22:06:57 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	open_and_dup_input(t_cmd *cmd, int fd_in)
 			|| redirects_lst->type == RD_HERE)
 		{
 			redirect_fd = open_fd(redirects_lst->type, redirects_lst->str);
+			if (fd_in != -1)
+				close(fd_in);
 			fd_in = dup(redirect_fd);
 			if (redirect_fd != 1 && redirect_fd != -1)
 				close(redirect_fd);
