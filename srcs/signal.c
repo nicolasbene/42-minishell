@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:36:35 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/15 19:49:51 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:44:05 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	sighandler_heredoc(int signum)
 void	handle_signals_heredoc(void)
 {
 	signal(SIGINT, &sighandler_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 static void	sighandler(int signum)

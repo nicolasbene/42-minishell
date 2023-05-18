@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:17:42 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 19:24:02 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:32:51 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,6 @@ void		handle_signals(void);
 void		handle_signals_exec(void);
 void		handle_signals_heredoc(void);
 void		reset_signals(void);
+void		handle_signals_heredoc_child(void);
 
 #endif

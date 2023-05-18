@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 11:39:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/16 14:29:55 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:44:13 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,17 @@ int	handle_heredoc_fork(const char *stop)
 	{
 		reset_signals();
 		close(fd[0]);
+		handle_signals_heredoc_child();
 		heredoc_readlines(stop, fd[1]);
 		close(fd[1]);
-		free_envs(g_minishell.envs);
-		free_commands(g_minishell.commands);
 		exit(0);
 	}
-	handle_signals_heredoc();
 	close(fd[1]);
 	wait(&status);
 	handle_signals();
 	if (status == SIGINT)
 		return (close(fd[0]), -1);
+	handle_signals_heredoc();
 	return (fd[0]);
 }
 

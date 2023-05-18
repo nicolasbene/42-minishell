@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/17 20:16:41 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/18 19:47:50 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRCS_FILES	= main.c \
 				parser/quote_management.c \
 				parser/quote_management_utils.c \
 				builtins/env.c \
+				builtins/tab_to_lstenv.c \
 				builtins/echo.c \
 				builtins/unset.c \
 				builtins/cd.c \
