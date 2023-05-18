@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:45:34 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/17 22:18:30 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:31:19 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	exec_or_error(char *pathname, char **args)
 			|| ft_strncmp(args[0], "/", 1) == 0))
 		exit_error("%s: No such file or directory", args[0], 127, pathname);
 	if (builtins(nbr_args(args), args, pathname) == 0)
-		return (free_envs(g_minishell.envs));
+		return ;
 	else
 	{
 		envp = list_to_tab(g_minishell.envs);
@@ -68,7 +68,7 @@ void	quit_properly(char *pathname)
 	if (pathname)
 		free(pathname);
 	free_commands(g_minishell.commands);
-	// free_envs(g_minishell.envs);
+	free_envs(g_minishell.envs);
 	exit(g_minishell.exit_status);
 }
 
