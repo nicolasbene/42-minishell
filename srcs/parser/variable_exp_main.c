@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_exp_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:39:21 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 17:04:14 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:53:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	ft_exp_rd(t_rdlist *rd, t_env *env)
 	while (rd != NULL)
 	{
 		j = 0;
+		chirii.dollarcount = 0;
 		while (rd->str[j] != '\0')
 		{
 			if (rd->str[j] == '$')
