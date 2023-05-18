@@ -6,13 +6,13 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/18 19:47:50 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/18 20:15:31 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-SRCS_FILES	= main.c \
+SRCS_FILES	= main2.c \
 				readinput.c \
 				print_error.c \
 				signal.c \
