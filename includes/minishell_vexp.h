@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_vexp.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/03 16:57:30 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/18 11:59:21 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ int		*ft_listtodel(t_quote *quote, int pos);
 char	*ft_strjoinnbr(char *s1, char c);
 int		ft_intodbl(char **str, int pos);
 int		ft_intosmpl(char **str, int pos);
-
 
 #endif

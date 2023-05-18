@@ -6,7 +6,11 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:56 by nwyseur           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/18 11:57:45 by nibenoit         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/17 22:12:41 by nibenoit         ###   ########.fr       */
+>>>>>>> ef43cc1c00c511a396cc1feddc85ff9ffbb9a57f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +72,12 @@ void	ft_exit(t_cmd *cmd, int i)
 		free_envs(g_minishell.envs);
 	if (i == 1)
 		ft_putstr_fd("exit\n", 2);
+<<<<<<< HEAD
 	free_commands(cmd);
+=======
+	if (cmd)
+		free_commands(cmd);
+>>>>>>> ef43cc1c00c511a396cc1feddc85ff9ffbb9a57f
 	close_save_std();
 	exit(g_minishell.exit_status);
 }
