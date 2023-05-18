@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:56:56 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/17 22:12:41 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:16:53 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ void	ft_exit(t_cmd *cmd, int i)
 {
 	if (g_minishell.envs)
 		free_envs(g_minishell.envs);
-	if (i == 1 && cmd->next == NULL)
+	if (i == 1)
 		ft_putstr_fd("exit\n", 2);
-	if (cmd)
-		free_commands(cmd);
+	free_commands(cmd);
 	close_save_std();
 	exit(g_minishell.exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 14:37:07 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/11 16:30:49 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:39:27 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int	open_fd(t_rdtype type, char *file)
 			fd = -2;
 		}
 		if (fd == -2)
+		{
 			g_minishell.exit_status = 1;
+			fd = -1;
+		}
 	}
 	return (fd);
 }
