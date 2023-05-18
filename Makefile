@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
+#    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/17 20:16:41 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/18 12:06:39 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-SRCS_FILES	= main.c \
+SRCS_FILES	= main2.c \
 				readinput.c \
 				print_error.c \
 				signal.c \

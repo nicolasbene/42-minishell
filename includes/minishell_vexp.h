@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 10:40:13 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/03 16:57:30 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/18 15:36:13 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ char	*ft_strjoinnbr(char *s1, char c);
 int		ft_intodbl(char **str, int pos);
 int		ft_intosmpl(char **str, int pos);
 
+void	ft_quote_mngt_rd(t_rdlist *rd);
+void	ft_switchquote_rd(t_rdlist *rd, t_quote *quote);
 
 #endif

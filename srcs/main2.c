@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:28:57 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 17:52:47 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:54:40 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_minishell	g_minishell;
 #define STR19 "bonjour je suis YOyo $\"nom\"yo | comment vas tu | whats up brandon"
 #define STR20 "bonjour je suis YOyo'\"$nom\"'rolandmagdane\"$nom\" | comment vas tu | whats up brandon"
 #define STR21 "bonjour je suis\"'$nom'\" YOyo'$nom'$nom'\"$nom\"'\"$nom\"\"'$nom'\"| comment vas tu | whats up brandon"
-#define STR22 "bonjour je suis YOyo'$nom'\"$nom\"\"'$nom'\"| comment vas tu | whats up brandon"
-#define STR23 "bonjour je suis YOyo'\"$nom $nom\"' | comment vas tu | whats up brandon"
+#define STR22 "bonjour je suis YOyo >'$nom' >\"$nom\" > \"'$nom'\"| comment vas tu | whats up brandon"
+#define STR23 "bonjour je suis YOyo > '\"$nom $nom\"' | comment vas tu | whats up brandon"
 #define STR24 "bonjour je suis YOyo\"'$nom $nom'\" | comment vas tu | whats up brandon"
 #define STR25 "'YOyo'\"$nom\"\"'$nom'\""
 #define STR26 ""
@@ -45,6 +45,8 @@ t_minishell	g_minishell;
 #define STR29 "bonjour je suis YOyo nicolas | "
 #define STR30 "bonjour je suis YOyo nicolas|"
 #define STR31 "$nom"
+#define STR32 "bonjour je suis YOyo '$nom' \"$nom\"\"'$nom'\"| comment vas tu | whats up brandon"
+#define STR33 "bonjour je suis YOyo >'$nom'"
 
 t_env	*ft_initlistenv(void)
 {
@@ -53,7 +55,7 @@ t_env	*ft_initlistenv(void)
 	new = (t_env *)malloc(1 * sizeof(t_env));
 	{
 		new->name = "nom";
-		new->content = "\"";
+		new->content = "Nicolas";
 	}
 	new->next = NULL;
 	return (new);
@@ -87,7 +89,7 @@ int	main(void)
 
 	evr = ft_initlistenv();
 	evint = ft_initlistint(evr);
-	mst = ft_lexer_main(STR31);
+	mst = ft_lexer_main(STR32);
 	if (mst == NULL)
 		return (0);
 	tmp = mst;

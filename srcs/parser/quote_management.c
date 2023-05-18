@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:33:12 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/16 12:05:25 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/18 15:32:01 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,4 +103,5 @@ void	ft_quote_mngt(t_cmd *cmd)
 		ft_switchquote(cmd, &quote);
 		quote.i++;
 	}
+	ft_quote_mngt_rd(cmd->rd);
 }

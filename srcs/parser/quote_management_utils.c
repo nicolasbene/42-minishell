@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:05:39 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/05/01 17:22:17 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/05/18 15:29:28 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,53 @@ char	*ft_strjoinnbr(char *s1, char c)
 	new [i] = '\0';
 	free(s1);
 	return (new);
+}
+
+void	ft_switchquote_rd(t_rdlist *rd, t_quote *quote)
+{
+	char	*new;
+	int		len;
+	int		l;
+	int		j;
+
+	len = (int)ft_strlen(rd->str) - quote->nbrtodel;
+	new = (char *)malloc((len + 1) * sizeof(char));
+	if (!new)
+		return ;
+	l = -1;
+	j = 0;
+	while (++l < len)
+	{
+		while (ft_istodel(j, quote) == 1)
+			j++;
+		new[l] = rd->str[j];
+		if (rd->str[j] != '\0')
+			j++;
+	}
+	new[l] = '\0';
+	if (quote->quotedel != NULL)
+		free (quote->quotedel);
+	ms_swap(&rd->str, new);
+}
+
+void	ft_quote_mngt_rd(t_rdlist *rd)
+{
+	t_quote	quote;
+	int		j;
+
+	while (rd != NULL)
+	{
+		j = 0;
+		quote.nbrtodel = 0;
+		quote.quotedel = NULL;
+		while (rd->str[j] != '\0')
+		{
+			if (rd->str[j] == 34 || rd->str[j] == 39)
+				ft_isquotetodel(&rd->str,
+					&quote, rd->str[j], j);
+			j++;
+		}
+		ft_switchquote_rd(rd, &quote);
+		rd = rd->next;
+	}
 }
