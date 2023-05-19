@@ -6,7 +6,7 @@
 #    By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/05/18 20:17:44 by nibenoit         ###   ########.fr        #
+#    Updated: 2023/05/19 13:19:41 by nibenoit         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS_FILES	= main.c \
 				execution/heredoc.c \
 				execution/utils.c \
 				execution/free_envs.c \
+				execution/tab_to_list.c \
 				parser/lexer_main.c \
 				parser/lexer_mvt.c \
 				parser/lexer_utils.c \
@@ -50,7 +51,7 @@ SRCS_FILES	= main.c \
 				parser/quote_management.c \
 				parser/quote_management_utils.c \
 				builtins/env.c \
-				builtins/tab_to_lstenv.c \
+				builtins/add_node_env.c \
 				builtins/echo.c \
 				builtins/unset.c \
 				builtins/cd.c \

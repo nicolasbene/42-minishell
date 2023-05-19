@@ -6,7 +6,7 @@
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:35:37 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/18 15:17:41 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:24:28 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	forks(t_cmd *cmd, int fd_io[2], int fd_pipe[2])
 	while (cmd)
 	{
 		ft_variable_exp(cmd, g_minishell.envs);
+		ft_quote_mngt(cmd);
 		handle_redirects(fd_io, fd_pipe, cmd->next != NULL, cmd);
 		if (cmd->arg[0] == 0)
 			break ;
@@ -59,6 +60,7 @@ int	pipex(t_cmd *cmd)
 	if (cmd->arg && cmd->next == NULL && ifbuiltins(cmd->arg) == 0)
 	{
 		ft_variable_exp(cmd, g_minishell.envs);
+		ft_quote_mngt(cmd);
 		handle_redirects(fd_io, fd_pipe, cmd->next != NULL, cmd);
 		builtins_parent(nbr_args(cmd->arg), cmd->arg, fd_io, fd_pipe[0]);
 	}

@@ -1,16 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tab_to_env.c                                       :+:      :+:    :+:   */
+/*   add_node_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nibenoit <nibenoit@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 19:46:50 by nibenoit          #+#    #+#             */
-/*   Updated: 2023/05/18 19:47:02 by nibenoit         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:57:48 by nibenoit         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell_includes.h"
+
+t_env	*get_env_var(t_env *envs, const char *name)
+{
+	while (envs)
+	{
+		if (ft_strcmp(envs->name, name) == 0)
+			return (envs);
+		envs = envs->next;
+	}
+	return (NULL);
+}
+
+t_env	*replace_env_var(t_env *envs, const char *name, const char *new_content)
+{
+	t_env	*node;
+
+	node = get_env_var(envs, name);
+	if (node)
+	{
+		free(node->content);
+		free(node->name);
+		node->name = ft_strdup(name);
+		node->content = ft_strdup(new_content);
+		return (envs);
+	}
+	return (NULL);
+}
 
 t_env	*create_node_env(char *av)
 {
@@ -33,17 +60,26 @@ t_env	*create_node_env(char *av)
 	return (node_env);
 }
 
-t_env	*add_env_back(t_env *env, t_env *node_env)
+t_env	*add_env_back(t_env *envs, t_env *node_env)
 {
 	t_env	*tmp;
+	t_env	*replace;
 
-	tmp = env;
-	if (!env)
+	tmp = envs;
+	if (!envs)
 		return (node_env);
+	replace = replace_env_var(envs, node_env->name, node_env->content);
+	if (replace)
+	{
+		free(node_env->name);
+		free(node_env->content);
+		free(node_env);
+		return (envs);
+	}
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = node_env;
-	return (env);
+	return (envs);
 }
 
 t_env	*add_node_env(t_env *envs, char *av)
@@ -54,19 +90,4 @@ t_env	*add_node_env(t_env *envs, char *av)
 	if (!node_env)
 		return (envs);
 	return (add_env_back(envs, node_env));
-}
-
-t_env	*tab_to_list(char **envp)
-{
-	t_env	*envs;
-	int		i;
-
-	i = 0;
-	envs = NULL;
-	while (envp[i])
-	{
-		envs = add_node_env(envs, envp[i]);
-		i++;
-	}
-	return (envs);
 }
